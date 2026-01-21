@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin Business Accelerator 2026 | Health & Green Planet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --health-primary: #FF6B6B;
+            --health-secondary: #FF8E8E;
+            --health-glow: rgba(255, 107, 107, 0.3);
+            --green-primary: #10B981;
+            --green-secondary: #34D399;
+            --green-glow: rgba(16, 185, 129, 0.3);
+            --bg-dark: #0D0D0D;
+            --bg-card: #1A1A1A;
+            --bg-card-hover: #242424;
+            --text-white: #FAFAFA;
+            --text-gray: #A3A3A3;
+            --text-muted: #737373;
+            --border-subtle: rgba(255,255,255,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: linear-gradient(to bottom, var(--bg-dark) 0%, transparent 100%);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-white);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse, var(--health-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse, var(--green-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge span {
+            color: var(--green-primary);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 .gradient-health {
+            background: linear-gradient(135deg, var(--health-primary), var(--health-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .gradient-green {
+            background: linear-gradient(135deg, var(--green-primary), var(--green-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-dates {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .date-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 20px 32px;
+            border-radius: 16px;
+            text-align: left;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .date-card.health {
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .date-card.health:hover {
+            border-color: var(--health-primary);
+            transform: translateY(-4px);
+        }
+
+        .date-card.green {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .date-card.green:hover {
+            border-color: var(--green-primary);
+            transform: translateY(-4px);
+        }
+
+        .date-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .date-card.health .date-card-label {
+            color: var(--health-primary);
+        }
+
+        .date-card.green .date-card-label {
+            color: var(--green-primary);
+        }
+
+        .date-card-date {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .date-card-name {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            color: white;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-info {
+            margin-top: 48px;
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.5s both;
+        }
+
+        .hero-info-item {
+            text-align: center;
+        }
+
+        .hero-info-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .hero-info-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .about-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .about-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .about-card:nth-child(1) .about-card-icon {
+            background: linear-gradient(135deg, var(--health-glow), transparent);
+        }
+
+        .about-card:nth-child(2) .about-card-icon {
+            background: linear-gradient(135deg, var(--green-glow), transparent);
+        }
+
+        .about-card:nth-child(3) .about-card-icon {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), transparent);
+        }
+
+        .about-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Editions Section */
+        .editions {
+            position: relative;
+        }
+
+        .edition-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .edition-tab {
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            background: var(--bg-card);
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edition-tab.active.health,
+        .edition-tab.health:hover {
+            border-color: var(--health-primary);
+            color: var(--health-primary);
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .edition-tab.active.green,
+        .edition-tab.green:hover {
+            border-color: var(--green-primary);
+            color: var(--green-primary);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .edition-content {
+            display: none;
+        }
+
+        .edition-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .edition-intro {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .edition-intro h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .edition-intro.health h3 {
+            color: var(--health-primary);
+        }
+
+        .edition-intro.green h3 {
+            color: var(--green-primary);
+        }
+
+        .edition-intro p {
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .challenge-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px;
+            transition: transform 0.3s;
+        }
+
+        .challenge-category:hover {
+            transform: translateY(-4px);
+        }
+
+        .challenge-category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .challenge-category-icon {
+            font-size: 1.5rem;
+        }
+
+        .challenge-category-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .health .challenge-category-title {
+            color: var(--health-primary);
+        }
+
+        .green .challenge-category-title {
+            color: var(--green-primary);
+        }
+
+        .challenge-list {
+            list-style: none;
+        }
+
+        .challenge-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .challenge-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .challenge-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-white);
+        }
+
+        .challenge-item .problem {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .challenge-item .question {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--bg-card);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .benefit-card {
+            padding: 24px;
+            border-radius: 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            transition: border-color 0.3s;
+        }
+
+        .benefit-card:hover {
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .benefit-highlight {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .benefit-highlight h3 {
+            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--health-primary), var(--green-primary));
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: right;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .timeline-date {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            color: var(--health-primary);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 24px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--health-primary);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 16px;
+        }
+
+        .faq-answer p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+        }
+
+        .gallery-video {
+            margin-bottom: 48px;
+        }
+
+        .video-placeholder {
+            background: var(--bg-dark);
+            border: 2px dashed var(--border-subtle);
+            border-radius: 20px;
+            aspect-ratio: 16/9;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-placeholder iframe,
+        .video-placeholder video {
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+        }
+
+        .video-placeholder-content {
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .video-placeholder-content .video-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .video-placeholder-content p {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .video-placeholder-content small {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item-large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
+        }
+
+        .gallery-placeholder span {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .gallery-placeholder p {
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .gallery-item-large {
+                grid-column: span 2;
+                grid-row: span 1;
+                min-height: 250px;
+            }
+
+            .gallery-item {
+                min-height: 150px;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-subtitle {
+            color: var(--text-gray);
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+        }
+
+        .cta-deadline {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 16px 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .cta-deadline-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .cta-deadline-date {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--health-primary);
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            color: white;
+            padding: 20px 48px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            padding: 64px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .footer-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-white);
+        }
+
+        .footer-contact p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .footer-contact a {
+            color: var(--health-primary);
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .timeline-container::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 50px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: left;
+            }
+
+            .timeline-dot {
+                position: absolute;
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-dates {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .date-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hero-info {
+                gap: 24px;
+            }
+
+            .edition-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .edition-tab {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 968px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">Spin Business Accelerator</a>
+            <ul class="nav-links">
+                <li><a href="#about">O programie</a></li>
+                <li><a href="#editions">Edycje</a></li>
+                <li><a href="#benefits">Korzyści</a></li>
+                <li><a href="#gallery">Galeria</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#apply" class="nav-cta">Aplikuj teraz</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    🚀 Uniwersytet Śląski • Biuro Współpracy z Gospodarką • <span>Rekrutacja otwarta</span>
+                </div>
+                <h1>
+                    Od problemu do prototypu<br>
+                    <span class="gradient-health">Zdrowie</span> & <span class="gradient-green">Zielona Planeta</span>
+                </h1>
+                <p class="hero-subtitle">
+                    2 dni intensywnej pracy zespołowej. Budujesz prototyp rozwiązania dla realnych wyzwań społecznych. Zero teorii, 100% praktyki.
+                </p>
+                
+                <div class="hero-dates">
+                    <div class="date-card health">
+                        <div class="date-card-label">Edycja Health</div>
+                        <div class="date-card-date">25-26.03.2026</div>
+                        <div class="date-card-name">Zdrowie & Wellbeing</div>
+                    </div>
+                    <div class="date-card green">
+                        <div class="date-card-label">Edycja Green</div>
+                        <div class="date-card-date">21-22.04.2026</div>
+                        <div class="date-card-name">Zielona Planeta</div>
+                    </div>
+                </div>
+
+                <a href="#apply" class="hero-cta">
+                    Zapisz się teraz
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+
+                <div class="hero-info">
+                    <div class="hero-info-item">
+                        <div class="hero-info-value">50</div>
+                        <div class="hero-info-label">miejsc / edycja</div>
+                    </div>
+                    <div class="hero-info-item">
+                        <div class="hero-info-value">0 zł</div>
+                        <div class="hero-info-label">koszt udziału</div>
+                    </div>
+                    <div class="hero-info-item">
+                        <div class="hero-info-value">2000 zł</div>
+                        <div class="hero-info-label">nagroda dla zespołu</div>
+                    </div>
+                    <div class="hero-info-item">
+                        <div class="hero-info-value">12h</div>
+                        <div class="hero-info-label">certyfikat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">O programie</span>
+                <h2 class="section-title">Bootcamp, który zmienia perspektywę</h2>
+                <p class="section-subtitle">
+                    Nie uczymy teorii przedsiębiorczości. Stawiamy Cię przed realnym wyzwaniem i dajesz sobie 2 dni na stworzenie rozwiązania.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-card-icon">🎯</div>
+                    <h3>Realne wyzwania</h3>
+                    <p>Dostajesz konkretny problem społeczny do rozwiązania. Żadnych teoretycznych case studies – pracujesz nad czymś, co ma znaczenie.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">👥</div>
+                    <h3>Interdyscyplinarne zespoły</h3>
+                    <p>Studenci UŚ z różnych kierunków = siła. Łączymy ludzi o zróżnicowanych kompetencjach, bo najlepsze rozwiązania powstają na styku dziedzin.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">🚀</div>
+                    <h3>Od zera do prototypu</h3>
+                    <p>W 2 dni przechodzisz od pomysłu do prototypu rozwiązania. Design Thinking, Lean Startup, Business Model Canvas – wszystko w praktyce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Editions Section -->
+    <section class="editions" id="editions">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Wybierz swoją ścieżkę</span>
+                <h2 class="section-title">Dwie edycje, jeden cel</h2>
+                <p class="section-subtitle">
+                    Możesz aplikować na jedną lub obie edycje. Każda z nich skupia się na innych wyzwaniach społecznych.
+                </p>
+            </div>
+
+            <div class="edition-tabs">
+                <button class="edition-tab health active" data-edition="health">
+                    🏥 Edycja Health (25-26.03)
+                </button>
+                <button class="edition-tab green" data-edition="green">
+                    🌍 Edycja Green Planet (21-22.04)
+                </button>
+            </div>
+
+            <!-- Health Edition Content -->
+            <div class="edition-content health active" id="edition-health">
+                <div class="edition-intro health">
+                    <h3>Innowacje w opiece zdrowotnej</h3>
+                    <p>12 wyzwań w 4 obszarach tematycznych. Wybierz problem, który chcesz rozwiązać.</p>
+                </div>
+
+                <div class="challenges-grid">
+                    <!-- Mental Health -->
+                    <div class="challenge-category health">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">🧠</span>
+                            <h3 class="challenge-category-title">Zdrowie psychiczne i wellbeing</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Poprawa zdrowia psychicznego studentów</h4>
+                                <p class="problem">Problem: Studenci czują stres, lęk, wypalenie - ale nie wiedzą jak sobie pomóc.</p>
+                                <p class="question">Jak stworzyć narzędzie/usługę, która pomaga studentom dbać o zdrowie psychiczne na co dzień?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Zapobieganie wypaleniu zawodowemu</h4>
+                                <p class="problem">Problem: Młodzi pracownicy wypalają się w pierwszych latach kariery.</p>
+                                <p class="question">Jak zapobiegać wypaleniu zanim się pojawi?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Walka z izolacją społeczną</h4>
+                                <p class="problem">Problem: Jesteśmy "połączeni" online, ale czujemy się samotni.</p>
+                                <p class="question">Jak budować prawdziwe połączenia międzyludzkie?</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Elderly Care -->
+                    <div class="challenge-category health">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">👴</span>
+                            <h3 class="challenge-category-title">Opieka nad osobami starszymi</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Zdrowie seniorów</h4>
+                                <p class="problem">Problem: Seniorzy mają wiele chorób przewlekłych, ale nie wiedzą jak zarządzać swoim zdrowiem.</p>
+                                <p class="question">Jak pomóc seniorom być zdrowszymi dłużej?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Cyfrowa inkluzja seniorów</h4>
+                                <p class="problem">Problem: eRecepta, ePacjent, teleporady - senior nie wie jak z tego korzystać.</p>
+                                <p class="question">Jak cyfryzować opiekę zdrowotną bez wykluczania seniorów?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Łączenie pokoleń</h4>
+                                <p class="problem">Problem: Samotność seniorów + młodzi bez mentorów.</p>
+                                <p class="question">Jak połączyć pokolenia ku obopólnej korzyści?</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Preventive Medicine -->
+                    <div class="challenge-category health">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">🥗</span>
+                            <h3 class="challenge-category-title">Medycyna prewencyjna i styl życia</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Zdrowe odżywianie</h4>
+                                <p class="problem">Problem: Fast foody, niezdrowe przekąski, brak czasu na gotowanie.</p>
+                                <p class="question">Jak sprawić, by zdrowe jedzenie było łatwiejsze do sięgnięcia niż niezdrowe?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Aktywny styl życia</h4>
+                                <p class="problem">Problem: Ludzie siedzą w domach zamiast się ruszać.</p>
+                                <p class="question">Jak zachęcić mieszkańców do zdrowia i zwalczyć skutki siedzącego trybu życia?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Wsparcie osób z niepełnosprawnością</h4>
+                                <p class="problem">Problem: Osoby z niepełnosprawnościami mają ograniczony dostęp do profilaktyki.</p>
+                                <p class="question">Jak sprawić, by prewencja była dostępna dla wszystkich?</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Healthcare Access -->
+                    <div class="challenge-category health">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">🏥</span>
+                            <h3 class="challenge-category-title">Dostęp do opieki zdrowotnej</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Umiejętności zdrowotne młodych ludzi</h4>
+                                <p class="problem">Problem: Dr Google = źródło dezinformacji.</p>
+                                <p class="question">Jak edukować młodych, by podejmowali świadome decyzje zdrowotne?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Dostęp dla mieszkańców wsi</h4>
+                                <p class="problem">Problem: W małych miejscowościach nie ma specjalistów.</p>
+                                <p class="question">Jak zapewnić równy dostęp do opieki zdrowotnej?</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Pacjenci-obcokrajowcy</h4>
+                                <p class="problem">Problem: Bariera językowa = gorsze leczenie.</p>
+                                <p class="question">Jak sprawić, by każdy pacjent był zrozumiany przez lekarza?</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Green Planet Edition Content -->
+            <div class="edition-content green" id="edition-green">
+                <div class="edition-intro green">
+                    <h3>Zielona transformacja miast</h3>
+                    <p>7 wyzwań z obszarów: środowisko, przestrzeń miejska, mobilność, zrównoważony rozwój kampusów.</p>
+                </div>
+
+                <div class="challenges-grid">
+                    <div class="challenge-category green">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">🌳</span>
+                            <h3 class="challenge-category-title">Zieleń miejska</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Zazielenianie przestrzeni miejskiej</h4>
+                                <p class="question">Stworzenie innowacyjnych rozwiązań wspierających wprowadzanie nowych technologii i materiałów przyjaznych środowisku.</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Bioróżnorodność w miastach</h4>
+                                <p class="question">Opracowanie metod i narzędzi do zwiększenia różnorodności biologicznej w miejskich parkach i ogrodach.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="challenge-category green">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">💧</span>
+                            <h3 class="challenge-category-title">Woda i powietrze</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Retencja wody w miastach</h4>
+                                <p class="question">Zaprojektowanie nowoczesnych technologii poprawiających retencję wody, aby przeciwdziałać suszy i powodziom.</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Jakość powietrza</h4>
+                                <p class="question">Opracowanie rozwiązań poprawiających jakość powietrza poprzez redukcję zanieczyszczeń i zwiększenie terenów zielonych.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="challenge-category green">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">♻️</span>
+                            <h3 class="challenge-category-title">Gospodarka odpadami</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Optymalizacja gospodarki odpadami</h4>
+                                <p class="question">Opracowanie innowacyjnych rozwiązań minimalizujących wpływ odpadów na środowisko w miastach.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="challenge-category green">
+                        <div class="challenge-category-header">
+                            <span class="challenge-category-icon">🚲</span>
+                            <h3 class="challenge-category-title">Mobilność i kampusy</h3>
+                        </div>
+                        <ul class="challenge-list">
+                            <li class="challenge-item">
+                                <h4>Zrównoważona mobilność miejska</h4>
+                                <p class="question">Opracowanie rozwiązań usprawniających transport multimodalny i ścieżki rowerowe.</p>
+                            </li>
+                            <li class="challenge-item">
+                                <h4>Ekologiczne kampusy akademickie</h4>
+                                <p class="question">Stworzenie zrównoważonych rozwiązań na terenie kampusów, które mogą stać się wzorem dla innych obszarów miejskich.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Co zyskujesz?</span>
+                <h2 class="section-title">Wartość, która zostaje</h2>
+                <p class="section-subtitle">
+                    Bootcamp to nie tylko 2 dni – to start Twojej drogi w innowacjach społecznych.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card benefit-highlight">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Do 2000 zł na prototypowanie</h3>
+                    <p>Najlepsze zespoły otrzymują budżet na dalszy rozwój i testowanie swojego rozwiązania.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📜</div>
+                    <h3>Certyfikat ukończenia</h3>
+                    <p>12 godzin certyfikowanego szkolenia. Potwierdzenie Twoich kompetencji.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎓</div>
+                    <h3>Mentoring ekspertów</h3>
+                    <p>Wojciech Chojnacki (Symetria UX – twórcy BLIK) i Łukasz Szczęsny (Tenka, Futuri) – realni praktycy.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Priorytetowy dostęp do PKPA</h3>
+                    <p>Punkt Konsultacyjny Przedsiębiorczości Akademickiej – wsparcie w rozwoju pomysłu, szukaniu finansowania, zakładaniu firmy.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h3>Materiały szkoleniowe</h3>
+                    <p>Dostęp do platformy e-learningowej z materiałami opracowanymi przez ekspertów.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💡</div>
+                    <h3>Walidacja pomysłu</h3>
+                    <p>Brutalnie szczery feedback od praktyków. Wiesz czy Twój pomysł ma sens – lub jak go zmienić.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <h3>Społeczność</h3>
+                    <p>Kontakt z ambitnymi ludźmi z różnych kierunków – potencjalni współzałożyciele przyszłych startupów.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>2 dni = 2-3 miesiące</h3>
+                    <p>Intensywna praca zespołowa daje więcej niż miesiące "kiedyś to zrobię" po godzinach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline" id="timeline">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Harmonogram</span>
+                <h2 class="section-title">Jak to wygląda?</h2>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Teraz → 28.02.2026</div>
+                        <h3 class="timeline-title">Rekrutacja otwarta</h3>
+                        <p class="timeline-desc">Wypełnij formularz zgłoszeniowy. Możesz aplikować na jedną lub obie edycje.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Marzec 2026</div>
+                        <h3 class="timeline-title">Potwierdzenie uczestnictwa</h3>
+                        <p class="timeline-desc">Dostaniesz email z potwierdzeniem udziału i pakiet przygotowawczy.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">25-26.03.2026</div>
+                        <h3 class="timeline-title">🏥 Edycja Health</h3>
+                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami zdrowotnymi. spinPLACE UŚ, Katowice.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">21-22.04.2026</div>
+                        <h3 class="timeline-title">🌍 Edycja Green Planet</h3>
+                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami ekologicznymi. spinPLACE UŚ, Katowice.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Po bootcampie</div>
+                        <h3 class="timeline-title">Kontynuacja wsparcia</h3>
+                        <p class="timeline-desc">Mentoring, dostęp do PKPA, możliwość dalszego rozwijania projektu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Pytania</span>
+                <h2 class="section-title">FAQ</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Muszę mieć gotowy pomysł?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>NIE!</strong> Dostajesz konkretne wyzwanie do rozwiązania. Budujesz rozwiązanie w zespole od zera podczas bootcampu.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Nie znam się na biznesie. Czy to problem?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Wręcz przeciwnie!</strong> Jeśli jesteś z biologii, IT, psychologii, designu – przynosisz kluczowe kompetencje. Zespół składa się z 4-5 osób z różnych obszarów i razem się uzupełniacie.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Co jeśli nie mogę być przez całe 2 dni?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Niestety, wymagamy obecności przez cały czas trwania bootcampu (9:00-15:00 oba dni). Ciągłość pracy zespołowej jest kluczowa dla efektu końcowego.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Ile to kosztuje?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>0 zł.</strong> Zapewniamy: szkolenia, catering (posiłki + coffee breaks), materiały. Jedyny koszt to Twój dojazd.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy mogę aplikować na obie edycje?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Nie</strong>, możesz wybrać tylko jedną edycję w formularzu. Jeśli interesują Cię zarówno tematy zdrowotne jak i ekologiczne – skontaktuj się z nami mailowo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy dostanę certyfikat?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>TAK!</strong> Certyfikat ukończenia bootcampu (12h szkolenia) potwierdzający Twoje kompetencje.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy mogę wykorzystać projekt do pracy dyplomowej?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Oczywiście!</strong> Wielu uczestników tak robi. Masz: research, prototyp, feedback od ekspertów – świetna baza. Skonsultuj z promotorem przed bootcampem.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Boję się pitchowania przed ludźmi</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To normalne! 80% uczestników ma ten sam lęk. Warsztat pitchingowy przygotuje Cię do prezentacji. Pitchujesz Z ZESPOŁEM (nie solo), więc możecie się podzielić rolami. Feedback jest konstruktywny, nie okrutny.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Zobacz jak to wygląda</span>
+                <h2 class="section-title">Poprzednia edycja</h2>
+                <p class="section-subtitle">
+                    Atmosfera, praca zespołowa, prezentacje finałowe – przekonaj się sam.
+                </p>
+            </div>
+
+            <!-- Video placeholder -->
+            <div class="gallery-video">
+                <div class="video-placeholder">
+                    <!-- Zamień poniższy kod na embed swojego filmiku -->
+                    <!-- Przykład dla YouTube: -->
+                    <!-- <iframe src="https://www.youtube.com/embed/TWOJ_ID_FILMIKU" frameborder="0" allowfullscreen></iframe> -->
+                    
+                    <!-- Przykład dla pliku wideo: -->
+                    <!-- <video controls poster="sciezka/do/miniaturki.jpg">
+                        <source src="sciezka/do/filmiku.mp4" type="video/mp4">
+                    </video> -->
+                    
+                    <div class="video-placeholder-content">
+                        <span class="video-icon">🎬</span>
+                        <p>Miejsce na Twój filmik</p>
+                        <small>Zamień ten placeholder na embed YouTube lub plik wideo</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo grid -->
+            <div class="gallery-grid">
+                <!-- Zamień src na ścieżki do swoich zdjęć -->
+                <div class="gallery-item gallery-item-large">
+                    <div class="gallery-placeholder">
+                        <span>📷</span>
+                        <p>Zdjęcie 1 (duże)</p>
+                    </div>
+                    <!-- <img src="sciezka/do/zdjecia1.jpg" alt="Bootcamp - praca zespołowa"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>📷</span>
+                        <p>Zdjęcie 2</p>
+                    </div>
+                    <!-- <img src="sciezka/do/zdjecia2.jpg" alt="Bootcamp - prezentacje"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>📷</span>
+                        <p>Zdjęcie 3</p>
+                    </div>
+                    <!-- <img src="sciezka/do/zdjecia3.jpg" alt="Bootcamp - networking"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>📷</span>
+                        <p>Zdjęcie 4</p>
+                    </div>
+                    <!-- <img src="sciezka/do/zdjecia4.jpg" alt="Bootcamp - warsztaty"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>📷</span>
+                        <p>Zdjęcie 5</p>
+                    </div>
+                    <!-- <img src="sciezka/do/zdjecia5.jpg" alt="Bootcamp - pitche"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="apply">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Gotowy na wyzwanie?</h2>
+                <p class="cta-subtitle">
+                    2 dni, które mogą zmienić Twoje podejście do rozwiązywania problemów.
+                </p>
+                
+                <div class="cta-deadline">
+                    <div class="cta-deadline-label">Deadline rekrutacji</div>
+                    <div class="cta-deadline-date">28 lutego 2026</div>
+                </div>
+
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=kWLHUIAMRESi-0-KsWjDEcN1O5bofbJCqX4a38EZDHtUOEFIMzlGR1lRMVVHU1hWNTg1TUY1Tk9USi4u" target="_blank" class="cta-btn">
+                    Wypełnij formularz zgłoszeniowy
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Spin Business Accelerator</a>
+                    <p>Program rozwijający kompetencje przedsiębiorcze w obszarze zdrowia i zrównoważonego rozwoju. Uniwersytet Śląski w Katowicach.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Nawigacja</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">O programie</a></li>
+                        <li><a href="#editions">Edycje</a></li>
+                        <li><a href="#benefits">Korzyści</a></li>
+                        <li><a href="#gallery">Galeria</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Zasoby</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://us.edu.pl" target="_blank">Uniwersytet Śląski</a></li>
+                        <li><a href="https://spinplace.us.edu.pl" target="_blank">spinPLACE UŚ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-title">Kontakt</h4>
+                    <p>📧 <a href="mailto:transfer@us.edu.pl">transfer@us.edu.pl</a></p>
+                    <p>📍 spinPLACE UŚ, Katowice</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Spin Business Accelerator. Uniwersytet Śląski w Katowicach.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Edition tabs
+        const tabs = document.querySelectorAll('.edition-tab');
+        const contents = document.querySelectorAll('.edition-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const edition = tab.dataset.edition;
+                
+                // Update tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update content
+                contents.forEach(c => c.classList.remove('active'));
+                document.getElementById(`edition-${edition}`).classList.add('active');
+            });
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const wasActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
