@@ -506,6 +506,70 @@
             line-height: 1.7;
         }
 
+        /* ── EARTH DAY BANNER ── */
+        .earth-day-banner {
+            background: linear-gradient(135deg, #0a2e1a 0%, #0d3d20 50%, #0a2e1a 100%);
+            border-top: 1px solid rgba(0,214,143,0.2);
+            border-bottom: 1px solid rgba(0,214,143,0.2);
+            padding: 20px 0;
+        }
+
+        .earth-day-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .earth-day-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .earth-day-globe {
+            font-size: 2.4rem;
+            animation: spin-slow 12s linear infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .earth-day-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-lime);
+            margin-bottom: 4px;
+        }
+
+        .earth-day-headline {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-white);
+            letter-spacing: -0.02em;
+        }
+
+        .earth-day-right {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            max-width: 320px;
+            line-height: 1.5;
+            border-left: 2px solid rgba(0,214,143,0.3);
+            padding-left: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .earth-day-right { border-left: none; padding-left: 0; }
+            .earth-day-headline { font-size: 1.1rem; }
+        }
+
         /* ── ABOUT ── */
         .about {
             background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-subtle) 50%, var(--bg-dark) 100%);
@@ -1991,7 +2055,7 @@
 
                 <div class="hero-stats">
                     <div class="hero-stat">
-                        <div class="hero-stat-value">50</div>
+                        <div class="hero-stat-value">30</div>
                         <div class="hero-stat-label">miejsc</div>
                     </div>
                     <div class="hero-stat">
@@ -2011,6 +2075,24 @@
             </div>
         </div>
     </section>
+
+    <!-- Earth Day banner -->
+    <div class="earth-day-banner">
+        <div class="container">
+            <div class="earth-day-inner">
+                <div class="earth-day-left">
+                    <span class="earth-day-globe">🌍</span>
+                    <div>
+                        <div class="earth-day-label">22 kwietnia 2026 · Światowy Dzień Ziemi</div>
+                        <div class="earth-day-headline">Ty też możesz coś zrobić dla planety.</div>
+                    </div>
+                </div>
+                <div class="earth-day-right">
+                    Dołącz do Green Planet Bootcamp i zacznij działać właśnie w tym dniu.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- About -->
     <section class="about" id="about">
@@ -2073,7 +2155,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Green Planet Edition</span>
-                <h2 class="section-title">4 obszary, eksperci branżowi, Twój pomysł</h2>
+                <h2 class="section-title">3 obszary, eksperci branżowi, Twój pomysł</h2>
                 <p class="section-subtitle">
                     Najpierw poznasz kontekst — potem wybierzesz wyzwanie, które chcesz rozwiązać.
                 </p>
@@ -2159,46 +2241,6 @@
                 </div>
             </div>
 
-            <!-- Speaker 3 -->
-            <div class="speaker-block">
-                <div class="speaker-card">
-                    <div class="speaker-photo-wrap">
-                        <div class="speaker-photo">🐝</div>
-                    </div>
-                    <div class="speaker-info">
-                        <div class="speaker-topic-badge">Obszar 3</div>
-                        <h3 class="speaker-name">Zapylacze i bioróżnorodność</h3>
-                        <div class="speaker-abc">
-                            <div class="abc-item">
-                                <span class="abc-letter">A</span>
-                                <p>Czy wiesz, że co trzeci kęs jedzenia, który spożywasz, istnieje dzięki pszczołom i innym zapylaczom — a ich populacja spada o kilka procent każdego roku?</p>
-                            </div>
-                            <div class="abc-item">
-                                <span class="abc-letter">B</span>
-                                <p>Czy masz pomysł, jak zatrzymać ten trend — w mieście, na kampusie, w szkole — bez wielkich budżetów i bez specjalistycznego sprzętu?</p>
-                            </div>
-                            <div class="abc-item">
-                                <span class="abc-letter">C</span>
-                                <p>Jak robią to inni? Londyn tworzy „pszczele autostrady" na dachach budynków. Berlińskie balkony stają się mini-łąkami. A co możemy zrobić my?</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="speaker-challenges">
-                    <div class="speaker-challenges-label">Wyzwania do rozwiązania w tym obszarze:</div>
-                    <div class="speaker-challenge-list">
-                        <div class="speaker-challenge-item">
-                            <h4>Jak mówić o zapylaczach, żeby ktoś posłuchał?</h4>
-                            <p>Ludzie wiedzą, że pszczoły są ważne — ale nic z tym nie robią. Jak dotrzeć do zwykłych mieszkańców, uczniów, właścicieli balkonów i sprawić, żeby zadziałali?</p>
-                        </div>
-                        <div class="speaker-challenge-item">
-                            <h4>Jak zamienić betonowe podwórko w przyjazne miejsce?</h4>
-                            <p>Wiele przestrzeni w miastach można zmienić małym kosztem i bez specjalistycznej wiedzy. Jak zaprojektować taką zmianę i przekonać do niej wspólnotę, szkołę czy urząd?</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Open category -->
             <div class="speaker-block open-category">
                 <div class="speaker-card">
@@ -2209,7 +2251,7 @@
                         <div class="speaker-topic-badge open-badge">Obszar otwarty</div>
                         <h3 class="speaker-name">Zielona gospodarka — Twój pomysł</h3>
                         <div class="open-category-desc">
-                            <p>Jeśli Twój pomysł dotyczy zielonej gospodarki, a nie mieści się w żadnym z trzech obszarów powyżej — możesz go zgłosić w tej kategorii. Liczy się jedno: realne wyzwanie środowiskowe i konkretna propozycja rozwiązania.</p>
+                            <p>Jeśli Twój pomysł dotyczy zielonej gospodarki, a nie mieści się w żadnym z dwóch obszarów powyżej — możesz go zgłosić w tej kategorii. Liczy się jedno: realne wyzwanie środowiskowe i konkretna propozycja rozwiązania.</p>
                             <div class="open-category-examples">
                                 <span>np. aplikacja do wymiany rzeczy między sąsiadami</span>
                                 <span>system zbierania deszczówki na kampusie</span>
@@ -2297,7 +2339,7 @@
                     <div class="timeline-content">
                         <div class="timeline-date">Teraz → 10 kwietnia 2026</div>
                         <h3 class="timeline-title">Rekrutacja otwarta</h3>
-                        <p class="timeline-desc">Wypełnij formularz zgłoszeniowy — zajmuje 5 minut. Miejsca limitowane do 50 osób.</p>
+                        <p class="timeline-desc">Wypełnij formularz zgłoszeniowy — zajmuje 5 minut. Miejsca limitowane do 30 osób.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -2729,7 +2771,7 @@
                 </div>
                 <div class="footer-contact">
                     <h4 class="footer-title">Kontakt</h4>
-                    <p>📧 <a href="mailto:transfer@us.edu.pl">transfer@us.edu.pl</a></p>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection#9befe9faf5e8fdfee9dbeee8b5feffeeb5ebf7"><span class="__cf_email__" data-cfemail="700402111e031615023005035e1514055e001c">[email&#160;protected]</span></a></p>
                     <p>📍 <a href="https://maps.google.com/?q=ul.+Bankowa+5,+40-007+Katowice" target="_blank" style="color:inherit;">spinPLACE UŚ<br>ul. Bankowa 5, 40-007 Katowice</a></p>
                 </div>
             </div>
@@ -2774,7 +2816,7 @@
         ">Rozumiem</button>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         if (navbar) {
@@ -2845,12 +2887,4 @@
                 mobileNav.style.position = 'absolute';
                 mobileNav.style.top = '70px';
                 mobileNav.style.left = '0';
-                mobileNav.style.right = '0';
-                mobileNav.style.background = 'rgba(8,12,10,0.98)';
-                mobileNav.style.padding = '20px';
-                mobileNav.style.gap = '16px';
-            });
-        }
-    </script>
-</body>
-</html>
+                mobileN
