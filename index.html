@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spin Business Accelerator 2026 | Bootcamp & Hackathon z nagrodami</title>
+    <title>Spin Business Accelerator 2026 | Green Planet Bootcamp & Hackathon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --health-primary: #FF6B6B;
-            --health-secondary: #FF8E8E;
-            --health-glow: rgba(255, 107, 107, 0.3);
-            --green-primary: #10B981;
-            --green-secondary: #34D399;
-            --green-glow: rgba(16, 185, 129, 0.3);
-            --bg-dark: #0D0D0D;
-            --bg-card: #1A1A1A;
-            --bg-card-hover: #242424;
-            --text-white: #FAFAFA;
-            --text-gray: #A3A3A3;
-            --text-muted: #737373;
-            --border-subtle: rgba(255,255,255,0.08);
+            --green-primary: #00D68F;
+            --green-secondary: #00A86B;
+            --green-light: #34FFBB;
+            --green-glow: rgba(0, 214, 143, 0.25);
+            --green-glow-soft: rgba(0, 214, 143, 0.08);
+            --accent-lime: #B8FF5E;
+            --accent-teal: #00C5C8;
+            --bg-dark: #080C0A;
+            --bg-card: #111814;
+            --bg-card-hover: #182018;
+            --bg-subtle: #0E1510;
+            --text-white: #F0FAF5;
+            --text-gray: #8EA89A;
+            --text-muted: #516058;
+            --border-subtle: rgba(0, 214, 143, 0.1);
+            --border-mid: rgba(0, 214, 143, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'DM Sans', sans-serif;
@@ -42,41 +38,31 @@
             overflow-x: hidden;
         }
 
-        /* Grain overlay */
+        /* Grain texture */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.025;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 9999;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        /* Navigation */
+        /* ── NAVIGATION ── */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
-            padding: 20px 0;
-            background: linear-gradient(to bottom, var(--bg-dark) 0%, transparent 100%);
-            transition: all 0.3s ease;
+            padding: 18px 0;
+            transition: all 0.4s ease;
         }
 
         nav.scrolled {
-            background: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(8, 12, 10, 0.92);
+            backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--border-subtle);
         }
 
@@ -86,79 +72,186 @@
             align-items: center;
         }
 
+        /* Brand area - logos */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            text-decoration: none;
+        }
+
+        .nav-logo-us {
+            height: 32px;
+            width: auto;
+            opacity: 0.9;
+            filter: brightness(1.1);
+        }
+
+        .nav-logo-divider {
+            width: 1px;
+            height: 28px;
+            background: var(--border-mid);
+        }
+
+        .nav-logo-spinplace {
+            height: 30px;
+            width: auto;
+            opacity: 0.9;
+        }
+
+        .nav-logo-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--green-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        .nav-logo-title small {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Footer brand logos */
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo-us {
+            height: 28px;
+            width: auto;
+            opacity: 0.7;
+            filter: brightness(1.1);
+        }
+
+        .footer-logo-spinplace {
+            height: 26px;
+            width: auto;
+            opacity: 0.65;
+        }
+
+        .footer-logo-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--border-subtle);
+        }
+
         .logo {
             font-family: 'Sora', sans-serif;
             font-weight: 800;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.3rem;
+            color: var(--green-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent-lime);
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
+            letter-spacing: 0.01em;
             transition: color 0.2s;
         }
 
-        .nav-links a:hover {
-            color: var(--text-white);
-        }
+        .nav-links a:hover { color: var(--text-white); }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
-            color: white;
-            padding: 10px 24px;
+            background: var(--green-primary);
+            color: var(--bg-dark);
+            padding: 10px 22px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+            letter-spacing: 0.01em;
         }
 
         .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            background: var(--green-light);
+            transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-mid);
+            color: var(--text-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 968px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-logo-title { display: none; }
+            .nav-logo-spinplace { display: none; }
+            .nav-logo-divider:last-of-type { display: none; }
+        }
+
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 0 80px;
+            padding: 130px 0 80px;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .hero-bg-glow {
             position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 60%;
-            height: 100%;
-            background: radial-gradient(ellipse, var(--health-glow) 0%, transparent 70%);
+            top: -10%;
+            right: -15%;
+            width: 70%;
+            height: 90%;
+            background: radial-gradient(ellipse at center, rgba(0, 214, 143, 0.12) 0%, transparent 65%);
             pointer-events: none;
         }
 
-        .hero::after {
-            content: '';
+        .hero-bg-glow-2 {
             position: absolute;
-            bottom: -30%;
-            right: -20%;
-            width: 60%;
-            height: 100%;
-            background: radial-gradient(ellipse, var(--green-glow) 0%, transparent 70%);
+            bottom: -20%;
+            left: -10%;
+            width: 50%;
+            height: 70%;
+            background: radial-gradient(ellipse at center, rgba(0, 197, 200, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* animated grid */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,214,143,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,214,143,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
             pointer-events: none;
         }
 
@@ -166,177 +259,222 @@
             position: relative;
             z-index: 1;
             text-align: center;
+            width: 100%;
         }
 
-        .hero-badge {
+        .hero-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            padding: 8px 16px;
+            border: 1px solid var(--border-mid);
+            padding: 8px 18px;
             border-radius: 100px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-gray);
-            margin-bottom: 32px;
-            animation: fadeInUp 0.6s ease;
+            margin-bottom: 28px;
+            animation: fadeInUp 0.6s ease both;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
 
-        .hero-badge span {
-            color: var(--green-primary);
-            font-weight: 600;
+        .hero-eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green-primary);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
         }
 
         .hero h1 {
             font-family: 'Sora', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.8rem, 7vw, 5.2rem);
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
             margin-bottom: 24px;
             animation: fadeInUp 0.6s ease 0.1s both;
         }
 
-        .hero h1 .gradient-health {
-            background: linear-gradient(135deg, var(--health-primary), var(--health-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero h1 .gradient-green {
-            background: linear-gradient(135deg, var(--green-primary), var(--green-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 0.6s ease 0.2s both;
-        }
-
-        .hero-dates {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-bottom: 48px;
-            animation: fadeInUp 0.6s ease 0.3s both;
-        }
-
-        .date-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            padding: 20px 32px;
-            border-radius: 16px;
-            text-align: left;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .date-card.health {
-            border-color: rgba(255, 107, 107, 0.3);
-        }
-
-        .date-card.health:hover {
-            border-color: var(--health-primary);
-            transform: translateY(-4px);
-        }
-
-        .date-card.green {
-            border-color: rgba(16, 185, 129, 0.3);
-        }
-
-        .date-card.green:hover {
-            border-color: var(--green-primary);
-            transform: translateY(-4px);
-        }
-
-        .date-card-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .date-card.health .date-card-label {
-            color: var(--health-primary);
-        }
-
-        .date-card.green .date-card-label {
+        .hero h1 em {
+            font-style: normal;
             color: var(--green-primary);
         }
 
-        .date-card-date {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+        .hero h1 .lime {
+            color: var(--accent-lime);
         }
 
-        .date-card-name {
-            font-size: 0.9rem;
+        .hero-subtitle {
+            font-size: 1.15rem;
             color: var(--text-gray);
+            max-width: 580px;
+            margin: 0 auto 44px;
+            animation: fadeInUp 0.6s ease 0.2s both;
+            line-height: 1.7;
         }
 
-        .hero-cta {
+        /* Date spotlight */
+        .hero-date-spotlight {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
-            color: white;
-            padding: 18px 40px;
+            gap: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-mid);
+            border-radius: 20px;
+            padding: 20px 36px;
+            margin-bottom: 44px;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .hero-date-icon {
+            font-size: 2.2rem;
+        }
+
+        .hero-date-info {
+            text-align: left;
+        }
+
+        .hero-date-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green-primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .hero-date-main {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .hero-date-sub {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 4px;
+        }
+
+        .hero-date-divider {
+            width: 1px;
+            height: 48px;
+            background: var(--border-mid);
+        }
+
+        .hero-cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.4s both;
+            margin-bottom: 64px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green-primary);
+            color: var(--bg-dark);
+            padding: 16px 36px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 0.6s ease 0.4s both;
+            font-size: 1rem;
+            transition: all 0.25s;
+            letter-spacing: 0.01em;
         }
 
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
+        .btn-primary:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(0, 214, 143, 0.3);
         }
 
-        .hero-cta svg {
-            transition: transform 0.3s;
+        .btn-primary svg { transition: transform 0.25s; }
+        .btn-primary:hover svg { transform: translateX(4px); }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid var(--border-mid);
+            color: var(--text-white);
+            padding: 16px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.25s;
         }
 
-        .hero-cta:hover svg {
-            transform: translateX(4px);
+        .btn-secondary:hover {
+            border-color: var(--green-primary);
+            color: var(--green-primary);
         }
 
-        .hero-info {
-            margin-top: 48px;
+        /* Stats bar */
+        .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 48px;
+            gap: 0;
             flex-wrap: wrap;
             animation: fadeInUp 0.6s ease 0.5s both;
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            background: var(--bg-card);
+            overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .hero-info-item {
+        .hero-stat {
+            flex: 1;
+            min-width: 130px;
+            padding: 20px 24px;
             text-align: center;
+            border-right: 1px solid var(--border-subtle);
         }
 
-        .hero-info-value {
+        .hero-stat:last-child { border-right: none; }
+
+        .hero-stat-value {
             font-family: 'Sora', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-white);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            letter-spacing: -0.03em;
         }
 
-        .hero-info-label {
-            font-size: 0.85rem;
+        .hero-stat-label {
+            font-size: 0.78rem;
             color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 0.02em;
         }
 
-        /* Section Styles */
-        section {
-            padding: 100px 0;
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ── SECTIONS ── */
+        section { padding: 100px 0; }
 
         .section-header {
             text-align: center;
@@ -345,54 +483,69 @@
 
         .section-label {
             display: inline-block;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
+            letter-spacing: 3px;
+            color: var(--green-primary);
             margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .section-title {
             font-family: 'Sora', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
             font-weight: 700;
             margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
 
         .section-subtitle {
             color: var(--text-gray);
-            max-width: 600px;
+            max-width: 580px;
             margin: 0 auto;
+            line-height: 1.7;
         }
 
-        /* About Section */
+        /* ── ABOUT ── */
         .about {
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-subtle) 50%, var(--bg-dark) 100%);
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            gap: 20px;
         }
 
         .about-card {
-            background: var(--bg-dark);
+            background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: 20px;
             padding: 32px;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .about-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.15);
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green-primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
+
+        .about-card:hover { transform: translateY(-6px); border-color: var(--border-mid); }
+        .about-card:hover::before { opacity: 1; }
 
         .about-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--green-glow-soft);
+            border: 1px solid var(--border-mid);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -400,108 +553,57 @@
             font-size: 1.5rem;
         }
 
-        .about-card:nth-child(1) .about-card-icon {
-            background: linear-gradient(135deg, var(--health-glow), transparent);
-        }
-
-        .about-card:nth-child(2) .about-card-icon {
-            background: linear-gradient(135deg, var(--green-glow), transparent);
-        }
-
-        .about-card:nth-child(3) .about-card-icon {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), transparent);
-        }
-
         .about-card h3 {
             font-family: 'Sora', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .about-card p {
             color: var(--text-gray);
-            font-size: 0.95rem;
+            font-size: 0.93rem;
+            line-height: 1.65;
         }
 
-        /* Editions Section */
-        .editions {
+        /* ── CHALLENGES ── */
+        .challenges {
             position: relative;
         }
 
-        .edition-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 48px;
-        }
-
-        .edition-tab {
-            padding: 16px 32px;
-            border-radius: 12px;
-            border: 2px solid transparent;
+        .challenges-intro {
             background: var(--bg-card);
-            font-family: 'Sora', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .edition-tab.active.health,
-        .edition-tab.health:hover {
-            border-color: var(--health-primary);
-            color: var(--health-primary);
-            background: rgba(255, 107, 107, 0.1);
-        }
-
-        .edition-tab.active.green,
-        .edition-tab.green:hover {
-            border-color: var(--green-primary);
-            color: var(--green-primary);
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        .edition-content {
-            display: none;
-        }
-
-        .edition-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .edition-intro {
-            text-align: center;
+            border: 1px solid var(--border-mid);
+            border-radius: 20px;
+            padding: 36px;
             margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
         }
 
-        .edition-intro h3 {
+        .challenges-intro-icon {
+            font-size: 3.5rem;
+            flex-shrink: 0;
+        }
+
+        .challenges-intro h3 {
             font-family: 'Sora', sans-serif;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .edition-intro.health h3 {
-            color: var(--health-primary);
-        }
-
-        .edition-intro.green h3 {
             color: var(--green-primary);
+            margin-bottom: 8px;
         }
 
-        .edition-intro p {
+        .challenges-intro p {
             color: var(--text-gray);
-            max-width: 700px;
-            margin: 0 auto;
+            line-height: 1.7;
         }
 
         .challenges-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
         }
 
         .challenge-category {
@@ -509,11 +611,13 @@
             border: 1px solid var(--border-subtle);
             border-radius: 20px;
             padding: 28px;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
         .challenge-category:hover {
             transform: translateY(-4px);
+            border-color: var(--border-mid);
+            background: var(--bg-card-hover);
         }
 
         .challenge-category-header {
@@ -521,118 +625,105 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .challenge-category-icon {
             font-size: 1.5rem;
+            width: 42px;
+            height: 42px;
+            background: var(--green-glow-soft);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .challenge-category-title {
             font-family: 'Sora', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .health .challenge-category-title {
-            color: var(--health-primary);
-        }
-
-        .green .challenge-category-title {
+            font-size: 1rem;
+            font-weight: 700;
             color: var(--green-primary);
         }
 
         .challenge-list {
             list-style: none;
-        }
-
-        .challenge-item {
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .challenge-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .challenge-item h4 {
-            font-size: 0.95rem;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.92rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-white);
-        }
-
-        .challenge-item .problem {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .challenge-item .question {
-            font-size: 0.85rem;
             color: var(--text-gray);
-            font-style: italic;
+            font-size: 0.85rem;
+            line-height: 1.55;
         }
 
-        /* Benefits Section */
+        /* ── BENEFITS ── */
         .benefits {
-            background: var(--bg-card);
+            background: var(--bg-subtle);
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
         }
 
         .benefit-card {
-            padding: 24px;
-            border-radius: 16px;
-            background: var(--bg-dark);
+            background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            transition: border-color 0.3s;
+            border-radius: 18px;
+            padding: 28px;
+            transition: all 0.3s;
         }
 
         .benefit-card:hover {
-            border-color: rgba(255,255,255,0.15);
+            border-color: var(--border-mid);
+            transform: translateY(-3px);
         }
 
-        .benefit-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
+        .benefit-card.highlight {
+            background: linear-gradient(135deg, rgba(0,214,143,0.1), rgba(0,197,200,0.05));
+            border-color: var(--border-mid);
+            grid-column: span 2;
         }
+
+        @media (max-width: 768px) {
+            .benefit-card.highlight { grid-column: span 1; }
+        }
+
+        .benefit-icon { font-size: 1.8rem; margin-bottom: 14px; }
 
         .benefit-card h3 {
             font-family: 'Sora', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
             margin-bottom: 8px;
+        }
+
+        .benefit-card.highlight h3 {
+            font-size: 1.3rem;
+            color: var(--green-primary);
         }
 
         .benefit-card p {
             color: var(--text-gray);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
         }
 
-        .benefit-highlight {
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(16, 185, 129, 0.1));
-            border: 1px solid rgba(255, 107, 107, 0.2);
-        }
-
-        .benefit-highlight h3 {
-            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Timeline Section */
-        .timeline {
-            position: relative;
-        }
-
+        /* ── TIMELINE ── */
         .timeline-container {
-            max-width: 800px;
+            max-width: 780px;
             margin: 0 auto;
             position: relative;
         }
@@ -642,17 +733,17 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--health-primary), var(--green-primary));
-            opacity: 0.3;
+            width: 1px;
+            top: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent, var(--green-primary) 20%, var(--green-primary) 80%, transparent);
+            opacity: 0.2;
         }
 
         .timeline-item {
             display: flex;
-            align-items: center;
-            gap: 48px;
-            margin-bottom: 48px;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
         .timeline-item:nth-child(even) {
@@ -664,11 +755,14 @@
         }
 
         .timeline-dot {
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
+            background: var(--green-primary);
+            border: 3px solid var(--bg-dark);
+            outline: 2px solid var(--green-primary);
             flex-shrink: 0;
+            margin-top: 6px;
             position: relative;
             z-index: 1;
         }
@@ -678,40 +772,55 @@
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
-            padding: 24px;
+            padding: 22px 26px;
         }
 
         .timeline-date {
             font-family: 'Sora', sans-serif;
+            font-size: 0.78rem;
             font-weight: 700;
-            color: var(--health-primary);
-            margin-bottom: 8px;
+            color: var(--green-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
         }
 
         .timeline-title {
             font-family: 'Sora', sans-serif;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
         }
 
         .timeline-desc {
             color: var(--text-gray);
-            font-size: 0.9rem;
+            font-size: 0.87rem;
+            line-height: 1.6;
         }
 
-        /* FAQ Section */
-        .faq {
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+        .timeline-item.highlight .timeline-content {
+            background: linear-gradient(135deg, rgba(0,214,143,0.08), rgba(0,197,200,0.04));
+            border-color: var(--border-mid);
         }
+
+        .timeline-item.highlight .timeline-dot {
+            width: 18px;
+            height: 18px;
+            background: var(--accent-lime);
+            outline-color: var(--accent-lime);
+        }
+
+        /* ── FAQ ── */
+        .faq { background: var(--bg-dark); }
 
         .faq-grid {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
         .faq-item {
             border-bottom: 1px solid var(--border-subtle);
-            padding: 24px 0;
+            padding: 22px 0;
         }
 
         .faq-question {
@@ -721,107 +830,92 @@
             cursor: pointer;
             font-family: 'Sora', sans-serif;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+            font-size: 1rem;
+            transition: color 0.2s;
+            gap: 20px;
         }
 
-        .faq-question:hover {
-            color: var(--health-primary);
-        }
+        .faq-question:hover { color: var(--green-primary); }
 
         .faq-icon {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            color: var(--green-primary);
             transition: transform 0.3s;
+            flex-shrink: 0;
         }
 
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: max-height 0.35s ease, padding 0.35s ease;
         }
 
         .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding-top: 16px;
+            max-height: 600px;
+            padding-top: 14px;
         }
 
         .faq-answer p {
             color: var(--text-gray);
-            font-size: 0.95rem;
+            font-size: 0.93rem;
+            line-height: 1.7;
         }
 
-        /* Gallery Section */
+        /* ── GALLERY ── */
         .gallery {
-            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+            background: var(--bg-subtle);
         }
 
         .gallery-video {
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
 
-        .video-placeholder {
+        .video-wrapper {
             background: var(--bg-dark);
-            border: 2px dashed var(--border-subtle);
+            border: 1px solid var(--border-subtle);
             border-radius: 20px;
             aspect-ratio: 16/9;
-            max-width: 900px;
+            max-width: 880px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
         }
 
-        .video-placeholder iframe,
-        .video-placeholder video {
+        .video-wrapper iframe {
             width: 100%;
             height: 100%;
-            border-radius: 18px;
-        }
-
-        .video-placeholder-content {
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        .video-placeholder-content .video-icon {
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 16px;
-        }
-
-        .video-placeholder-content p {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .video-placeholder-content small {
-            font-size: 0.85rem;
-            opacity: 0.7;
+            border-radius: 20px;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 200px);
-            gap: 16px;
+            gap: 14px;
+            max-width: 880px;
+            margin: 0 auto;
         }
 
         .gallery-item {
             background: var(--bg-dark);
             border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
         }
 
         .gallery-item:hover {
             transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--border-mid);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .gallery-item-large {
@@ -829,53 +923,23 @@
             grid-row: span 2;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
-        }
-
-        .gallery-placeholder span {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-
-        .gallery-placeholder p {
-            font-size: 0.85rem;
-        }
-
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: auto;
             }
-
             .gallery-item-large {
                 grid-column: span 2;
                 grid-row: span 1;
-                min-height: 250px;
+                min-height: 220px;
             }
-
-            .gallery-item {
-                min-height: 150px;
-            }
+            .gallery-item { min-height: 140px; }
         }
 
-        /* CTA Section */
+        /* ── CTA SECTION ── */
         .cta-section {
-            text-align: center;
             padding: 120px 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -883,108 +947,141 @@
         .cta-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(0,214,143,0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .cta-content {
-            position: relative;
-            z-index: 1;
+        .cta-content { position: relative; z-index: 1; }
+
+        .cta-badge {
+            display: inline-block;
+            background: rgba(0,214,143,0.1);
+            border: 1px solid var(--border-mid);
+            color: var(--green-primary);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 24px;
         }
 
         .cta-title {
             font-family: 'Sora', sans-serif;
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 800;
+            letter-spacing: -0.03em;
             margin-bottom: 16px;
         }
 
         .cta-subtitle {
             color: var(--text-gray);
-            font-size: 1.25rem;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
         }
 
         .cta-deadline {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            padding: 16px 32px;
+            border: 1px solid var(--border-mid);
             border-radius: 12px;
-            margin-bottom: 32px;
+            padding: 14px 24px;
+            margin-bottom: 36px;
         }
 
         .cta-deadline-label {
             font-size: 0.8rem;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--text-muted);
         }
 
         .cta-deadline-date {
             font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--health-primary);
+            color: var(--text-white);
+            font-size: 1.05rem;
         }
 
         .cta-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, var(--health-primary), var(--green-primary));
-            color: white;
-            padding: 20px 48px;
+            background: var(--green-primary);
+            color: var(--bg-dark);
+            padding: 18px 44px;
             border-radius: 14px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 800;
+            font-size: 1.05rem;
+            transition: all 0.25s;
+            letter-spacing: 0.01em;
         }
 
         .cta-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.4);
+            background: var(--green-light);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0, 214, 143, 0.3);
         }
 
-        /* Footer */
+        .cta-btn svg { transition: transform 0.25s; }
+        .cta-btn:hover svg { transform: translateX(5px); }
+
+        /* ── FOOTER ── */
         footer {
             background: var(--bg-card);
             border-top: 1px solid var(--border-subtle);
-            padding: 64px 0 32px;
+            padding: 60px 0 32px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
             gap: 48px;
             margin-bottom: 48px;
         }
 
+        @media (max-width: 900px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+
+        @media (max-width: 560px) {
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
         .footer-brand p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-top: 16px;
-            max-width: 300px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            margin-top: 14px;
+            max-width: 280px;
         }
 
         .footer-title {
             font-family: 'Sora', sans-serif;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
             font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
         }
 
         .footer-links {
             list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .footer-links a {
@@ -994,9 +1091,7 @@
             transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: var(--text-white);
-        }
+        .footer-links a:hover { color: var(--green-primary); }
 
         .footer-contact p {
             color: var(--text-gray);
@@ -1005,505 +1100,1191 @@
         }
 
         .footer-contact a {
-            color: var(--health-primary);
+            color: var(--green-primary);
             text-decoration: none;
         }
 
         .footer-bottom {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-subtle);
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
         }
 
         .footer-bottom p {
             color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .footer-bottom a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: color 0.2s;
+        }
+
+        .footer-bottom a:hover { color: var(--green-primary); }
+
+        /* ── REASSURANCE BANNER ── */
+        .reassurance {
+            padding: 0 0 80px;
+        }
+
+        .reassurance-banner {
+            background: linear-gradient(135deg, rgba(0,214,143,0.07), rgba(0,197,200,0.04));
+            border: 1px solid var(--border-mid);
+            border-radius: 24px;
+            padding: 40px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr 1px 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .reassurance-divider {
+            background: var(--border-mid);
+            height: 60px;
+            align-self: center;
+        }
+
+        .reassurance-item {
+            text-align: center;
+        }
+
+        .reassurance-item-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .reassurance-item h4 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--green-primary);
+        }
+
+        .reassurance-item p {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 768px) {
+            .reassurance-banner {
+                grid-template-columns: 1fr;
+                padding: 28px 24px;
+                gap: 20px;
+            }
+            .reassurance-divider { display: none; }
+        }
+
+        /* ── DAY SCHEDULE ── */
+        .schedule {
+            background: var(--bg-subtle);
+        }
+
+        .schedule-days {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 720px) {
+            .schedule-days { grid-template-columns: 1fr; }
+        }
+
+        .schedule-day {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .schedule-day-header {
+            background: linear-gradient(135deg, rgba(0,214,143,0.1), rgba(0,197,200,0.05));
+            border-bottom: 1px solid var(--border-mid);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .schedule-day-header h3 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--green-primary);
+        }
+
+        .schedule-day-header span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        .schedule-items {
+            padding: 8px 0;
+        }
+
+        .schedule-slot {
+            display: flex;
+            gap: 16px;
+            padding: 14px 24px;
+            border-bottom: 1px solid rgba(0,214,143,0.05);
+            transition: background 0.2s;
+        }
+
+        .schedule-slot:last-child { border-bottom: none; }
+        .schedule-slot:hover { background: var(--bg-card-hover); }
+
+        .schedule-time {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            min-width: 72px;
+            padding-top: 2px;
+            letter-spacing: 0.03em;
+        }
+
+        .schedule-slot-content h4 {
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .schedule-slot-content p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .schedule-slot.highlight-slot .schedule-slot-content h4 {
+            color: var(--accent-lime);
+        }
+
+        /* ── STATS / RESULTS ── */
+        .results {
+            background: var(--bg-dark);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .result-card:hover {
+            border-color: var(--border-mid);
+            transform: translateY(-3px);
+        }
+
+        .result-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .result-value.placeholder {
+            color: var(--text-muted);
+            font-size: 2rem;
+        }
+
+        .result-label {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        .results-note {
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px dashed var(--border-mid);
+            border-radius: 14px;
+            padding: 20px 32px;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-muted);
             font-size: 0.85rem;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .results-note strong {
+            color: var(--text-gray);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        /* ── TESTIMONIALS ── */
+        .testimonials {
+            background: var(--bg-subtle);
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .timeline-container::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 50px;
-            }
-
-            .timeline-item:nth-child(even) .timeline-content {
-                text-align: left;
-            }
-
-            .timeline-dot {
-                position: absolute;
-                left: 10px;
-            }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
         }
 
-        @media (max-width: 640px) {
-            .hero-dates {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .date-card {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .hero-info {
-                gap: 24px;
-            }
-
-            .edition-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .edition-tab {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .challenges-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            transition: all 0.3s;
         }
 
-        /* Mobile menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
+        .testimonial-card:hover {
+            border-color: var(--border-mid);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-quote {
+            font-size: 2.5rem;
+            color: var(--green-primary);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-text {
             color: var(--text-white);
-            font-size: 1.5rem;
-            cursor: pointer;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
-        @media (max-width: 968px) {
-            .mobile-menu-btn {
-                display: block;
+        .testimonial-text.placeholder-text {
+            color: var(--text-muted);
+            font-style: normal;
+            font-size: 0.85rem;
+            background: var(--bg-dark);
+            border: 1px dashed var(--border-subtle);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-primary), var(--accent-teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--bg-dark);
+            flex-shrink: 0;
+        }
+
+        .testimonial-avatar.placeholder-avatar {
+            background: var(--bg-dark);
+            border: 1px dashed var(--border-mid);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .testimonial-role {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ── SPEAKERS + CHALLENGES ── */
+        .speaker-block {
+            margin-bottom: 48px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--bg-card);
+            transition: border-color 0.3s;
+        }
+
+        .speaker-block:hover {
+            border-color: var(--border-mid);
+        }
+
+        .speaker-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+        }
+
+        @media (max-width: 768px) {
+            .speaker-card { grid-template-columns: 1fr; }
+        }
+
+        .speaker-photo-wrap {
+            background: linear-gradient(135deg, rgba(0,214,143,0.1), rgba(0,197,200,0.05));
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .speaker-photo-wrap {
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 24px;
+                flex-direction: row;
             }
+        }
+
+        .speaker-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px dashed var(--border-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .speaker-info {
+            padding: 32px;
+        }
+
+        .speaker-topic-badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green-primary);
+            background: rgba(0,214,143,0.08);
+            border: 1px solid var(--border-mid);
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        .speaker-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .speaker-org {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .speaker-abc {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .abc-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .abc-letter {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--bg-dark);
+            background: var(--green-primary);
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .abc-item p {
+            font-size: 0.88rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .speaker-challenges {
+            border-top: 1px solid var(--border-subtle);
+            padding: 24px 32px;
+            background: var(--bg-dark);
+        }
+
+        .speaker-challenges-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .speaker-challenge-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .speaker-challenge-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: all 0.25s;
+        }
+
+        .speaker-challenge-item:hover {
+            border-color: var(--green-primary);
+            transform: translateY(-2px);
+        }
+
+        .speaker-challenge-item h4 {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            margin-bottom: 6px;
+        }
+
+        .speaker-challenge-item p {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            line-height: 1.55;
+        }
+
+        .speaker-block.open-category {
+            border-color: rgba(184, 255, 94, 0.2);
+            background: linear-gradient(135deg, rgba(184,255,94,0.04), rgba(0,214,143,0.04));
+        }
+
+        .speaker-block.open-category:hover {
+            border-color: rgba(184, 255, 94, 0.4);
+        }
+
+        .open-badge {
+            background: rgba(184, 255, 94, 0.1) !important;
+            border-color: rgba(184, 255, 94, 0.3) !important;
+            color: var(--accent-lime) !important;
+        }
+
+        .open-category-desc {
+            margin-top: 4px;
+        }
+
+        .open-category-desc > p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .open-category-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .open-category-examples span {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        /* ── SCHEDULE (day-by-day) ── */
+        .schedule { background: var(--bg-dark); }
+
+        .schedule-days {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .schedule-days { grid-template-columns: 1fr; }
+        }
+
+        .schedule-day {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .schedule-day-header {
+            background: linear-gradient(135deg, rgba(0,214,143,0.12), rgba(0,197,200,0.06));
+            border-bottom: 1px solid var(--border-mid);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .schedule-day-number {
+            background: var(--green-primary);
+            color: var(--bg-dark);
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .schedule-day-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--green-primary);
+        }
+
+        .schedule-slots {
+            padding: 20px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .schedule-slot {
+            display: flex;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .schedule-slot:last-child { border-bottom: none; }
+
+        .schedule-time {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            min-width: 80px;
+            padding-top: 2px;
+            letter-spacing: 0.02em;
+        }
+
+        .schedule-slot-content h4 {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .schedule-slot-content p {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        .schedule-slot.highlight .schedule-slot-content h4 {
+            color: var(--accent-lime);
+        }
+
+        /* ── RESULTS ── */
+        .results { background: var(--bg-subtle); }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .result-card:hover {
+            border-color: var(--border-mid);
+            transform: translateY(-3px);
+        }
+
+        .result-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .result-value.placeholder {
+            color: var(--text-muted);
+            font-size: 1.6rem;
+            letter-spacing: 0;
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        .results-note {
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px dashed var(--border-mid);
+            border-radius: 14px;
+            padding: 18px 24px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { background: var(--bg-dark); }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--border-mid);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card.placeholder-card {
+            border-style: dashed;
+            border-color: var(--border-subtle);
+        }
+
+        .testimonial-quote {
+            font-size: 2.5rem;
+            color: var(--green-primary);
+            opacity: 0.25;
+            font-family: Georgia, serif;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-text {
+            color: var(--text-white);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-text.placeholder-text {
+            color: var(--text-muted);
+            font-style: normal;
+            font-size: 0.85rem;
+            background: var(--bg-dark);
+            border: 1px dashed var(--border-subtle);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-primary), var(--accent-teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--bg-dark);
+            flex-shrink: 0;
+            font-family: 'Sora', sans-serif;
+        }
+
+        .testimonial-avatar.placeholder-avatar {
+            background: var(--bg-dark);
+            border: 1px dashed var(--border-mid);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+
+        .testimonial-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .testimonial-role {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* History badge in hero */
+        .history-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(184, 255, 94, 0.08);
+            border: 1px solid rgba(184, 255, 94, 0.2);
+            color: var(--accent-lime);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-left: 8px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            section { padding: 70px 0; }
+            .hero { padding: 110px 0 60px; }
+            .hero-date-spotlight { flex-direction: column; gap: 12px; }
+            .hero-date-divider { width: 48px; height: 1px; }
+            .hero-date-info { text-align: center; }
+            .challenges-intro { flex-direction: column; text-align: center; }
+            .timeline-container::before { left: 14px; }
+            .timeline-item { flex-direction: column !important; gap: 14px; }
+            .timeline-item .timeline-content { text-align: left !important; }
+            .timeline-dot { margin: 0; }
         }
     </style>
 </head>
 <body>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
-            <a href="#" class="logo">Spin Business Accelerator</a>
+            <a href="#" class="nav-brand">
+                <img src="us-logo.png" alt="Uniwersytet Śląski w Katowicach" class="nav-logo-us">
+                <div class="nav-logo-divider"></div>
+                <img src="spinplace-logo-white.png" alt="spinPLACE" class="nav-logo-spinplace">
+                <div class="nav-logo-divider"></div>
+                <div class="nav-logo-title">
+                    Spin Business Accelerator
+                    <small>Green Planet Edition 2026</small>
+                </div>
+            </a>
             <ul class="nav-links">
                 <li><a href="#about">O programie</a></li>
-                <li><a href="#editions">Edycje</a></li>
-                <li><a href="#benefits">Korzyści</a></li>
+                <li><a href="#challenges">Wyzwania</a></li>
+                <li><a href="#benefits">Co zyskujesz</a></li>
+                <li><a href="#schedule">Program</a></li>
                 <li><a href="#gallery">Galeria</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
-            <a href="#apply" class="nav-cta">Aplikuj teraz</a>
+            <a href="https://forms.office.com/e/mydR5WHtcr" target="_blank" class="nav-cta">Aplikuj teraz →</a>
             <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="hero-bg-glow-2"></div>
+        <div class="hero-grid"></div>
+
         <div class="container">
             <div class="hero-content">
-          <div class="hero-badge" style="display: block;">
-    🚀 Biuro Współpracy z Gospodarką • Uniwersytet Śląski w Katowicach
-</div>
-<div class="hero-badge" style="display: block; margin-top: 12px; background: linear-gradient(135deg, #FF6B6B, #10B981); color: white; font-weight: 600;">
-    Rekrutacja otwarta
-</div>
-                
+
+                <div class="hero-eyebrow">
+                    <div class="hero-eyebrow-dot"></div>
+                    Biuro Współpracy z Gospodarką · Uniwersytet Śląski w Katowicach
+                    <span class="history-badge">✦ już 2. edycja</span>
+                </div>
+
                 <h1>
-                    Od problemu do prototypu<br>
-                    <span class="gradient-health">Zdrowie</span> & <span class="gradient-green">Zielona Planeta</span>
+                    Od problemu<br>
+                    do <em>prototypu.</em><br>
+                    <span class="lime">Green Planet</span> Edition
                 </h1>
+
                 <p class="hero-subtitle">
-                    2 dni intensywnej pracy zespołowej. Budujesz prototyp rozwiązania dla realnych wyzwań społecznych. W zespole przedstawiasz rozwiązanie przed Jury. Dostajesz feed-back.
+                    2 dni intensywnej pracy zespołowej. Realne wyzwania ekologiczne.
+                    Budujesz rozwiązanie od zera — i prezentujesz je przed Jury.
                 </p>
-                
-                <div class="hero-dates">
-                    <div class="date-card health">
-                        <div class="date-card-label">Edycja Health</div>
-                        <div class="date-card-date">25-26.03.2026</div>
-                        <div class="date-card-name">Zdrowie & Wellbeing</div>
+
+                <div class="hero-date-spotlight">
+                    <div class="hero-date-icon">🌍</div>
+                    <div class="hero-date-info">
+                        <div class="hero-date-label">Edycja Green Planet</div>
+                        <div class="hero-date-main">21–22 kwietnia 2026</div>
+                        <div class="hero-date-sub">spinPLACE UŚ · Katowice · godz. 9:00–15:00</div>
                     </div>
-                    <div class="date-card green">
-                        <div class="date-card-label">Edycja Green</div>
-                        <div class="date-card-date">21-22.04.2026</div>
-                        <div class="date-card-name">Zielona Planeta</div>
+                    <div class="hero-date-divider"></div>
+                    <div class="hero-date-info">
+                        <div class="hero-date-label">Deadline rekrutacji</div>
+                        <div class="hero-date-main">10 kwietnia</div>
+                        <div class="hero-date-sub">Rekrutacja otwarta</div>
                     </div>
                 </div>
 
-                <a href="#apply" class="hero-cta">
-                    Zapisz się teraz
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
+                <div class="hero-cta-group">
+                    <a href="https://forms.office.com/e/mydR5WHtcr" target="_blank" class="btn-primary">
+                        Wypełnij formularz zgłoszeniowy
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#about" class="btn-secondary">Dowiedz się więcej</a>
+                </div>
 
-                <div class="hero-info">
-                    <div class="hero-info-item">
-                        <div class="hero-info-value">50</div>
-                        <div class="hero-info-label">miejsc / edycja</div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">50</div>
+                        <div class="hero-stat-label">miejsc</div>
                     </div>
-                    <div class="hero-info-item">
-                        <div class="hero-info-value">0 zł</div>
-                        <div class="hero-info-label">koszt udziału</div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">0 zł</div>
+                        <div class="hero-stat-label">koszt udziału</div>
                     </div>
-                    <div class="hero-info-item">
-                        <div class="hero-info-value">2000 zł</div>
-                        <div class="hero-info-label">nagroda dla zespołu</div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">✓</div>
+                        <div class="hero-stat-label">zaliczenie przedsiębiorczości</div>
                     </div>
-                    <div class="hero-info-item">
-                        <div class="hero-info-value">12h</div>
-                        <div class="hero-info-label">certyfikat</div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">12h</div>
+                        <div class="hero-stat-label">certyfikat</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">O programie</span>
-                <h2 class="section-title">Bootcamp i Hackathon, które zmieniają perspektywę</h2>
+                <h2 class="section-title">Nie teoria. Prawdziwe wyzwanie.</h2>
                 <p class="section-subtitle">
-                    Nie uczymy teorii przedsiębiorczości. Stawiamy Cię przed wyzwaniem społecznym i w 2 dni tworzysz realne rozwiązanie.
+                    Spin Business Accelerator to bootcamp i hackathon w jednym — 2 dni, w których przestajesz mówić "kiedyś zrobię" i zaczynasz działać.
                 </p>
             </div>
 
             <div class="about-grid">
                 <div class="about-card">
                     <div class="about-card-icon">🎯</div>
-                    <h3>Realne wyzwania</h3>
-                    <p>Dostajesz konkretny problem społeczny do rozwiązania. Żadnych teoretycznych case studies – pracujesz nad czymś, co ma znaczenie.</p>
+                    <h3>Realne wyzwania ekologiczne</h3>
+                    <p>Dostajesz konkretny problem środowiskowy — zieleń miejska, woda, powietrze, odpady, mobilność. Żadnych case studies z podręcznika.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-card-icon">👥</div>
-                    <h3>Interdyscyplinarne zespoły</h3>
-                    <p>Studenci UŚ z różnych kierunków = siła. Łączymy ludzi o zróżnicowanych kompetencjach, bo najlepsze rozwiązania powstają na styku dziedzin.</p>
+                    <h3>Twoja perspektywa jest potrzebna</h3>
+                    <p>Prawnik widzi bariery. Psycholog rozumie ludzi. Humanista zadaje właściwe pytania. W zespole 4–5 osób z różnych kierunków to właśnie różnorodność myślenia decyduje o jakości rozwiązania.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-card-icon">🚀</div>
-                    <h3>Od zera do prototypu</h3>
-                    <p>W 2 dni przechodzisz od pomysłu do prototypu rozwiązania. Design Thinking, Lean Startup, Business Model Canvas – wszystko w praktyce.</p>
+                    <h3>Od zera do prototypu w 2 dni</h3>
+                    <p>Design Thinking, Lean Startup, Business Model Canvas — wszystko w praktyce. Wychodzisz z działającym prototypem i gotowym pitchem.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Editions Section -->
-    <section class="editions" id="editions">
+    <!-- Reassurance -->
+    <section class="reassurance">
+        <div class="container">
+            <div class="reassurance-banner">
+                <div class="reassurance-item">
+                    <div class="reassurance-item-icon">🧩</div>
+                    <h4>Nie musisz znać się na biznesie</h4>
+                    <p>Biolog, prawnik, programista, psycholog — każda perspektywa jest potrzebna. Najlepsze rozwiązania powstają tam, gdzie spotykają się różne dziedziny.</p>
+                </div>
+                <div class="reassurance-divider"></div>
+                <div class="reassurance-item">
+                    <div class="reassurance-item-icon">🤝</div>
+                    <h4>Nie jesteś sam/a</h4>
+                    <p>Pracujesz w zespole 4–5 osób przez całe 2 dni. Mentorzy są dostępni na bieżąco. Nikt nie zostaje z problemem bez wsparcia.</p>
+                </div>
+                <div class="reassurance-divider"></div>
+                <div class="reassurance-item">
+                    <div class="reassurance-item-icon">🌀</div>
+                    <h4>Nie musisz mieć pomysłu</h4>
+                    <p>Dostajesz gotowe wyzwanie. Twoja rola to myślenie, nie wymyślanie od zera. Zaczynasz od problemu, który już istnieje.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges + Speakers -->
+    <section class="challenges" id="challenges">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Wybierz swoją ścieżkę</span>
-                <h2 class="section-title">Dwie edycje, jeden cel</h2>
+                <span class="section-label">Green Planet Edition</span>
+                <h2 class="section-title">4 obszary, eksperci branżowi, Twój pomysł</h2>
                 <p class="section-subtitle">
-                    Możesz aplikować na jedną lub obie edycje. Każda z nich skupia się na innych wyzwaniach społecznych.
+                    Najpierw poznasz kontekst — potem wybierzesz wyzwanie, które chcesz rozwiązać.
                 </p>
             </div>
 
-            <div class="edition-tabs">
-                <button class="edition-tab health active" data-edition="health">
-                    🏥 Edycja Health (25-26.03)
-                </button>
-                <button class="edition-tab green" data-edition="green">
-                    🌍 Edycja Green Planet (21-22.04)
-                </button>
-            </div>
-
-            <!-- Health Edition Content -->
-            <div class="edition-content health active" id="edition-health">
-                <div class="edition-intro health">
-                    <h3>Innowacje w opiece zdrowotnej</h3>
-                    <p>12 wyzwań w 4 obszarach tematycznych. Wybierz problem, który chcesz rozwiązać.</p>
+            <!-- Speaker 1 -->
+            <div class="speaker-block">
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrap">
+                        <div class="speaker-photo">🌳</div>
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-topic-badge">Obszar 1</div>
+                        <h3 class="speaker-name">Zieleń miejska</h3>
+                        <div class="speaker-abc">
+                            <div class="abc-item">
+                                <span class="abc-letter">A</span>
+                                <p>Czy wiesz, że do 2050 r. ponad 2/3 ludzkości będzie żyło w miastach — a drzewa w nich znikają szybciej niż rosną?</p>
+                            </div>
+                            <div class="abc-item">
+                                <span class="abc-letter">B</span>
+                                <p>Czy masz pomysł, jak sprawić, by zieleń miejska była dostępna i trwała — nie tylko w bogatych dzielnicach?</p>
+                            </div>
+                            <div class="abc-item">
+                                <span class="abc-letter">C</span>
+                                <p>Jak robią to inni? Singapur buduje lasy na dachach wieżowców. Paryż oddaje ulice ogrodom. A Katowice?</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="challenges-grid">
-                    <!-- Mental Health -->
-                    <div class="challenge-category health">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">🧠</span>
-                            <h3 class="challenge-category-title">Zdrowie psychiczne i wellbeing</h3>
+                <div class="speaker-challenges">
+                    <div class="speaker-challenges-label">Wyzwania do rozwiązania w tym obszarze:</div>
+                    <div class="speaker-challenge-list">
+                        <div class="speaker-challenge-item">
+                            <h4>Zazielenianie przestrzeni miejskiej</h4>
+                            <p>Jak wprowadzać nowe technologie i materiały przyjazne środowisku, by miasta były bardziej zielone i odporne na zmiany klimatu?</p>
                         </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Poprawa zdrowia psychicznego studentów</h4>
-                                <p class="problem">Problem: Studenci czują stres, lęk, wypalenie - ale nie wiedzą jak sobie pomóc.</p>
-                                <p class="question">Jak stworzyć narzędzie/usługę, która pomaga studentom dbać o zdrowie psychiczne na co dzień?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Zapobieganie wypaleniu zawodowemu</h4>
-                                <p class="problem">Problem: Młodzi pracownicy wypalają się w pierwszych latach kariery.</p>
-                                <p class="question">Jak zapobiegać wypaleniu zanim się pojawi?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Walka z izolacją społeczną</h4>
-                                <p class="problem">Problem: Jesteśmy "połączeni" online, ale czujemy się samotni.</p>
-                                <p class="question">Jak budować prawdziwe połączenia międzyludzkie?</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Elderly Care -->
-                    <div class="challenge-category health">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">👴</span>
-                            <h3 class="challenge-category-title">Opieka nad osobami starszymi</h3>
+                        <div class="speaker-challenge-item">
+                            <h4>Bioróżnorodność w miastach</h4>
+                            <p>Jak zwiększyć różnorodność biologiczną w miejskich parkach i ogrodach? Jak mierzyć efekty i angażować mieszkańców?</p>
                         </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Zdrowie seniorów</h4>
-                                <p class="problem">Problem: Seniorzy mają wiele chorób przewlekłych, ale nie wiedzą jak zarządzać swoim zdrowiem.</p>
-                                <p class="question">Jak pomóc seniorom być zdrowszymi dłużej?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Cyfrowa inkluzja seniorów</h4>
-                                <p class="problem">Problem: eRecepta, ePacjent, teleporady - senior nie wie jak z tego korzystać.</p>
-                                <p class="question">Jak cyfryzować opiekę zdrowotną bez wykluczania seniorów?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Łączenie pokoleń</h4>
-                                <p class="problem">Problem: Samotność seniorów + młodzi bez mentorów.</p>
-                                <p class="question">Jak połączyć pokolenia ku obopólnej korzyści?</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Preventive Medicine -->
-                    <div class="challenge-category health">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">🥗</span>
-                            <h3 class="challenge-category-title">Medycyna prewencyjna i styl życia</h3>
-                        </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Zdrowe odżywianie</h4>
-                                <p class="problem">Problem: Fast foody, niezdrowe przekąski, brak czasu na gotowanie.</p>
-                                <p class="question">Jak sprawić, by zdrowe jedzenie było łatwiejsze do sięgnięcia niż niezdrowe?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Aktywny styl życia</h4>
-                                <p class="problem">Problem: Ludzie siedzą w domach zamiast się ruszać.</p>
-                                <p class="question">Jak zachęcić mieszkańców do zdrowia i zwalczyć skutki siedzącego trybu życia?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Wsparcie osób z niepełnosprawnością</h4>
-                                <p class="problem">Problem: Osoby z niepełnosprawnościami mają ograniczony dostęp do profilaktyki.</p>
-                                <p class="question">Jak sprawić, by prewencja była dostępna dla wszystkich?</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Healthcare Access -->
-                    <div class="challenge-category health">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">🏥</span>
-                            <h3 class="challenge-category-title">Dostęp do opieki zdrowotnej</h3>
-                        </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Umiejętności zdrowotne młodych ludzi</h4>
-                                <p class="problem">Problem: Dr Google = źródło dezinformacji.</p>
-                                <p class="question">Jak edukować młodych, by podejmowali świadome decyzje zdrowotne?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Dostęp dla mieszkańców wsi</h4>
-                                <p class="problem">Problem: W małych miejscowościach nie ma specjalistów.</p>
-                                <p class="question">Jak zapewnić równy dostęp do opieki zdrowotnej?</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Pacjenci-obcokrajowcy</h4>
-                                <p class="problem">Problem: Bariera językowa = gorsze leczenie.</p>
-                                <p class="question">Jak sprawić, by każdy pacjent był zrozumiany przez lekarza?</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Green Planet Edition Content -->
-            <div class="edition-content green" id="edition-green">
-                <div class="edition-intro green">
-                    <h3>Zielona transformacja miast</h3>
-                    <p>7 wyzwań z obszarów: środowisko, przestrzeń miejska, mobilność, zrównoważony rozwój kampusów.</p>
+            <!-- Speaker 2 -->
+            <div class="speaker-block">
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrap">
+                        <div class="speaker-photo">♻️</div>
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-topic-badge">Obszar 2</div>
+                        <h3 class="speaker-name">Gospodarka odpadami</h3>
+                        <div class="speaker-abc">
+                            <div class="abc-item">
+                                <span class="abc-letter">A</span>
+                                <p>Czy wiesz, że statystyczny Polak produkuje rocznie ponad 350 kg odpadów — a tylko część z nich trafia do recyklingu?</p>
+                            </div>
+                            <div class="abc-item">
+                                <span class="abc-letter">B</span>
+                                <p>Czy masz pomysł, jak zmienić nawyki ludzi i systemy zbiórki tak, żeby odpad stał się zasobem, a nie problemem?</p>
+                            </div>
+                            <div class="abc-item">
+                                <span class="abc-letter">C</span>
+                                <p>Jak robią to inni? Japonia przetwarza ponad 80% odpadów. Fińskie startupy zamieniają resztki jedzenia w materiały budowlane.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="challenges-grid">
-                    <div class="challenge-category green">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">🌳</span>
-                            <h3 class="challenge-category-title">Zieleń miejska</h3>
+                <div class="speaker-challenges">
+                    <div class="speaker-challenges-label">Wyzwania do rozwiązania w tym obszarze:</div>
+                    <div class="speaker-challenge-list">
+                        <div class="speaker-challenge-item">
+                            <h4>Optymalizacja gospodarki odpadami</h4>
+                            <p>Jak innowacyjnie minimalizować wpływ odpadów na środowisko w miastach — od zbierania, przez recykling, po edukację mieszkańców?</p>
                         </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Zazielenianie przestrzeni miejskiej</h4>
-                                <p class="question">Stworzenie innowacyjnych rozwiązań wspierających wprowadzanie nowych technologii i materiałów przyjaznych środowisku.</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Bioróżnorodność w miastach</h4>
-                                <p class="question">Opracowanie metod i narzędzi do zwiększenia różnorodności biologicznej w miejskich parkach i ogrodach.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="challenge-category green">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">💧</span>
-                            <h3 class="challenge-category-title">Woda i powietrze</h3>
+                        <div class="speaker-challenge-item">
+                            <h4>Gospodarka o obiegu zamkniętym</h4>
+                            <p>Jak projektować produkty i usługi tak, żeby odpad jednej osoby był surowcem dla innej? Jak wdrożyć to lokalnie?</p>
                         </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Retencja wody w miastach</h4>
-                                <p class="question">Zaprojektowanie nowoczesnych technologii poprawiających retencję wody, aby przeciwdziałać suszy i powodziom.</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Jakość powietrza</h4>
-                                <p class="question">Opracowanie rozwiązań poprawiających jakość powietrza poprzez redukcję zanieczyszczeń i zwiększenie terenów zielonych.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="challenge-category green">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">♻️</span>
-                            <h3 class="challenge-category-title">Gospodarka odpadami</h3>
-                        </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Optymalizacja gospodarki odpadami</h4>
-                                <p class="question">Opracowanie innowacyjnych rozwiązań minimalizujących wpływ odpadów na środowisko w miastach.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="challenge-category green">
-                        <div class="challenge-category-header">
-                            <span class="challenge-category-icon">🚲</span>
-                            <h3 class="challenge-category-title">Mobilność i kampusy</h3>
-                        </div>
-                        <ul class="challenge-list">
-                            <li class="challenge-item">
-                                <h4>Zrównoważona mobilność miejska</h4>
-                                <p class="question">Opracowanie rozwiązań usprawniających transport multimodalny i ścieżki rowerowe.</p>
-                            </li>
-                            <li class="challenge-item">
-                                <h4>Ekologiczne kampusy akademickie</h4>
-                                <p class="question">Stworzenie zrównoważonych rozwiązań na terenie kampusów, które mogą stać się wzorem dla innych obszarów miejskich.</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Speaker 3 -->
+            <div class="speaker-block">
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrap">
+                        <div class="speaker-photo">🐝</div>
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-topic-badge">Obszar 3</div>
+                        <h3 class="speaker-name">Zapylacze i bioróżnorodność</h3>
+                        <div class="speaker-abc">
+                            <div class="abc-item">
+                                <span class="abc-letter">A</span>
+                                <p>Czy wiesz, że co trzeci kęs jedzenia, który spożywasz, istnieje dzięki pszczołom i innym zapylaczom — a ich populacja spada o kilka procent każdego roku?</p>
+                            </div>
+                            <div class="abc-item">
+                                <span class="abc-letter">B</span>
+                                <p>Czy masz pomysł, jak zatrzymać ten trend — w mieście, na kampusie, w szkole — bez wielkich budżetów i bez specjalistycznego sprzętu?</p>
+                            </div>
+                            <div class="abc-item">
+                                <span class="abc-letter">C</span>
+                                <p>Jak robią to inni? Londyn tworzy „pszczele autostrady" na dachach budynków. Berlińskie balkony stają się mini-łąkami. A co możemy zrobić my?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="speaker-challenges">
+                    <div class="speaker-challenges-label">Wyzwania do rozwiązania w tym obszarze:</div>
+                    <div class="speaker-challenge-list">
+                        <div class="speaker-challenge-item">
+                            <h4>Jak mówić o zapylaczach, żeby ktoś posłuchał?</h4>
+                            <p>Ludzie wiedzą, że pszczoły są ważne — ale nic z tym nie robią. Jak dotrzeć do zwykłych mieszkańców, uczniów, właścicieli balkonów i sprawić, żeby zadziałali?</p>
+                        </div>
+                        <div class="speaker-challenge-item">
+                            <h4>Jak zamienić betonowe podwórko w przyjazne miejsce?</h4>
+                            <p>Wiele przestrzeni w miastach można zmienić małym kosztem i bez specjalistycznej wiedzy. Jak zaprojektować taką zmianę i przekonać do niej wspólnotę, szkołę czy urząd?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open category -->
+            <div class="speaker-block open-category">
+                <div class="speaker-card">
+                    <div class="speaker-photo-wrap">
+                        <div class="speaker-photo">💡</div>
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-topic-badge open-badge">Obszar otwarty</div>
+                        <h3 class="speaker-name">Zielona gospodarka — Twój pomysł</h3>
+                        <div class="open-category-desc">
+                            <p>Jeśli Twój pomysł dotyczy zielonej gospodarki, a nie mieści się w żadnym z trzech obszarów powyżej — możesz go zgłosić w tej kategorii. Liczy się jedno: realne wyzwanie środowiskowe i konkretna propozycja rozwiązania.</p>
+                            <div class="open-category-examples">
+                                <span>np. aplikacja do wymiany rzeczy między sąsiadami</span>
+                                <span>system zbierania deszczówki na kampusie</span>
+                                <span>mapa dzikich zapylaczy w dzielnicy</span>
+                                <span>drugi obieg ubrań w akademiku</span>
+                                <span>platforma do współdzielenia przejazdów</span>
+                                <span>kompostownik dla bloku</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Benefits Section -->
+    <!-- Benefits -->
     <section class="benefits" id="benefits">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Co zyskujesz?</span>
                 <h2 class="section-title">Wartość, która zostaje</h2>
                 <p class="section-subtitle">
-                    Bootcamp to nie tylko 2 dni – to start Twojej drogi w innowacjach społecznych.
+                    Nie tylko 2 dni. To doświadczenie, które możesz pokazać, kontynuować i budować na nim dalej.
                 </p>
             </div>
 
             <div class="benefits-grid">
-                <div class="benefit-card benefit-highlight">
-                    <div class="benefit-icon">🏆</div>
-                    <h3>Do 2000 zł na prototypowanie</h3>
-                    <p>Najlepsze zespoły otrzymują budżet na dalszy rozwój i testowanie swojego rozwiązania.</p>
+                <div class="benefit-card highlight">
+                    <div class="benefit-icon">🎓</div>
+                    <h3>Zaliczenie zajęć z przedsiębiorczości</h3>
+                    <p>Udział w bootcampie pozwala zaliczyć obowiązkowe zajęcia z przedsiębiorczości. Uczysz się przez działanie — nie przez słuchanie wykładu.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎤</div>
+                    <h3>Praktycy biznesu i specjaliści branżowi</h3>
+                    <p>Przedsiębiorcy, którzy zbudowali realne firmy, i eksperci zielonej gospodarki — opowiedzą jak wygląda start i jak działa rynek, który właśnie zmienia świat. Nie teoria z podręcznika.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💼</div>
+                    <h3>Startup prototype do portfolio</h3>
+                    <p>Wychodzisz z prototypem rozwiązania, który możesz wpisać do CV i portfolio jako "startup prototype". Coś konkretnego, nie tylko "brałem/am udział w szkoleniu".</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">📜</div>
                     <h3>Certyfikat ukończenia</h3>
-                    <p>12 godzin certyfikowanego szkolenia. Potwierdzenie Twoich kompetencji.</p>
+                    <p>12 godzin certyfikowanego szkolenia. Potwierdzenie kompetencji — do CV, LinkedIn i rozmów rekrutacyjnych.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌱</div>
+                    <h3>Kontynuacja z Biurem Współpracy</h3>
+                    <p>Masz pomysł po bootcampie? Biuro Współpracy z Gospodarką UŚ i Punkt Konsultacyjny Przedsiębiorczości Akademickiej (PKPA) pomagają dalej — konsultacje, dofinansowania, zakładanie firmy. Nie znikamy po finale.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🎓</div>
-                    <h3>Mentoring ekspertów</h3>
-                    <p>Wojciech Chojnacki (Symetria UX – twórcy BLIK) i Łukasz Szczęsny (Tenka, Futuri) – realni praktycy.</p>
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Sieć absolwentów SBA</h3>
+                    <p>Dołączasz do zamkniętej społeczności absolwentów Spin Business Accelerator — ambitnych studentów UŚ z różnych edycji i kierunków.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🚀</div>
-                    <h3>Priorytetowy dostęp do PKPA</h3>
-                    <p>Punkt Konsultacyjny Przedsiębiorczości Akademickiej – wsparcie w rozwoju pomysłu, szukaniu finansowania, zakładaniu firmy.</p>
+                    <div class="benefit-icon">💬</div>
+                    <h3>Feedback od rynku</h3>
+                    <p>Szczery, konstruktywny feedback od praktyków. Wiesz czy Twój pomysł ma sens — albo co zmienić, żeby miał.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">📚</div>
-                    <h3>Materiały szkoleniowe</h3>
-                    <p>Dostęp do platformy e-learningowej z materiałami opracowanymi przez ekspertów.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💡</div>
-                    <h3>Walidacja pomysłu</h3>
-                    <p>Brutalnie szczery feedback od praktyków. Wiesz czy Twój pomysł ma sens – lub jak go zmienić.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">👥</div>
-                    <h3>Społeczność</h3>
-                    <p>Kontakt z ambitnymi ludźmi z różnych kierunków – potencjalni współzałożyciele przyszłych startupów.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⏱️</div>
-                    <h3>2 dni = 2-3 miesiące</h3>
-                    <p>Intensywna praca zespołowa daje więcej niż miesiące "kiedyś to zrobię" po godzinach.</p>
+                    <div class="benefit-icon">🍕</div>
+                    <h3>Catering przez 2 dni</h3>
+                    <p>Posiłki i coffee breaks zapewnione. Jedyny Twój koszt to dojazd do Katowic.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline Section -->
+    <!-- Timeline -->
     <section class="timeline" id="timeline">
         <div class="container">
             <div class="section-header">
@@ -1515,52 +2296,204 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Teraz → 28.02.2026</div>
+                        <div class="timeline-date">Teraz → 10 kwietnia 2026</div>
                         <h3 class="timeline-title">Rekrutacja otwarta</h3>
-                        <p class="timeline-desc">Wypełnij formularz zgłoszeniowy. Możesz aplikować na jedną lub obie edycje.</p>
+                        <p class="timeline-desc">Wypełnij formularz zgłoszeniowy — zajmuje 5 minut. Miejsca limitowane do 50 osób.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Marzec 2026</div>
+                        <div class="timeline-date">Połowa kwietnia 2026</div>
                         <h3 class="timeline-title">Potwierdzenie uczestnictwa</h3>
-                        <p class="timeline-desc">Dostaniesz email z potwierdzeniem udziału i pakiet przygotowawczy.</p>
+                        <p class="timeline-desc">Dostaniesz e-mail z potwierdzeniem udziału i pakietem przygotowawczym — żeby zacząć myśleć o temacie.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item highlight">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">25-26.03.2026</div>
-                        <h3 class="timeline-title">🏥 Edycja Health</h3>
-                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami zdrowotnymi. spinPLACE UŚ, Katowice.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">21-22.04.2026</div>
-                        <h3 class="timeline-title">🌍 Edycja Green Planet</h3>
-                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami ekologicznymi. spinPLACE UŚ, Katowice.</p>
+                        <div class="timeline-date">21–22 kwietnia 2026 · godz. 9:00–15:00</div>
+                        <h3 class="timeline-title">🌍 Green Planet Bootcamp</h3>
+                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami ekologicznymi. Warsztaty, praca w zespołach, guest speakers i finałowy pitch przed Jury. spinPLACE UŚ, Katowice. Godz. 9:00–15:00.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Po bootcampie</div>
-                        <h3 class="timeline-title">Kontynuacja wsparcia</h3>
-                        <p class="timeline-desc">Mentoring, dostęp do PKPA, możliwość dalszego rozwijania projektu.</p>
+                        <h3 class="timeline-title">Kontynuacja i wsparcie</h3>
+                        <p class="timeline-desc">Dostęp do Punktu Konsultacyjnego Przedsiębiorczości Akademickiej (PKPA), możliwość dalszego rozwijania projektu i pozyskania finansowania.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- Schedule -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Program zajęć</span>
+                <h2 class="section-title">Jak wygląda dzień?</h2>
+                <p class="section-subtitle">
+                    Bez niespodzianek. Oto co Cię czeka, godzina po godzinie.
+                </p>
+            </div>
+
+            <div class="schedule-days">
+                <div class="schedule-day">
+                    <div class="schedule-day-header">
+                        <span class="schedule-day-number">Dzień 1</span>
+                        <div class="schedule-day-title">🌱 Diagnoza i pomysł — 21 kwietnia</div>
+                    </div>
+                    <div class="schedule-slots">
+                        <div class="schedule-slot">
+                            <div class="schedule-time">9:00–9:20</div>
+                            <div class="schedule-slot-content">
+                                <h4>Powitanie i kick-off</h4>
+                                <p>Poznajecie się w zespołach, dostajecie wyzwanie — sprawnie i bez zbędnych ćwiczeń</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">9:20–10:20</div>
+                            <div class="schedule-slot-content">
+                                <h4>Wystąpienie eksperta + challenge deep dive</h4>
+                                <p>Prelegent otwiera obszar tematyczny — fakty, kontekst, inspiracje. Potem wchodzicie w szczegóły swojego wyzwania</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">10:20–12:00</div>
+                            <div class="schedule-slot-content">
+                                <h4>Design Thinking workshop i analiza potrzeb</h4>
+                                <p>Narzędzia do rozumienia problemu i użytkownika — w praktyce, nie w teorii</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">12:00–12:30</div>
+                            <div class="schedule-slot-content">
+                                <h4>🍕 Lunch</h4>
+                                <p>Catering zapewniony</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">12:30–14:15</div>
+                            <div class="schedule-slot-content">
+                                <h4>Business Model Canvas</h4>
+                                <p>Przekształcacie pomysł w model — co, dla kogo, jak i dlaczego to działa</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot highlight">
+                            <div class="schedule-time">14:15–15:00</div>
+                            <div class="schedule-slot-content">
+                                <h4>Prototypowanie — pierwsze szkice</h4>
+                                <p>Makiety, schematy, pierwsze wersje rozwiązania z mentorami na wyciągnięcie ręki</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-day">
+                    <div class="schedule-day-header">
+                        <span class="schedule-day-number">Dzień 2</span>
+                        <div class="schedule-day-title">🚀 Hackathon — 22 kwietnia</div>
+                    </div>
+                    <div class="schedule-slots">
+                        <div class="schedule-slot">
+                            <div class="schedule-time">9:00–9:15</div>
+                            <div class="schedule-slot-content">
+                                <h4>Podsumowanie dnia 1</h4>
+                                <p>Krótkie pytania, plan na dziś, ostatnie ustalenia w zespołach</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">9:15–11:15</div>
+                            <div class="schedule-slot-content">
+                                <h4>Dokończenie prototypu</h4>
+                                <p>Intensywna praca zespołowa — finalizujecie rozwiązanie</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">11:15–12:00</div>
+                            <div class="schedule-slot-content">
+                                <h4>Pitch training</h4>
+                                <p>Jak opowiedzieć o projekcie w kilka minut. Ćwiczycie razem — nie solo</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">12:00–12:30</div>
+                            <div class="schedule-slot-content">
+                                <h4>🍕 Lunch</h4>
+                                <p>Catering zapewniony</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time">12:30–13:30</div>
+                            <div class="schedule-slot-content">
+                                <h4>🎤 Guest speakers</h4>
+                                <p>Wystąpienia praktyków biznesu i ekspertów zielonej gospodarki</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot highlight">
+                            <div class="schedule-time">13:30–14:30</div>
+                            <div class="schedule-slot-content">
+                                <h4>🏆 Finałowe pitche przed Jury</h4>
+                                <p>Każdy zespół prezentuje. Jury zadaje pytania i daje konstruktywny feedback</p>
+                            </div>
+                        </div>
+                        <div class="schedule-slot highlight">
+                            <div class="schedule-time">14:30–15:00</div>
+                            <div class="schedule-slot-content">
+                                <h4>Ogłoszenie wyników + certyfikaty</h4>
+                                <p>Wyniki, wręczenie certyfikatów i chwila na networking</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results" id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Poprzednie edycje</span>
+                <h2 class="section-title">SBA w liczbach</h2>
+                <p class="section-subtitle">
+                    Spin Business Accelerator ma już historię. Oto co osiągnęliśmy razem.
+                </p>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-value">20</div>
+                    <div class="result-label">uczestników edycji RESTLESS 2025</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-value">100%</div>
+                    <div class="result-label">ocen 4 lub 5 w ankiecie — nikt nie dał mniej niż 4</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-value">56%</div>
+                    <div class="result-label">uczestników wystawiło najwyższą ocenę 5/5</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-value">3</div>
+                    <div class="result-label">projektów kontynuowanych po bootcampie</div>
+                </div>
+            </div>
+
+            <div class="results-note">
+                💬 <strong>Co chcieli uczestnicy poprawić?</strong> Głównie: więcej czasu na pracę, dłuższe prelekcje ekspertów, więcej przerw. Innymi słowy — chcieli więcej. To najlepsza możliwa informacja zwrotna.
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Pytania</span>
+                <span class="section-label">Masz pytania?</span>
                 <h2 class="section-title">FAQ</h2>
             </div>
 
@@ -1571,16 +2504,27 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>NIE!</strong> Dostajesz konkretne wyzwanie do rozwiązania. Budujesz rozwiązanie w zespole od zera podczas bootcampu.</p>
+                        <p><strong>NIE!</strong> Dostajesz konkretne wyzwanie do rozwiązania. Budujesz rozwiązanie z zespołem od zera — właśnie na tym polega bootcamp.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>Nie znam się na biznesie. Czy to problem?</span>
+                        <span>Nie znam się na biznesie. Czy nie będę ciężarem dla zespołu?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>Wręcz przeciwnie!</strong> Jeśli jesteś z biologii, IT, psychologii, designu – przynosisz kluczowe kompetencje. Zespół składa się z 4-5 osób z różnych obszarów i razem się uzupełniacie.</p>
+                        <p>To jeden z najczęstszych lęków — i całkowicie niepotrzebny. Bootcamp nie jest dla "ludzi od biznesu". Jest dla ludzi, którzy potrafią myśleć z perspektywy swojej dziedziny.</p>
+                        <p style="margin-top: 10px;">Jeśli studiujesz biologię — rozumiesz ekosystemy. Jeśli IT — widzisz jak zautomatyzować rozwiązanie. Jeśli psychologię — wiesz jak zmienić ludzkie zachowanie. Jeśli prawo — widzisz bariery regulacyjne. <strong>Każda perspektywa jest potrzebna.</strong></p>
+                        <p style="margin-top: 10px;">Metodologii (Design Thinking, Business Model Canvas) nauczysz się <strong>podczas</strong> bootcampu — mentorzy prowadzą was przez każdy krok. Nie jesteś sam/a na scenie.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy muszę przyjść z gotowym zespołem?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Nie.</strong> Możesz zgłosić się sam/a — dobieramy zespoły tak, żeby były jak najbardziej interdyscyplinarne. Możesz też przyjść ze znajomymi — zaznacz to w formularzu.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1589,7 +2533,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Niestety, wymagamy obecności przez cały czas trwania bootcampu (9:00-15:00 oba dni). Ciągłość pracy zespołowej jest kluczowa dla efektu końcowego.</p>
+                        <p>Niestety, wymagamy obecności przez cały czas trwania bootcampu (9:00–15:00 oba dni). Ciągłość pracy zespołowej jest kluczowa dla efektu końcowego. Jeśli masz wątpliwości — napisz do nas przed zgłoszeniem.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1598,16 +2542,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>0 zł.</strong> Zapewniamy: szkolenia, catering (posiłki + coffee breaks), materiały. Jedyny koszt to Twój dojazd.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Czy mogę aplikować na obie edycje?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p><strong>Nie</strong>, możesz wybrać tylko jedną edycję w formularzu. Jeśli interesują Cię zarówno tematy zdrowotne jak i ekologiczne – skontaktuj się z nami mailowo.</p>
+                        <p><strong>0 zł.</strong> Szkolenia, catering (posiłki + coffee breaks) i materiały — wszystko zapewnione. Jedyny koszt to Twój dojazd do Katowic.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1616,7 +2551,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>TAK!</strong> Certyfikat ukończenia bootcampu (12h szkolenia) potwierdzający Twoje kompetencje.</p>
+                        <p><strong>TAK!</strong> Certyfikat ukończenia bootcampu (12h szkolenia) potwierdzający Twoje kompetencje — można dołączyć do CV i LinkedIn.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1625,7 +2560,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>Oczywiście!</strong> Wielu uczestników tak robi. Masz: research, prototyp, feedback od ekspertów – świetna baza. Skonsultuj z promotorem przed bootcampem.</p>
+                        <p><strong>Oczywiście!</strong> Wielu uczestników tak robi. Wychodzisz z: researchu, prototypem i feedbackiem od ekspertów — to świetna baza. Skonsultuj z promotorem przed bootcampem.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1634,78 +2569,126 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>To normalne! 80% uczestników ma ten sam lęk. Warsztat pitchingowy przygotuje Cię do prezentacji. Pitchujesz Z ZESPOŁEM (nie solo), więc możecie się podzielić rolami. Feedback jest konstruktywny, nie okrutny.</p>
+                        <p>To normalne — 80% uczestników ma ten sam lęk. Warsztat pitchingowy w trakcie bootcampu Cię przygotuje. Pitchujesz <strong>z zespołem</strong> (nie solo), możecie podzielić się rolami. Feedback od Jury jest konstruktywny, nie okrutny.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery -->
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Zobacz jak to wygląda</span>
                 <h2 class="section-title">Poprzednia edycja</h2>
                 <p class="section-subtitle">
-                    Atmosfera, praca zespołowa, prezentacje finałowe – przekonaj się sam.
+                    Atmosfera, praca zespołowa, prezentacje finałowe — przekonaj się sam.
                 </p>
             </div>
 
-            <!-- Video placeholder -->
             <div class="gallery-video">
-                <div class="video-placeholder">
-                    <!-- Zamień poniższy kod na embed swojego filmiku -->
-                    <!-- Przykład dla YouTube: -->
-                    <!-- <iframe src="https://www.youtube.com/embed/TWOJ_ID_FILMIKU" frameborder="0" allowfullscreen></iframe> -->
-                    
-                    <!-- Przykład dla pliku wideo: -->
-                    <!-- <video controls poster="sciezka/do/miniaturki.jpg">
-                        <source src="sciezka/do/filmiku.mp4" type="video/mp4">
-                    </video> -->
-                 <iframe src="https://www.youtube.com/embed/CeXFmipW0aM" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-                
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/CeXFmipW0aM" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
 
-            <!-- Photo grid -->
-          <div class="gallery-grid">
+            <div class="gallery-grid">
                 <div class="gallery-item gallery-item-large">
-                    <img src="20251125_111228.jpg" alt="RESTLESS Bootcamp - praca zespołowa">
+                    <img src="20251125_111228.jpg" alt="RESTLESS Bootcamp – praca zespołowa">
                 </div>
                 <div class="gallery-item">
-                    <img src="20251125_111238.jpg" alt="RESTLESS Bootcamp - prezentacje">
+                    <img src="20251125_111238.jpg" alt="RESTLESS Bootcamp – prezentacje">
                 </div>
                 <div class="gallery-item">
-                    <img src="20251125_111317.jpg" alt="RESTLESS Bootcamp - networking">
+                    <img src="20251125_111317.jpg" alt="RESTLESS Bootcamp – networking">
+                </div>
+                <div class="gallery-item">
+                    <img src="20251125_172731.jpg" alt="RESTLESS Bootcamp – prezentacje finałowe">
                 </div>
             </div>
-                    <!-- <img src="sciezka/do/zdjecia3.jpg" alt="Bootcamp - networking"> -->
+
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Mówią uczestnicy</span>
+                <h2 class="section-title">Co zyskali poprzednicy?</h2>
+                <p class="section-subtitle">
+                    Nie nasze słowa — ich.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        Bardzo cenię możliwość przebywania z ludźmi, którzy mają podobne zainteresowania i ambicje. Jak masz grupę, która wzajemnie się motywuje, poziom energii jest zupełnie inny. A energia jest naprawdę ważna przy realizacji długoterminowych celów. Jak najszybciej zderz swoją koncepcję z rynkiem — dostać feedback i na tej podstawie wyznaczyć dalszy kierunek, to jest klucz.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ŁB</div>
+                        <div>
+                            <div class="testimonial-name">Łukasz B.</div>
+                            <div class="testimonial-role">Uczestnik edycji RESTLESS 2025</div>
+                        </div>
+                    </div>
                 </div>
-                 <div class="gallery-item">
-                    <img src="20251125_172731.jpg" alt="RESTLESS Bootcamp - prezentacje">
-              
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        Bootcamp jest dla osób, które chciałyby spróbować czegoś nowego. Nauczyłam się, jak w usystematyzowany sposób zbudować prototyp biznesu. Bardzo podobał mi się blueprint, na którym pracowałyśmy — będę z niego korzystać. Odkryciem było dla mnie wcielenie się w grupę docelową i patrzenie na jej realne potrzeby.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ER</div>
+                        <div>
+                            <div class="testimonial-name">Emilia R.</div>
+                            <div class="testimonial-role">Uczestniczka edycji RESTLESS 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        Zdecydowałem się przyjść, bo mentor polecał mi udział w takim wydarzeniu. Chciałem nauczyć się systematycznie myśleć nad prototypem. Podczas bootcampu opracowywaliśmy model biznesowy w obszarze zdrowia psychicznego, budowaliśmy prototyp i pracowaliśmy w zespołach. Wróciłem z konkretnym narzędziem w głowie.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">IS</div>
+                        <div>
+                            <div class="testimonial-name">Ignacy S.</div>
+                            <div class="testimonial-role">Uczestnik edycji RESTLESS 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA -->
     <section class="cta-section" id="apply">
         <div class="container">
             <div class="cta-content">
+                <div class="cta-badge">Rekrutacja otwarta</div>
                 <h2 class="cta-title">Gotowy na wyzwanie?</h2>
                 <p class="cta-subtitle">
-                    2 dni, które mogą zmienić Twoje podejście do rozwiązywania problemów.
+                    2 dni, które mogą zmienić Twoje podejście do rozwiązywania problemów — i świat wokół Ciebie.
                 </p>
-                
+
                 <div class="cta-deadline">
                     <div class="cta-deadline-label">Deadline rekrutacji</div>
-                    <div class="cta-deadline-date">28 lutego 2026</div>
+                    <div class="cta-deadline-date">📅 10 kwietnia 2026</div>
                 </div>
+
+                <br><br>
 
                 <a href="https://forms.office.com/e/mydR5WHtcr" target="_blank" class="cta-btn">
                     Wypełnij formularz zgłoszeniowy
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </a>
@@ -1718,15 +2701,21 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo">Spin Business Accelerator</a>
-                    <p>Program rozwijający kompetencje przedsiębiorcze w obszarze zdrowia i zrównoważonego rozwoju. Uniwersytet Śląski w Katowicach.</p>
+                    <div class="footer-logos">
+                        <img src="us-logo.png" alt="Uniwersytet Śląski w Katowicach" class="footer-logo-us">
+                        <div class="footer-logo-divider"></div>
+                        <img src="spinplace-logo-white.png" alt="spinPLACE" class="footer-logo-spinplace">
+                    </div>
+                    <a href="#" class="logo" style="display:block; margin-bottom: 10px;">Spin Business Accelerator</a>
+                    <p>Program rozwijający kompetencje przedsiębiorcze studentów Uniwersytetu Śląskiego w obszarze zrównoważonego rozwoju i innowacji społecznych.</p>
                 </div>
                 <div>
                     <h4 class="footer-title">Nawigacja</h4>
                     <ul class="footer-links">
                         <li><a href="#about">O programie</a></li>
-                        <li><a href="#editions">Edycje</a></li>
-                        <li><a href="#benefits">Korzyści</a></li>
+                        <li><a href="#challenges">Wyzwania</a></li>
+                        <li><a href="#benefits">Co zyskujesz</a></li>
+                        <li><a href="#schedule">Program zajęć</a></li>
                         <li><a href="#gallery">Galeria</a></li>
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
@@ -1740,72 +2729,52 @@
                 </div>
                 <div class="footer-contact">
                     <h4 class="footer-title">Kontakt</h4>
-                    <p>📧 <a href="mailto:transfer@us.edu.pl">transfer@us.edu.pl</a></p>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection#394a4950574955585a5c794c4a175c5d4c174955"><span class="__cf_email__" data-cfemail="d1a2a1b8bfa1bdb0b2b491a4a2ffb4b5a4ffa1bd">[email&#160;protected]</span></a></p>
                     <p>📍 spinPLACE UŚ, Katowice</p>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>© 2026 Spin Business Accelerator. Uniwersytet Śląski w Katowicach.</p>
+                <p>© 2026 Spin Business Accelerator · Uniwersytet Śląski w Katowicach</p>
+                <a href="https://spinplace.us.edu.pl" target="_blank">spinplace.us.edu.pl</a>
             </div>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Edition tabs
-        const tabs = document.querySelectorAll('.edition-tab');
-        const contents = document.querySelectorAll('.edition-content');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const edition = tab.dataset.edition;
-                
-                // Update tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Update content
-                contents.forEach(c => c.classList.remove('active'));
-                document.getElementById(`edition-${edition}`).classList.add('active');
-            });
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
         // FAQ accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
                 const wasActive = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!wasActive) {
-                    item.classList.add('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) item.classList.add('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        // Scroll reveal (lightweight)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+      
