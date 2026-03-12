@@ -46,7 +46,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             opacity: 0.025;
             pointer-events: none;
-            z-index: 9999;
+            z-index: -1;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
@@ -2730,7 +2730,7 @@
                 <div class="footer-contact">
                     <h4 class="footer-title">Kontakt</h4>
                     <p>📧 <a href="mailto:transfer@us.edu.pl">transfer@us.edu.pl</a></p>
-                    <p>📍 spinPLACE UŚ, Katowice</p>
+                    <p>📍 <a href="https://maps.google.com/?q=ul.+Bankowa+5,+40-007+Katowice" target="_blank" style="color:inherit;">spinPLACE UŚ<br>ul. Bankowa 5, 40-007 Katowice</a></p>
                 </div>
             </div>
 
@@ -2777,24 +2777,33 @@
     <script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Cookie banner — ukryj jeśli już zaakceptowane
-        if (localStorage.getItem('cookieOK')) {
-            const banner = document.getElementById('cookie-banner');
-            if (banner) banner.style.display = 'none';
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
         }
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.querySelector('.faq-question').addEventListener('click', () => {
-                const wasActive = item.classList.contains('active');
+        // Cookie banner
+        try {
+            if (localStorage.getItem('cookieOK')) {
+                const banner = document.getElementById('cookie-banner');
+                if (banner) banner.style.display = 'none';
+            }
+        } catch(e) {}
+
+        // FAQ — event delegation na całej sekcji
+        const faqSection = document.querySelector('.faq');
+        if (faqSection) {
+            faqSection.addEventListener('click', function(e) {
+                const question = e.target.closest('.faq-question');
+                if (!question) return;
+                const item = question.closest('.faq-item');
+                if (!item) return;
+                const isActive = item.classList.contains('active');
                 document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!wasActive) item.classList.add('active');
+                if (!isActive) item.classList.add('active');
             });
-        });
+        }
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2803,20 +2812,18 @@
                 if (href === '#') return;
                 e.preventDefault();
                 const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Scroll reveal (lightweight)
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                     observer.unobserve(entry.target);
-                      }
+                }
             });
         }, { threshold: 0.1 });
 
@@ -2829,12 +2836,21 @@
 
         // Mobile menu
         const mobileBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        if (mobileBtn && navLinks) {
+        const mobileNav = document.querySelector('.nav-links');
+        if (mobileBtn && mobileNav) {
             mobileBtn.addEventListener('click', () => {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '70px';
-                navLinks.style.left = '0';
-                nav
+                const isOpen = mobileNav.style.display === 'flex';
+                mobileNav.style.display = isOpen ? 'none' : 'flex';
+                mobileNav.style.flexDirection = 'column';
+                mobileNav.style.position = 'absolute';
+                mobileNav.style.top = '70px';
+                mobileNav.style.left = '0';
+                mobileNav.style.right = '0';
+                mobileNav.style.background = 'rgba(8,12,10,0.98)';
+                mobileNav.style.padding = '20px';
+                mobileNav.style.gap = '16px';
+            });
+        }
+    </script>
+</body>
+</html>
