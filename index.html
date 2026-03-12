@@ -2776,4 +2776,33 @@
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                     observer.unobserve(entry.target);
-      
+                      }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.about-card, .challenge-category, .benefit-card, .timeline-item, .speaker-block, .testimonial-card, .result-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+
+        // Mobile menu
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        if (mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '70px';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(8,12,10,0.98)';
+                navLinks.style.padding = '20px';
+                navLinks.style.gap = '16px';
+            });
+        }
+    </script>
+</body>
+</html>
