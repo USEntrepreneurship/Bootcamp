@@ -884,8 +884,13 @@
 
         .faq-item {
             border-bottom: 1px solid var(--border-subtle);
-            padding: 22px 0;
+            padding: 4px 0;
         }
+
+        .faq-item summary {
+            list-style: none;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
 
         .faq-question {
             display: flex;
@@ -895,8 +900,11 @@
             font-family: 'Sora', sans-serif;
             font-weight: 600;
             font-size: 1rem;
-            transition: color 0.2s;
+            color: var(--text-primary);
+            padding: 18px 0;
             gap: 20px;
+            transition: color 0.2s;
+            user-select: none;
         }
 
         .faq-question:hover { color: var(--green-primary); }
@@ -906,19 +914,13 @@
             color: var(--green-primary);
             transition: transform 0.3s;
             flex-shrink: 0;
+            line-height: 1;
         }
 
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-item[open] .faq-icon { transform: rotate(45deg); }
 
         .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.35s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 600px;
-            padding-top: 14px;
+            padding: 0 0 18px 0;
         }
 
         .faq-answer p {
@@ -2767,80 +2769,80 @@
             </div>
 
             <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Muszę mieć gotowy pomysł?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p><strong>NIE!</strong> Dostajesz konkretne wyzwanie do rozwiązania. Budujesz rozwiązanie z zespołem od zera — właśnie na tym polega bootcamp.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Nie znam się na biznesie. Czy nie będę ciężarem dla zespołu?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p>To jeden z najczęstszych lęków — i całkowicie niepotrzebny. Bootcamp nie jest dla "ludzi od biznesu". Jest dla ludzi, którzy potrafią myśleć z perspektywy swojej dziedziny.</p>
                         <p style="margin-top: 10px;">Jeśli studiujesz biologię — rozumiesz ekosystemy. Jeśli IT — widzisz jak zautomatyzować rozwiązanie. Jeśli psychologię — wiesz jak zmienić ludzkie zachowanie. Jeśli prawo — widzisz bariery regulacyjne. <strong>Każda perspektywa jest potrzebna.</strong></p>
                         <p style="margin-top: 10px;">Metodologii (Design Thinking, Business Model Canvas) nauczysz się <strong>podczas</strong> bootcampu — mentorzy prowadzą was przez każdy krok. Nie jesteś sam/a na scenie.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Czy muszę przyjść z gotowym zespołem?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p><strong>Nie.</strong> Możesz zgłosić się sam/a — dobieramy zespoły tak, żeby były jak najbardziej interdyscyplinarne. Możesz też przyjść ze znajomymi.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Co jeśli nie mogę być przez całe 2 dni?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p>Niestety, wymagamy obecności przez cały czas trwania bootcampu (8:30–15:00 oba dni). Ciągłość pracy zespołowej jest kluczowa dla efektu końcowego. Jeśli masz wątpliwości — napisz do nas przed zgłoszeniem.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Ile to kosztuje?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p><strong>0 zł.</strong> Szkolenia, przerwy kawowe i materiały — wszystko zapewnione. Jedyny koszt to Twój dojazd do Katowic.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Czy dostanę certyfikat?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p><strong>TAK!</strong> Certyfikat ukończenia bootcampu (15 godzin lekcyjnych) potwierdzający Twoje kompetencje — można dołączyć do CV i LinkedIn.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Czy mogę wykorzystać projekt do pracy dyplomowej?</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p><strong>Oczywiście!</strong> Wielu uczestników tak robi. Wychodzisz z: researchu, prototypem i feedbackiem od ekspertów — to świetna baza. Skonsultuj z promotorem przed bootcampem.</p>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-question">
                         <span>Boję się pitchowania przed ludźmi</span>
                         <span class="faq-icon">+</span>
-                    </div>
+                    </summary>
                     <div class="faq-answer">
                         <p>To normalne — 80% uczestników ma ten sam lęk. Warsztat pitchingowy w trakcie bootcampu Cię przygotuje. Pitchujesz <strong>z zespołem</strong> (nie solo), możecie podzielić się rolami. Feedback od Jury jest konstruktywny, nie okrutny.</p>
                     </div>
-                </div>
+                </details>
             </div>
         </div>
     </section>
@@ -3060,20 +3062,6 @@
                 if (banner) banner.style.display = 'none';
             }
         } catch(e) {}
-
-        // FAQ — event delegation na całej sekcji
-        const faqSection = document.querySelector('.faq');
-        if (faqSection) {
-            faqSection.addEventListener('click', function(e) {
-                const question = e.target.closest('.faq-question');
-                if (!question) return;
-                const item = question.closest('.faq-item');
-                if (!item) return;
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-            });
-        }
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
