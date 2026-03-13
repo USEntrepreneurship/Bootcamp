@@ -81,7 +81,7 @@
         }
 
         .nav-logo-us {
-            height: 32px;
+            height: 40px;
             width: auto;
             opacity: 0.9;
             filter: brightness(1.1);
@@ -89,12 +89,12 @@
 
         .nav-logo-divider {
             width: 1px;
-            height: 28px;
+            height: 36px;
             background: var(--border-mid);
         }
 
         .nav-logo-spinplace {
-            height: 30px;
+            height: 44px;
             width: auto;
             opacity: 0.9;
         }
@@ -128,21 +128,21 @@
         }
 
         .footer-logo-us {
-            height: 28px;
+            height: 36px;
             width: auto;
             opacity: 0.7;
             filter: brightness(1.1);
         }
 
         .footer-logo-spinplace {
-            height: 26px;
+            height: 40px;
             width: auto;
-            opacity: 0.65;
+            opacity: 0.75;
         }
 
         .footer-logo-divider {
             width: 1px;
-            height: 22px;
+            height: 32px;
             background: var(--border-subtle);
         }
 
@@ -1850,6 +1850,164 @@
             margin: 0 auto;
         }
 
+        /* ── HISTORY / EDITIONS ── */
+        .history { background: var(--bg-subtle); }
+
+        .editions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-bottom: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .editions-grid { grid-template-columns: 1fr; }
+        }
+
+        .edition-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .edition-card:hover {
+            border-color: var(--green-primary);
+            transform: translateY(-3px);
+        }
+
+        .edition-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-primary), var(--accent-lime));
+        }
+
+        .edition-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 214, 143, 0.1);
+            border: 1px solid rgba(0, 214, 143, 0.25);
+            border-radius: 30px;
+            padding: 4px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--green-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+        }
+
+        .edition-year {
+            font-size: 2.2rem;
+            font-weight: 800;
+            font-family: 'Sora', sans-serif;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .edition-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-lime);
+            margin-bottom: 16px;
+            font-family: 'Sora', sans-serif;
+        }
+
+        .edition-desc {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        .edition-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .edition-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .edition-stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .edition-stat-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .edition-winner {
+            background: rgba(184, 255, 94, 0.06);
+            border: 1px solid rgba(184, 255, 94, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+
+        .edition-winner-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-lime);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .edition-winner-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .edition-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .edition-tag {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .edition-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 18px;
+            font-size: 0.8rem;
+            color: var(--green-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.2s;
+        }
+
+        .edition-link:hover { gap: 10px; }
+
         /* ── TESTIMONIALS ── */
         .testimonials { background: var(--bg-dark); }
 
@@ -2016,7 +2174,7 @@
                 <div class="hero-eyebrow">
                     <div class="hero-eyebrow-dot"></div>
                     Biuro Współpracy z Gospodarką · Uniwersytet Śląski w Katowicach
-                    <span class="history-badge">✦ już 2. edycja</span>
+                    <span class="history-badge">✦ już 3. edycja</span>
                 </div>
 
                 <h1>
@@ -2035,7 +2193,7 @@
                     <div class="hero-date-info">
                         <div class="hero-date-label">Edycja Green Planet</div>
                         <div class="hero-date-main">21–22 kwietnia 2026</div>
-                        <div class="hero-date-sub">spinPLACE UŚ · Katowice · godz. 8:30–16:00</div>
+                        <div class="hero-date-sub">spinPLACE UŚ · Katowice · godz. 8:30–15:00</div>
                     </div>
                     <div class="hero-date-divider"></div>
                     <div class="hero-date-info">
@@ -2064,7 +2222,7 @@
                     </div>
                     <div class="hero-stat">
                         <div class="hero-stat-value">✓</div>
-                        <div class="hero-stat-label">zaliczenie przedsiębiorczości</div>
+                        <div class="hero-stat-label">moduł KDO Przedsiębiorczość</div>
                     </div>
                     <div class="hero-stat">
                         <div class="hero-stat-value">15h</div>
@@ -2282,8 +2440,8 @@
             <div class="benefits-grid">
                 <div class="benefit-card highlight">
                     <div class="benefit-icon">🎓</div>
-                    <h3>Zaliczenie zajęć z przedsiębiorczości</h3>
-                    <p>Udział w bootcampie pozwala zaliczyć obowiązkowe zajęcia z przedsiębiorczości. Uczysz się przez działanie — nie przez słuchanie wykładu.</p>
+                    <h3>KDO / Moduł Przedsiębiorczość</h3>
+                    <p>Program bootcampu jest zbieżny z efektami kształcenia modułu Przedsiębiorczość w ramach Kolegium Dydaktyki Ogólnouniwersyteckiej. Udział w obu dniach wydarzenia stanowi przesłankę do zaliczenia tego modułu.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🎤</div>
@@ -2303,7 +2461,7 @@
 
                 <div class="benefit-card">
                     <div class="benefit-icon">🌱</div>
-                    <h3>Kontynuacja z Biurem Współpracy</h3>
+                    <h3>Kontynuacja z Biurem Współpracy z Gospodarką</h3>
                     <p>Masz pomysł po bootcampie? Biuro Współpracy z Gospodarką UŚ i Punkt Konsultacyjny Przedsiębiorczości Akademickiej (PKPA) pomagają dalej — konsultacje, dofinansowania, zakładanie firmy. Nie znikamy po finale.</p>
                 </div>
                 <div class="benefit-card">
@@ -2317,8 +2475,8 @@
                     <p>Szczery, konstruktywny feedback od praktyków. Wiesz czy Twój pomysł ma sens — albo co zmienić, żeby miał.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🍕</div>
-                    <h3>Catering przez 2 dni</h3>
+                    <div class="benefit-icon">☕</div>
+                    <h3>Przerwy kawowe przez 2 dni</h3>
                     <p>Posiłki i coffee breaks zapewnione. Jedyny Twój koszt to dojazd do Katowic.</p>
                 </div>
             </div>
@@ -2353,9 +2511,9 @@
                 <div class="timeline-item highlight">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">21–22 kwietnia 2026 · godz. 8:30–16:00</div>
+                        <div class="timeline-date">21–22 kwietnia 2026 · godz. 8:30–15:00</div>
                         <h3 class="timeline-title">🌍 Green Planet Bootcamp</h3>
-                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami ekologicznymi. Warsztaty, praca w zespołach, guest speakers i finałowy pitch przed Jury. spinPLACE UŚ, Katowice. Godz. 8:30–16:00.</p>
+                        <p class="timeline-desc">2 dni intensywnej pracy nad wyzwaniami ekologicznymi. Warsztaty, praca w zespołach, guest speakers i finałowy pitch przed Jury. spinPLACE UŚ, Katowice. Godz. 8:30–15:00.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -2392,7 +2550,7 @@
                             <div class="schedule-time">8:30–9:00</div>
                             <div class="schedule-slot-content">
                                 <h4>Rejestracja i powitanie</h4>
-                                <p>Kawa, poznajecie się w przestrzeni spinPLACE, kick-off — sprawnie i bez zbędnych ćwiczeń</p>
+                                <p>Poznajecie się w przestrzeni spinPLACE, kick-off — sprawnie i bez zbędnych ćwiczeń</p>
                             </div>
                         </div>
                         <div class="schedule-slot">
@@ -2412,19 +2570,19 @@
                         <div class="schedule-slot">
                             <div class="schedule-time">12:00–12:30</div>
                             <div class="schedule-slot-content">
-                                <h4>🍕 Lunch</h4>
-                                <p>Catering zapewniony</p>
+                                <h4>☕ Przerwa</h4>
+                                <p>Chwila oddechu przed popołudniowym blokiem</p>
                             </div>
                         </div>
                         <div class="schedule-slot">
-                            <div class="schedule-time">12:30–14:15</div>
+                            <div class="schedule-time">12:30–13:45</div>
                             <div class="schedule-slot-content">
                                 <h4>Business Model Canvas</h4>
                                 <p>Przekształcacie pomysł w model — co, dla kogo, jak i dlaczego to działa</p>
                             </div>
                         </div>
                         <div class="schedule-slot highlight">
-                            <div class="schedule-time">14:15–16:00</div>
+                            <div class="schedule-time">13:45–15:00</div>
                             <div class="schedule-slot-content">
                                 <h4>Prototypowanie — pierwsze szkice</h4>
                                 <p>Makiety, schematy, pierwsze wersje rozwiązania z mentorami na wyciągnięcie ręki</p>
@@ -2463,8 +2621,8 @@
                         <div class="schedule-slot">
                             <div class="schedule-time">12:00–12:30</div>
                             <div class="schedule-slot-content">
-                                <h4>🍕 Lunch</h4>
-                                <p>Catering zapewniony</p>
+                                <h4>☕ Przerwa</h4>
+                                <p>Chwila oddechu przed finałem</p>
                             </div>
                         </div>
                         <div class="schedule-slot">
@@ -2475,14 +2633,14 @@
                             </div>
                         </div>
                         <div class="schedule-slot highlight">
-                            <div class="schedule-time">13:30–15:00</div>
+                            <div class="schedule-time">13:30–14:30</div>
                             <div class="schedule-slot-content">
                                 <h4>🏆 Finałowe pitche przed Jury</h4>
                                 <p>Każdy zespół prezentuje. Jury zadaje pytania i daje konstruktywny feedback</p>
                             </div>
                         </div>
                         <div class="schedule-slot highlight">
-                            <div class="schedule-time">15:00–16:00</div>
+                            <div class="schedule-time">14:30–15:00</div>
                             <div class="schedule-slot-content">
                                 <h4>Ogłoszenie wyników + certyfikaty</h4>
                                 <p>Wyniki, wręczenie certyfikatów i chwila na networking</p>
@@ -2494,38 +2652,108 @@
         </div>
     </section>
 
-    <!-- Results -->
-    <section class="results" id="results">
+    <!-- History / Editions -->
+    <section class="history results" id="results">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Poprzednie edycje</span>
-                <h2 class="section-title">SBA w liczbach</h2>
+                <h2 class="section-title">Historia SBA</h2>
                 <p class="section-subtitle">
-                    Spin Business Accelerator ma już historię. Oto co osiągnęliśmy razem.
+                    Program ma już dwie edycje za sobą. Każda inna — każda z własną historią.
                 </p>
             </div>
 
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-value">20</div>
-                    <div class="result-label">uczestników edycji RESTLESS 2025</div>
+            <div class="editions-grid">
+
+                <!-- EDYCJA 1 — 2024 -->
+                <div class="edition-card">
+                    <div class="edition-number">✦ Edycja 1</div>
+                    <div class="edition-year">2024</div>
+                    <div class="edition-name">Zrównoważone Miasto</div>
+                    <p class="edition-desc">
+                        Pierwsza edycja SBA — 6-tygodniowy program akceleracyjny w ramach Europejskiego Miasta Nauki Katowice 2024. Uczestnicy pracowali nad innowacjami dla miast przyszłości: retencją wody, zazielenianiem przestrzeni miejskiej, zdrowiem publicznym i ekologicznymi kampusami. Demo Day odbył się 17 grudnia 2024.
+                    </p>
+                    <div class="edition-stats">
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">7</div>
+                            <div class="edition-stat-label">zespołów</div>
+                        </div>
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">10</div>
+                            <div class="edition-stat-label">wyzwań</div>
+                        </div>
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">5</div>
+                            <div class="edition-stat-label">obszarów tematycznych</div>
+                        </div>
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">9 tys. zł</div>
+                            <div class="edition-stat-label">puli nagród</div>
+                        </div>
+                    </div>
+                    <div class="edition-winner">
+                        <div class="edition-winner-label">🏆 I miejsce</div>
+                        <div class="edition-winner-text">EcoSigma i sieć Ecomatów — rozwiązanie dla zrównoważonych kampusów przyszłości (Magdalena Christ, Paulina Major-Kalinowska, Kamila Cywińska)</div>
+                    </div>
+                    <div class="edition-tags">
+                        <span class="edition-tag">Program akceleracyjny</span>
+                        <span class="edition-tag">6 tygodni</span>
+                        <span class="edition-tag">Design Thinking</span>
+                        <span class="edition-tag">Demo Day</span>
+                        <span class="edition-tag">EMNK 2024</span>
+                    </div>
+                    <a href="https://spinplace.us.edu.pl/spin-business-accelerator/" target="_blank" rel="noopener" class="edition-link">
+                        Zobacz relację →
+                    </a>
                 </div>
-                <div class="result-card">
-                    <div class="result-value">100%</div>
-                    <div class="result-label">ocen 4 lub 5 w ankiecie — nikt nie dał mniej niż 4</div>
+
+                <!-- EDYCJA 2 — 2025 -->
+                <div class="edition-card">
+                    <div class="edition-number">✦ Edycja 2</div>
+                    <div class="edition-year">2025</div>
+                    <div class="edition-name">Bootcamp w obszarze zdrowia</div>
+                    <p class="edition-desc">
+                        Druga edycja w nowej formule — intensywny 2-dniowy bootcamp & hackathon. Studenci pracowali w zespołach nad realnym wyzwaniem biznesowym, używając Design Thinking i Business Model Canvas. Pitch finałowy przed Jury, certyfikaty i — według uczestników — za mało czasu, bo chcieli zostać dłużej. Część projektu międzynarodowego Restless.
+                    </p>
+                    <div class="edition-stats">
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">20</div>
+                            <div class="edition-stat-label">uczestników</div>
+                        </div>
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">100%</div>
+                            <div class="edition-stat-label">ocen 4 lub 5</div>
+                        </div>
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">56%</div>
+                            <div class="edition-stat-label">ocen 5/5</div>
+                        </div>
+                        <div class="edition-stat">
+                            <div class="edition-stat-value">3</div>
+                            <div class="edition-stat-label">projekty kontynuowane</div>
+                        </div>
+                    </div>
+                    <div class="edition-winner">
+                        <div class="edition-winner-label">🏆 Nagroda główna</div>
+                        <div class="edition-winner-text">Wyjazd na Cypr dla 3 najlepszych zespołów</div>
+                    </div>
+                    <div class="edition-winner" style="margin-top:10px">
+                        <div class="edition-winner-label">💬 Feedback uczestników</div>
+                        <div class="edition-winner-text">„Chcieliśmy więcej czasu, więcej ekspertów, więcej pracy." Nikt nie wystawił oceny poniżej 4/5.</div>
+                    </div>
+                    <div class="edition-tags">
+                        <span class="edition-tag">Bootcamp 2-dniowy</span>
+                        <span class="edition-tag">Hackathon</span>
+                        <span class="edition-tag">Business Model Canvas</span>
+                        <span class="edition-tag">Pitch training</span>
+                        <span class="edition-tag">Projekt Restless</span>
+                    </div>
                 </div>
-                <div class="result-card">
-                    <div class="result-value">56%</div>
-                    <div class="result-label">uczestników wystawiło najwyższą ocenę 5/5</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-value">3</div>
-                    <div class="result-label">projektów kontynuowanych po bootcampie</div>
-                </div>
+
             </div>
 
             <div class="results-note">
-                💬 <strong>Co chcieli uczestnicy poprawić?</strong> Głównie: więcej czasu na pracę, dłuższe prelekcje ekspertów, więcej przerw. Innymi słowy — chcieli więcej. To najlepsza możliwa informacja zwrotna.
+                🌱 Edycja 3 — <strong>Green Planet</strong> — startuje 21–22 kwietnia 2026. 30 miejsc. Rekrutacja do 10 kwietnia.
             </div>
         </div>
     </section>
@@ -2574,7 +2802,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Niestety, wymagamy obecności przez cały czas trwania bootcampu (8:30–16:00 oba dni). Ciągłość pracy zespołowej jest kluczowa dla efektu końcowego. Jeśli masz wątpliwości — napisz do nas przed zgłoszeniem.</p>
+                        <p>Niestety, wymagamy obecności przez cały czas trwania bootcampu (8:30–15:00 oba dni). Ciągłość pracy zespołowej jest kluczowa dla efektu końcowego. Jeśli masz wątpliwości — napisz do nas przed zgłoszeniem.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2583,7 +2811,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>0 zł.</strong> Szkolenia, catering (posiłki + coffee breaks) i materiały — wszystko zapewnione. Jedyny koszt to Twój dojazd do Katowic.</p>
+                        <p><strong>0 zł.</strong> Szkolenia, przerwy kawowe i materiały — wszystko zapewnione. Jedyny koszt to Twój dojazd do Katowic.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2592,7 +2820,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>TAK!</strong> Certyfikat ukończenia bootcampu (15h szkolenia) potwierdzający Twoje kompetencje — można dołączyć do CV i LinkedIn.</p>
+                        <p><strong>TAK!</strong> Certyfikat ukończenia bootcampu (15 godzin lekcyjnych) potwierdzający Twoje kompetencje — można dołączyć do CV i LinkedIn.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2771,7 +2999,7 @@
                 </div>
                 <div class="footer-contact">
                     <h4 class="footer-title">Kontakt</h4>
-                    <p>📧 <a href="mailto:transfer@us.edu.pl">transfer@us.edu.pl</a></p>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection#2d595f4c435e4b485f6d585e03484958035d41"><span class="__cf_email__" data-cfemail="6713150609140102152712144902031249170b">[email&#160;protected]</span></a></p>
                     <p>📍 <a href="https://maps.google.com/?q=ul.+Bankowa+5,+40-007+Katowice" target="_blank" style="color:inherit;">spinPLACE UŚ<br>ul. Bankowa 5, 40-007 Katowice</a></p>
                 </div>
             </div>
@@ -2816,7 +3044,7 @@
         ">Rozumiem</button>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         if (navbar) {
@@ -2887,12 +3115,4 @@
                 mobileNav.style.position = 'absolute';
                 mobileNav.style.top = '70px';
                 mobileNav.style.left = '0';
-                mobileNav.style.right = '0';
-                mobileNav.style.background = 'rgba(8,12,10,0.98)';
-                mobileNav.style.padding = '20px';
-                mobileNav.style.gap = '16px';
-            });
-        }
-    </script>
-</body>
-</html>
+                mobileN
