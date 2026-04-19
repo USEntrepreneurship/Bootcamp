@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Generator Portfolio · Spin Business Accelerator 2026</title>
+<style>
+/* ─────────────────────────────────────────────────────
+   GENERATOR UI
+───────────────────────────────────────────────────── */
+:root{
+  --f:#2A4A35;--s:#2E7453;--m:#74C69D;--p:#D8F3DC;
+  --pa:#F5F2EC;--cr:#EDE8DE;--sd:#C4BDB0;
+  --g:#C8901A;--gl:#F5C842;--n:#1E2D52;
+  --sl:#3D4A52;--ink:#1C2B1F;
+  --r:#C0392B;--rb:#FFF0F0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;}
+}
+body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--pa);color:var(--ink);min-height:100vh;}
+
+/* ── header ── */
+.g-hdr{background:var(--f);padding:13px 18px 10px;border-bottom:3px solid var(--g);position:sticky;top:0;z-index:50;}
+.g-hdr-row{display:flex;align-items:center;justify-content:space-between;}
+.g-hdr h1{font-size:15px;font-weight:800;color:#fff;}
+.g-hdr p{font-size:11px;color:#B8E0C8;font-style:italic;margin-top:1px;}
+.save-badge{font-size:10px;color:#B8E0C8;font-weight:700;opacity:0;transition:opacity .3s;}
+.save-badge.show{opacity:1;}
+.save-badge.err{color:#FFB3B3;}
+
+/* ── progress ── */
+.g-prog{background:var(--cr);padding:0;overflow:hidden;}
+.g-prog-bar{height:3px;background:var(--g);transition:width .4s ease;}
+.g-steps{display:flex;overflow-x:auto;scrollbar-width:none;background:var(--cr);}
+.g-steps::-webkit-scrollbar{display:none;}
+.g-step{flex-shrink:0;padding:8px 12px;font-size:11px;font-weight:700;color:var(--sl);border:none;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;transition:all .2s;background:inherit;font-family:inherit;}
+.g-step:disabled{cursor:not-allowed;opacity:.55;}
+.g-step:focus-visible{outline:2px solid var(--s);outline-offset:-2px;}
+.g-step.now{color:var(--f);border-bottom-color:var(--g);background:#fff;}
+.g-step.ok{color:var(--s);border-bottom-color:var(--m);}
+
+/* ── screens ── */
+.screen{display:none;padding:18px 18px 20px;animation:fadeUp .25s ease;}
+.screen.on{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── form elements ── */
+.lbl{display:block;font-size:11px;font-weight:800;color:var(--sl);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.lbl .req{color:var(--r);margin-left:3px;}
+.lbl .opt{font-weight:600;color:var(--m);text-transform:none;letter-spacing:0;margin-left:6px;font-size:10px;}
+.sub{display:block;font-size:11.5px;color:var(--s);font-style:italic;margin-bottom:5px;line-height:1.4;}
+.hint-soft{display:block;font-size:11px;color:var(--sl);margin-top:-8px;margin-bottom:12px;line-height:1.4;padding:6px 10px;background:rgba(200,144,26,.08);border-left:2px solid var(--g);border-radius:0 6px 6px 0;}
+.char-count{display:block;text-align:right;font-size:10px;color:var(--sl);margin-top:-10px;margin-bottom:12px;opacity:.7;}
+.char-count.warn{color:var(--r);opacity:1;}
+.inp,.ta,.sel{width:100%;background:#fff;border:1.5px solid var(--sd);border-radius:8px;padding:11px 13px;font-size:15px;color:var(--ink);font-family:inherit;margin-bottom:14px;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s;}
+.inp:focus,.ta:focus,.sel:focus,.inp:focus-visible,.ta:focus-visible,.sel:focus-visible{outline:none;border-color:var(--s);box-shadow:0 0 0 3px rgba(46,116,83,.22);}
+.inp[aria-invalid="true"],.ta[aria-invalid="true"]{border-color:var(--r);background:var(--rb);}
+.ta{min-height:80px;resize:vertical;line-height:1.55;}
+.ta.sm{min-height:62px;}
+.sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%234A5860'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;}
+.field{margin-bottom:2px;}
+.tip{background:var(--p);border-left:3px solid var(--m);border-radius:0 8px 8px 0;padding:10px 14px;font-size:12.5px;color:var(--f);line-height:1.5;margin-bottom:16px;}
+.tip b{color:var(--f);font-weight:700;}
+
+/* ── mindset checkboxes ── */
+.ms-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.ms-item{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1.5px solid var(--sd);border-radius:9px;padding:11px 13px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.ms-item:has(.ms-cb:checked){border-color:var(--s);background:var(--p);}
+.ms-item:focus-within{border-color:var(--s);box-shadow:0 0 0 3px rgba(46,116,83,.22);}
+.ms-cb{width:18px;height:18px;flex-shrink:0;accent-color:var(--s);cursor:pointer;margin-top:2px;}
+.ms-item .ms-lbl{font-size:13.5px;color:var(--ink);line-height:1.4;}
+.ms-item .ms-sub{font-size:11px;color:var(--sl);font-style:italic;margin-top:2px;}
+
+/* ── validation message ── */
+.val-msg{background:var(--rb);border:1.5px solid var(--r);border-radius:8px;padding:10px 13px;font-size:13px;color:var(--r);margin-bottom:12px;display:none;}
+
+/* ── review screen ── */
+.review-section{margin-bottom:16px;}
+.review-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--s);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.review-edit{font-size:11px;color:var(--s);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:inherit;font-weight:600;}
+.review-edit:focus-visible{outline:2px solid var(--s);outline-offset:2px;border-radius:3px;}
+.review-card{background:#fff;border:1px solid #E0DDD8;border-radius:8px;padding:12px 14px;}
+.review-row{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #F0EDE8;font-size:13px;}
+.review-row:last-child{border-bottom:none;}
+.review-key{color:var(--sl);min-width:110px;flex-shrink:0;font-size:12px;}
+.review-val{color:var(--ink);line-height:1.45;flex:1;}
+.review-val.empty{color:var(--sd);font-style:italic;}
+.review-val.check{color:var(--s);}
+.quality-box{margin-bottom:16px;padding:12px 14px;border-radius:9px;font-size:12.5px;line-height:1.5;}
+.quality-box.good{background:#E8F5ED;border:1px solid var(--m);color:var(--f);}
+.quality-box.mid{background:#FFF8E8;border:1px solid var(--g);color:#7A5210;}
+.quality-box.low{background:#FFF0F0;border:1px solid var(--r);color:#8B2A21;}
+.quality-box b{font-weight:800;}
+.info-strip{background:#fff;border:1px solid var(--sd);border-radius:9px;padding:10px 13px;font-size:11.5px;color:var(--sl);line-height:1.5;margin:14px 18px 0;display:flex;align-items:flex-start;gap:8px;}
+.info-strip-icon{flex-shrink:0;}
+.clear-link{color:var(--r);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:inherit;font-size:inherit;padding:0;}
+.clear-link:focus-visible{outline:2px solid var(--r);outline-offset:2px;border-radius:3px;}
+
+/* ── result screen ── */
+.result-actions{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.share-how{background:var(--cr);border-radius:9px;padding:12px 14px;font-size:12px;color:var(--sl);line-height:1.6;margin-bottom:12px;}
+.share-how b{color:var(--f);}
+.prev-box{border:2px solid var(--m);border-radius:10px;overflow:hidden;margin-bottom:14px;}
+.prev-hdr{background:var(--f);padding:9px 14px;display:flex;justify-content:space-between;align-items:center;}
+.prev-hdr span{font-size:11.5px;font-weight:700;color:var(--p);}
+.prev-wrap{height:440px;overflow:auto;}
+.prev-wrap iframe{width:100%;height:100%;border:none;}
+
+/* ── LinkedIn modal ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;}
+.modal-bg.on{display:flex;}
+.modal{background:var(--pa);border-radius:16px 16px 0 0;padding:20px 18px 28px;width:100%;max-width:500px;margin:0 auto;}
+.modal h3{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:4px;}
+.modal p{font-size:12px;color:var(--sl);margin-bottom:12px;}
+.modal textarea{width:100%;border:1.5px solid var(--sd);border-radius:8px;padding:11px 12px;font-size:13px;color:var(--ink);font-family:inherit;min-height:220px;resize:none;line-height:1.55;margin-bottom:10px;}
+
+/* ── buttons ── */
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1.5px solid #E0DDD8;padding:10px 18px 18px;display:flex;gap:8px;z-index:60;}
+.btn{flex:1;padding:13px;border:none;border-radius:9px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s;}
+.btn:active{transform:scale(.97);}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:-4px;box-shadow:0 0 0 6px rgba(46,116,83,.45);}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-go{background:var(--s);color:#fff;}
+.btn-bk{background:var(--cr);color:var(--sl);flex:.5;}
+.btn-gld{background:var(--g);color:#fff;}
+.btn-dk{background:var(--n);color:#fff;}
+.btn-li{background:#0A66C2;color:#fff;}
+.btn-ol{background:transparent;border:2px solid var(--s);color:var(--s);}
+.btn-sm{font-size:12px;padding:9px;}
+
+/* ── INTRO ── */
+.intro-hero{background:linear-gradient(135deg,var(--f) 0%,#0F2318 100%);padding:32px 20px 28px;text-align:center;}
+.intro-hero h2{font-size:24px;font-weight:900;color:#fff;margin-bottom:6px;line-height:1.2;}
+.intro-hero p{font-size:14px;color:var(--m);line-height:1.5;max-width:340px;margin:0 auto 20px;}
+.demo-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;max-width:340px;margin:0 auto;text-align:left;}
+.demo-name{font-size:18px;font-weight:900;color:#fff;margin-bottom:2px;}
+.demo-kier{font-size:12px;color:var(--m);margin-bottom:10px;}
+.demo-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.demo-tag{background:rgba(116,198,157,.15);border:1px solid rgba(116,198,157,.25);border-radius:14px;padding:3px 10px;font-size:11px;color:var(--m);font-weight:600;}
+.demo-badge{display:inline-block;background:rgba(200,144,26,.15);border:1px solid rgba(200,144,26,.3);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--gl);font-weight:700;}
+.what-grid{padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.what-item{background:#fff;border-radius:9px;padding:12px;border-left:3px solid var(--m);}
+.what-icon{font-size:20px;margin-bottom:4px;}
+.what-title{font-size:12px;font-weight:700;color:var(--f);margin-bottom:2px;}
+.what-desc{font-size:11px;color:var(--sl);line-height:1.35;}
+
+/* ── toast ── */
+.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%);background:var(--s);color:#fff;padding:8px 18px;border-radius:18px;font-size:12px;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;z-index:300;white-space:nowrap;}
+.toast.show{opacity:1;}
+body{padding-bottom:90px;}
+</style>
+</head>
+<body>
+
+<div class="g-hdr">
+  <div class="g-hdr-row">
+    <div>
+      <h1>🌿 Generator portfolio</h1>
+      <p>Spin Business Accelerator 2026 · Green Planet</p>
+    </div>
+    <div class="save-badge" id="saveBadge" role="status" aria-live="polite" aria-atomic="true">✓ zapisano</div>
+  </div>
+</div>
+<div class="g-prog"><div class="g-prog-bar" id="progBar" style="width:0%"></div></div>
+<div class="g-steps" id="gSteps"></div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- MODAL: LinkedIn post -->
+<div class="modal-bg" id="liModal" role="dialog" aria-modal="true" aria-labelledby="liTitle" aria-hidden="true">
+  <div class="modal">
+    <h3 id="liTitle">📋 Gotowy post na LinkedIn</h3>
+    <p>Skopiuj, wklej i wrzuć. Możesz edytować przed wklejeniem.</p>
+    <textarea id="liText" aria-label="Treść posta na LinkedIn"></textarea>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-bk btn-sm" style="flex:.5" onclick="closeLi()" aria-label="Zamknij okno z postem">Zamknij</button>
+      <button class="btn btn-li" onclick="copyLi()">Kopiuj post</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 0: INTRO ══════════════════════════════════════ -->
+<div class="screen on" id="s0">
+  <div class="intro-hero">
+    <h2>Twoja strona portfolio<br>w 5 minut</h2>
+    <p>Wypełnij kilka pól — dostaniesz profesjonalną stronę którą możesz pokazać na rozmowie o pracę lub staż.</p>
+    <div class="demo-card">
+      <div class="demo-name">Anna Kowalska</div>
+      <div class="demo-kier">Biologia · rok 1 · Uniwersytet Śląski</div>
+      <div class="demo-tags">
+        <span class="demo-tag">Design Thinking</span>
+        <span class="demo-tag">prototypowanie</span>
+        <span class="demo-tag">ekologia</span>
+      </div>
+      <div class="demo-badge">🏆 1. miejsce · Demo Day</div>
+    </div>
+  </div>
+  <div class="what-grid">
+    <div class="what-item"><div class="what-icon">📄</div><div class="what-title">Strona case study</div><div class="what-desc">Wygląda jak portfolio startupowe, nie szkolne CV</div></div>
+    <div class="what-item"><div class="what-icon">📋</div><div class="what-title">Post na LinkedIn</div><div class="what-desc">Gotowy tekst do wklejenia — jednym klikiem</div></div>
+    <div class="what-item"><div class="what-icon">🖨️</div><div class="what-title">Wersja do druku</div><div class="what-desc">Ctrl+P → PDF który możesz dołączyć do CV</div></div>
+    <div class="what-item"><div class="what-icon">💾</div><div class="what-title">Twój plik HTML</div><div class="what-desc">Wgraj na GitHub Pages — darmowy hosting</div></div>
+  </div>
+  <div class="info-strip">
+    <span class="info-strip-icon" aria-hidden="true">🔒</span>
+    <span>Twoje dane zapisują się <b>tylko w pamięci tej przeglądarki</b>. Nikt inny ich nie widzi — ani organizatorzy, ani uczelnia. <button class="clear-link" onclick="clearAllData()" type="button">Wyczyść dane</button></span>
+  </div>
+</div>
+
+<!-- ══ SCREEN 1: O TOBIE ════════════════════════════════════ -->
+<div class="screen" id="s1">
+  <div class="tip">Dane widoczne w sekcji hero Twojej strony. <b>Imię i kierunek</b> są obowiązkowe, reszta — opcjonalna.</div>
+  <div class="val-msg" id="v1" role="alert">Podaj imię i kierunek studiów.</div>
+  <div class="field"><label class="lbl" for="f_name">Imię i nazwisko<span class="req" aria-hidden="true">*</span></label><input class="inp" id="f_name" maxlength="80" aria-required="true" placeholder="np. Anna Kowalska"></div>
+  <div class="field"><label class="lbl" for="f_kier">Kierunek i rok studiów<span class="req" aria-hidden="true">*</span></label><input class="inp" id="f_kier" maxlength="120" aria-required="true" placeholder="np. Biologia, rok 1, Uniwersytet Śląski"></div>
+  <div class="field"><label class="lbl" for="f_bio">Jedno zdanie o sobie<span class="opt">opcjonalne</span></label><span class="sub">Co Cię napędza? Jak chcesz żeby Cię zapamiętano?</span><input class="inp" id="f_bio" maxlength="220" placeholder="np. Interesuję się ekologią miejską i projektowaniem rozwiązań dla ludzi i środowiska."></div>
+  <div class="field"><label class="lbl" for="f_team">Skład zespołu — kierunki studiów<span class="opt">opcjonalne</span></label><span class="sub">Kierunki pozostałych osób (bez imion)</span><input class="inp" id="f_team" maxlength="180" placeholder="np. informatyka, prawo, ekonomia, projektowanie"></div>
+  <div class="field"><label class="lbl" for="f_link">LinkedIn lub e-mail<span class="opt">opcjonalne</span></label><input class="inp" id="f_link" maxlength="200" placeholder="np. linkedin.com/in/anna-kowalska" type="text"></div>
+</div>
+
+<!-- ══ SCREEN 2: PROJEKT ════════════════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="val-msg" id="v2" role="alert">Podaj nazwę projektu i opis problemu.</div>
+  <div class="field"><label class="lbl" for="f_proj">Nazwa projektu<span class="req" aria-hidden="true">*</span></label><input class="inp" id="f_proj" maxlength="80" aria-required="true" placeholder="np. GreenRoute, PlasticBack, ZieleńMiasta..."></div>
+  <div class="field"><label class="lbl" for="f_prob">Problem który rozwiązywaliście<span class="req" aria-hidden="true">*</span></label><span class="sub">Dla kogo? Co nie działało? 2–3 zdania.</span><textarea class="ta" id="f_prob" maxlength="800" aria-required="true" placeholder="np. Mieszkańcy miast nie wiedzą gdzie oddać zużyty plastik. Trafia on na wysypiska zamiast do recyklingu. Kurka Wodna zbiera go i przetwarza, ale brakuje dotarcia do potencjalnych darczyńców..."></textarea></div>
+  <div class="field"><label class="lbl" for="f_insight">Kluczowy insight — co odkryliście?<span class="opt">opcjonalne</span></label><span class="sub">Jedno zdanie które zmieniło kierunek projektu</span><input class="inp" id="f_insight" maxlength="220" placeholder="np. Użytkownicy chcą widzieć efekt swojej darowizny w czasie rzeczywistym."></div>
+  <div class="field"><label class="lbl" for="f_sol">Rozwiązanie i prototyp<span class="opt">opcjonalne</span></label><input class="inp" id="f_sol" maxlength="220" placeholder="np. Aplikacja mobilna z mapą punktów zbiórki i dashboardem wpływu — mockup w Figma"></div>
+  <div class="field"><label class="lbl" for="f_part">Partner wyzwania<span class="opt">opcjonalne</span></label>
+    <select class="sel" id="f_part">
+      <option value="">— wybierz —</option>
+      <option>Kurka Wodna (gospodarka odpadami)</option>
+      <option>Zielone Szkiełko Żory (zieleń miejska)</option>
+      <option>Wyzwanie otwarte</option>
+    </select>
+  </div>
+  <div class="field"><label class="lbl" for="f_wynik">Wynik Demo Day<span class="opt">opcjonalne</span></label><input class="inp" id="f_wynik" maxlength="120" placeholder="np. 1. miejsce · 87/100 pkt · wyróżnienie jury"></div>
+</div>
+
+<!-- ══ SCREEN 3: TWÓJ WKŁAD ═════════════════════════════════ -->
+<div class="screen" id="s3">
+  <div class="tip">Te pola <b>wyróżniają Cię</b> spośród wszystkich uczestników. Rekruter to czyta najuważniej. Wszystkie są opcjonalne — wypełnij to, w czym czujesz się pewnie.</div>
+  <div class="field"><label class="lbl" for="f_rola">Twoja rola — co konkretnie robiłeś/aś<span class="opt">opcjonalne</span></label><span class="sub">Im konkretniej, tym lepiej</span><textarea class="ta" id="f_rola" maxlength="600" placeholder="np. Prowadziłam wywiady z użytkownikami, tworzyłam mapę empatii i definiowałam Problem Statement. Jako Głos Ekologii weryfikowałam ekologiczność założeń."></textarea></div>
+  <div class="field"><label class="lbl" for="f_unique">Co zrobiłeś/aś czego nie zrobiłby nikt inny?<span class="opt">opcjonalne</span></label><span class="sub">Jeden konkretny wkład który był tylko Twój</span><textarea class="ta sm" id="f_unique" maxlength="500" placeholder="np. Jako jedyna osoba z biologicznym wykształceniem zakwestionowałam ekologiczność głównego założenia i zaproponowałam alternatywę, która zmieniła kierunek projektu."></textarea>
+  <span class="hint-soft">💡 Jeśli nie wiesz co napisać, wróć tu po rozmowie z zespołem. Puste pole jest lepsze niż wymyślone — rekruterzy rozpoznają sztuczność.</span></div>
+  <div class="field"><label class="lbl" for="f_impact">Szacowany wpływ — jakaś liczba<span class="opt">opcjonalne</span></label><span class="sub">Przybliżona liczba z uzasadnieniem — lepsza niż brak</span><input class="inp" id="f_impact" maxlength="200" placeholder="np. 1000 użytkowników mogłoby zredukować o 30% odpadów plastikowych w Katowicach"></div>
+  <div class="field"><label class="lbl" for="f_proto">Link do prototypu<span class="opt">opcjonalne</span></label><input class="inp" id="f_proto" type="text" maxlength="300" placeholder="np. https://figma.com/file/..."></div>
+  <div class="field"><label class="lbl" for="f_img">Zdjęcie — link do obrazka<span class="opt">opcjonalne</span></label><span class="sub">Wgraj na Imgur.com → prawym klikiem "Copy image address" → wklej poniżej (zaczyna się od <b>https://i.imgur.com/</b>)</span><input class="inp" id="f_img" type="text" maxlength="300" placeholder="np. https://i.imgur.com/abc123.png"></div>
+</div>
+
+<!-- ══ SCREEN 4: REFLEKSJA ══════════════════════════════════ -->
+<div class="screen" id="s4">
+  <div class="field"><label class="lbl" for="f_feedback">Feedback jury — co powiedzieli i co byś zmienił/a?<span class="opt">opcjonalne</span></label><span class="sub">Dowód że słuchasz i wyciągasz wnioski</span><textarea class="ta sm" id="f_feedback" maxlength="500" placeholder="np. Jury zwróciło uwagę że model przychodów jest zbyt optymistyczny. Gdybyśmy mieli więcej czasu, zbudowalibyśmy pilotaż z jedną dzielnicą."></textarea></div>
+  <div class="tip">Zaznacz zdania które są dla Ciebie prawdziwe po tych 2 dniach. Możesz zaznaczyć kilka — pojawią się jako cytaty na Twojej stronie. Możesz też nie zaznaczyć żadnego.</div>
+  <div class="lbl" id="msLbl">Co zmieniło się w Twoim myśleniu?<span class="opt">opcjonalne</span></div>
+  <div class="ms-grid" id="msGrid" role="group" aria-labelledby="msLbl">
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Przed bootcampem myślałem/am że dobry pomysł to już sukces. Teraz wiem że pomysł bez zrozumienia użytkownika jest nic nie wart."><div><div class="ms-lbl">Dobry pomysł to za mało</div><div class="ms-sub">Liczy się rozumienie użytkownika</div></div></label>
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Nauczyłem/am się że szybkie testowanie niedokończonego prototypu jest lepsze niż długie szlifowanie czegoś co może okazać się złym kierunkiem."><div><div class="ms-lbl">Lepszy szybki prototyp niż idealne rozwiązanie za późno</div></div></label>
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Odkryłem/am że interdyscyplinarny zespół widzi problem inaczej niż ja — i że właśnie to tarcie perspektyw prowadzi do lepszych rozwiązań."><div><div class="ms-lbl">Różnorodność kierunków w zespole to siła, nie chaos</div></div></label>
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Zrozumiałem/am że model biznesowy to nie dodatek do pomysłu — bez odpowiedzi na pytanie kto zapłaci i dlaczego projekt nie istnieje."><div><div class="ms-lbl">Bez modelu biznesowego projekt nie istnieje</div></div></label>
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Przekonałem/am się że ekologiczne rozwiązanie musi być jednocześnie ekonomicznie sensowne — inaczej nie przetrwa."><div><div class="ms-lbl">Ekologia i biznes muszą iść razem</div></div></label>
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Nauczyłem/am się prezentować skomplikowane idee w 5 minut — i że to wymaga więcej pracy niż sama idea."><div><div class="ms-lbl">Dobra prezentacja to umiejętność, nie talent</div></div></label>
+    <label class="ms-item"><input type="checkbox" class="ms-cb" value="Zobaczyłem/am że problemy środowiskowe mają realne rozwiązania biznesowe — i że student na 1. roku może je projektować."><div><div class="ms-lbl">Problemy ekologiczne można rozwiązywać biznesowo już teraz</div></div></label>
+  </div>
+</div>
+
+<!-- ══ SCREEN 5: REVIEW ═════════════════════════════════════ -->
+<div class="screen" id="s5">
+  <div class="tip">Sprawdź czy wszystko się zgadza. Kliknij <b>Edytuj</b> żeby wrócić do dowolnej sekcji.</div>
+  <div id="reviewContent"></div>
+</div>
+
+<!-- ══ SCREEN 6: WYNIK ══════════════════════════════════════ -->
+<div class="screen" id="s6">
+  <div class="prev-box">
+    <div class="prev-hdr">
+      <span>👁 Podgląd Twojej strony</span>
+      <span style="color:var(--m);font-size:10px">przewiń ↓</span>
+    </div>
+    <div class="prev-wrap"><iframe id="frame"></iframe></div>
+  </div>
+  <div class="result-actions">
+    <button class="btn btn-dk" onclick="dl()">⬇ Pobierz plik HTML</button>
+    <button class="btn btn-li" onclick="openLi()">📋 Kopiuj post na LinkedIn</button>
+    <button class="btn btn-ol" onclick="cpCode()">⎘ Kopiuj kod HTML</button>
+  </div>
+  <div class="share-how">
+    <b>Jak wrzucić online za darmo:</b><br>
+    1. Pobierz HTML → wgraj na <b>tiiny.host</b> lub <b>carrd.co</b> → masz link w 2 minuty<br>
+    2. GitHub → New repo → wgraj plik → Settings → Pages → gotowe<br>
+    3. Link wklej w CV, LinkedIn, e-mailu do rekrutera
+  </div>
+</div>
+
+<!-- ══ NAVIGATION ═══════════════════════════════════════════ -->
+<div class="nav-bar" id="navBar">
+  <button class="btn btn-go" id="btnNext" onclick="next()">Zaczynamy →</button>
+</div>
+
+<script>
+/* ─── STATE ─────────────────────────────────────── */
+const STEPS = ['Intro','O Tobie','Projekt','Wkład','Refleksja','Przejrzyj','Gotowe'];
+const TOTAL = STEPS.length;
+let cur = 0;
+let html = '';
+let _saveTimer = null;
+let _blobUrl = null;
+
+/* ─── FIELDS ─────────────────────────────────────── */
+const FIELDS = ['f_name','f_kier','f_bio','f_team','f_link',
+  'f_proj','f_prob','f_insight','f_sol','f_part','f_wynik',
+  'f_rola','f_unique','f_impact','f_proto','f_img','f_feedback'];
+
+const v = id => (document.getElementById(id)||{value:''}).value.trim();
+
+/* ─── URL SAFETY & SLUGIFY ──────────────────────── */
+function safeUrl(raw) {
+  if(!raw) return '';
+  const s = raw.trim();
+  // Block dangerous schemes
+  if(/^\s*(javascript|data|vbscript|file):/i.test(s)) return '';
+  // Auto-add https:// if no scheme
+  if(/^https?:\/\//i.test(s)) return s;
+  return 'https://' + s;
+}
+function slugifyPL(str) {
+  if(!str) return 'portfolio';
+  return str
+    .toLowerCase()
+    .replace(/ł/g,'l').replace(/Ł/g,'l')
+    .replace(/ż/g,'z').replace(/ź/g,'z')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\s+/g,'-')
+    .replace(/[^a-z0-9-]/g,'')
+    .replace(/-+/g,'-')
+    .replace(/^-|-$/g,'')
+    .slice(0,60) || 'portfolio';
+}
+
+/* ─── ROUTING ───────────────────────────────────── */
+function go(n) {
+  document.getElementById('s'+cur).classList.remove('on');
+  document.getElementById('s'+n).classList.add('on');
+  cur = n;
+  renderSteps();
+  updateNav();
+  if(n === 5) buildReview();
+  if(n === 6) buildAndPreview();
+  window.scrollTo(0,0);
+}
+
+function next() {
+  if(cur === 0) { go(1); return; }
+  if(cur === 1) {
+    if(!v('f_name')||!v('f_kier')) { showVal('v1',['f_name','f_kier']); return; }
+    hideVal('v1',['f_name','f_kier']);
+  }
+  if(cur === 2) {
+    if(!v('f_proj')||!v('f_prob')) { showVal('v2',['f_proj','f_prob']); return; }
+    hideVal('v2',['f_proj','f_prob']);
+  }
+  if(cur < TOTAL-1) go(cur+1);
+}
+
+function back() { if(cur > 0) go(cur-1); }
+
+function updateNav() {
+  const nav = document.getElementById('navBar');
+  const btn = document.getElementById('btnNext');
+  if(cur === 0) {
+    nav.innerHTML = '<button class="btn btn-go" id="btnNext" onclick="next()" style="flex:1">Zacznij →</button>';
+  } else if(cur === 6) {
+    nav.innerHTML = '<button class="btn btn-bk btn-sm" onclick="go(0)" style="flex:.5">🏠</button><button class="btn btn-gld" onclick="go(1)" style="flex:1">Edytuj dane →</button>';
+  } else {
+    const bkLabel = cur === 5 ? '← Popraw' : '← Wróć';
+    const fwLabel = cur === 5 ? '✨ Generuj stronę' : cur === 4 ? 'Przejrzyj →' : 'Dalej →';
+    const fwClass = cur === 5 ? 'btn-gld' : 'btn-go';
+    nav.innerHTML = `<button class="btn btn-bk" onclick="back()">${bkLabel}</button><button class="btn ${fwClass}" id="btnNext" onclick="next()">${fwLabel}</button>`;
+  }
+}
+
+/* ─── STEPS BAR ─────────────────────────────────── */
+function renderSteps() {
+  const bar = document.getElementById('gSteps');
+  bar.setAttribute('role','tablist');
+  bar.setAttribute('aria-label','Kroki kreatora portfolio');
+  bar.innerHTML = STEPS.map((s,i) => {
+    const state = i===cur?'now':i<cur?'ok':'';
+    const disabled = i>cur ? 'disabled' : '';
+    const current = i===cur ? 'aria-current="step"' : '';
+    return `<button type="button" class="g-step ${state}" ${disabled} ${current} onclick="go(${i})" aria-label="Krok ${i+1}: ${s}">${s}</button>`;
+  }).join('');
+  document.getElementById('progBar').style.width = (cur/(TOTAL-1)*100)+'%';
+  document.getElementById('progBar').setAttribute('role','progressbar');
+  document.getElementById('progBar').setAttribute('aria-valuenow', Math.round(cur/(TOTAL-1)*100));
+  document.getElementById('progBar').setAttribute('aria-valuemin','0');
+  document.getElementById('progBar').setAttribute('aria-valuemax','100');
+}
+
+/* ─── VALIDATION ────────────────────────────────── */
+function showVal(id, fieldIds) {
+  const el=document.getElementById(id);
+  if(el){el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'center'});}
+  if(fieldIds) fieldIds.forEach(fid => {
+    const f = document.getElementById(fid);
+    if(f && !v(fid)) f.setAttribute('aria-invalid','true');
+  });
+}
+function hideVal(id, fieldIds) {
+  const el=document.getElementById(id);
+  if(el) el.style.display='none';
+  if(fieldIds) fieldIds.forEach(fid => {
+    const f = document.getElementById(fid);
+    if(f) f.removeAttribute('aria-invalid');
+  });
+}
+
+/* ─── AUTOSAVE ───────────────────────────────────── */
+FIELDS.forEach(id => {
+  const el = document.getElementById(id);
+  if(el) {
+    el.addEventListener('input', scheduleSave);
+    // clear aria-invalid on typing
+    el.addEventListener('input', () => { if(v(id)) el.removeAttribute('aria-invalid'); });
+  }
+});
+document.querySelectorAll('.ms-cb').forEach(cb => cb.addEventListener('change', scheduleSave));
+
+// Save on tab hide / page unload — prevents data loss on close
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'hidden') {
+    clearTimeout(_saveTimer);
+    saveData(true);
+  }
+});
+window.addEventListener('beforeunload', () => {
+  clearTimeout(_saveTimer);
+  saveData(true);
+});
+
+function scheduleSave() {
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(saveData, 800);
+}
+
+function saveData(silent) {
+  const data = {};
+  FIELDS.forEach(k => { const e=document.getElementById(k); if(e) data[k]=e.value; });
+  data._ms = [...document.querySelectorAll('.ms-cb:checked')].map(cb=>cb.value);
+  const badge = document.getElementById('saveBadge');
+  try {
+    localStorage.setItem('sba26_port', JSON.stringify(data));
+    if(!silent) {
+      badge.textContent = '✓ zapisano';
+      badge.classList.remove('err');
+      badge.classList.add('show');
+      setTimeout(() => badge.classList.remove('show'), 1500);
+    }
+  } catch(e) {
+    console.error('localStorage save failed:', e);
+    if(!silent) {
+      badge.textContent = '⚠ błąd zapisu — nie zamykaj karty';
+      badge.classList.add('err','show');
+      setTimeout(() => badge.classList.remove('show'), 3500);
+    }
+  }
+}
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem('sba26_port');
+    if(!raw) return;
+    const d = JSON.parse(raw);
+    FIELDS.forEach(k => { const e=document.getElementById(k); if(e&&d[k]) e.value=d[k]; });
+    if(d._ms) {
+      document.querySelectorAll('.ms-cb').forEach(cb => {
+        if(d._ms.includes(cb.value)) cb.checked = true;
+      });
+    }
+  } catch(e){ console.error('localStorage load failed:', e); }
+}
+
+/* ─── CLEAR DATA ────────────────────────────────── */
+function clearAllData() {
+  if(!confirm('Wyczyścić wszystkie dane? Tej operacji nie można cofnąć.')) return;
+  try { localStorage.removeItem('sba26_port'); } catch(e){}
+  FIELDS.forEach(k => { const e=document.getElementById(k); if(e) e.value=''; });
+  document.querySelectorAll('.ms-cb').forEach(cb => cb.checked = false);
+  html = '';
+  showToast('✓ Dane wyczyszczone');
+  go(0);
+}
+
+/* ─── REVIEW ────────────────────────────────────── */
+function buildReview() {
+  const ms = [...document.querySelectorAll('.ms-cb:checked')].map(cb=>cb.value);
+  const sections = [
+    { label:'O Tobie', step:1, rows:[
+      ['Imię',v('f_name')],['Kierunek',v('f_kier')],
+      ['O sobie',v('f_bio')],['Skład zespołu',v('f_team')],['Kontakt',v('f_link')],
+    ]},
+    { label:'Projekt', step:2, rows:[
+      ['Nazwa',v('f_proj')],['Problem',v('f_prob')],
+      ['Insight',v('f_insight')],['Rozwiązanie',v('f_sol')],
+      ['Partner',v('f_part')],['Wynik',v('f_wynik')],
+    ]},
+    { label:'Wkład', step:3, rows:[
+      ['Rola',v('f_rola')],['Unikalny wkład',v('f_unique')],
+      ['Wpływ',v('f_impact')],['Link prototypu',v('f_proto')],['Zdjęcie',v('f_img')],
+    ]},
+    { label:'Refleksja', step:4, rows:[
+      ['Feedback jury',v('f_feedback')],
+      ['Zmiana myślenia', ms.length ? ms.length+' zaznaczeń' : ''],
+    ]},
+  ];
+
+  // Quality indicator
+  const allRows = sections.flatMap(s => s.rows);
+  const filled = allRows.filter(([,val]) => val && val.length > 0).length;
+  const total = allRows.length;
+  const pct = Math.round(filled/total*100);
+  let qCls = 'low', qIcon = '⚠️', qMsg = '';
+  if(pct >= 70) { qCls = 'good'; qIcon = '✅'; qMsg = `<b>Portfolio gotowe do publikacji.</b> Uzupełniłeś/aś ${filled} z ${total} pól (${pct}%). Świetnie.`; }
+  else if(pct >= 45) { qCls = 'mid'; qIcon = '📝'; qMsg = `<b>Portfolio użyteczne, ale niepełne.</b> Masz ${filled}/${total} pól (${pct}%). Rozważ uzupełnienie <b>roli</b> i <b>feedbacku jury</b> — to najmocniej wyróżnia Cię u rekrutera.`; }
+  else { qCls = 'low'; qIcon = '⚠️'; qMsg = `<b>Portfolio będzie bardzo generyczne.</b> Wypełniłeś/aś tylko ${filled}/${total} pól (${pct}%). Zdecydowanie wróć do sekcji "Wkład" i "Refleksja" — bez nich portfolio nie wniesie wartości do CV.`; }
+
+  const qualityHtml = `<div class="quality-box ${qCls}" role="status">${qIcon} ${qMsg}</div>`;
+
+  document.getElementById('reviewContent').innerHTML = qualityHtml + sections.map(sec => `
+    <div class="review-section">
+      <div class="review-label">${sec.label} <button type="button" class="review-edit" onclick="go(${sec.step})" aria-label="Edytuj sekcję ${sec.label}">Edytuj</button></div>
+      <div class="review-card">
+        ${sec.rows.map(([k,val]) => `
+          <div class="review-row">
+            <div class="review-key">${k}</div>
+            <div class="review-val ${val?'':'empty'}">${val?escHtml(val):'—'}</div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ─── SKILLS ────────────────────────────────────── */
+function getSkills() {
+  const r=(v('f_rola')+v('f_sol')+v('f_unique')).toLowerCase();
+  const base=[['Design Thinking','m'],['Lean Startup','m'],['Business Model Canvas','m'],
+    ['prototypowanie MVP','p'],['pitch i prezentacja','c'],['praca zespołowa','s']];
+  const extra=[];
+  if(/ekolog|biolog|środow/.test(r)) extra.push(['weryfikacja ekologiczna','sp']);
+  if(/persona|wywiad|użytkow|empatia/.test(r)) extra.push(['badanie użytkownika','p']);
+  if(/figma|mockup|ux|ui/.test(r)) extra.push(['prototypowanie UX (Figma)','p']);
+  if(/model|przychód|biznes|kanał/.test(r)) extra.push(['modelowanie biznesowe','p']);
+  if(/prezent|pitch|komunikac/.test(r)) extra.push(['komunikacja biznesowa','c']);
+  if(/dane|liczb|analiz/.test(r)) extra.push(['analiza danych','sp']);
+  return [...extra,...base].slice(0,8);
+}
+
+/* ─── BUILD HTML ────────────────────────────────── */
+function buildAndPreview() {
+  const nm=v('f_name'),kier=v('f_kier'),bio=v('f_bio'),lnk=v('f_link'),teamKier=v('f_team');
+  const proj=v('f_proj'),prob=v('f_prob'),ins=v('f_insight'),sol=v('f_sol');
+  const part=v('f_part'),wynik=v('f_wynik');
+  const rola=v('f_rola'),unique=v('f_unique'),impact=v('f_impact');
+  const proto=v('f_proto'),imgUrl=v('f_img'),feedback=v('f_feedback');
+  const ms=[...document.querySelectorAll('.ms-cb:checked')].map(cb=>cb.value);
+  const skills=getSkills();
+  const ini=nm.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase();
+
+  // URL safety
+  const linkSafe = lnk ? (lnk.includes('@') ? 'mailto:'+lnk : safeUrl(lnk)) : '';
+  const protoSafe = safeUrl(proto);
+  const imgSafe = imgUrl && /^https?:\/\//i.test(imgUrl) ? imgUrl : '';
+
+  const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  html=`<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${esc(nm)} · ${esc(proj)} · Portfolio</title>
+<meta property="og:title" content="${esc(nm)} — ${esc(proj)}">
+<meta property="og:description" content="Case study: ${esc(prob.slice(0,120))}...">
+<meta name="description" content="${esc(nm)}, ${esc(kier)}. Projekt ${esc(proj)} — SBA 2026 Green Planet, spinPLACE UŚ.">
+<style>
+@media print{
+  .no-print{display:none!important;}
+  body{background:#fff!important;color:#000!important;}
+  .hero{background:#1A3A2A!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .section{padding:20px 24px!important;page-break-inside:avoid;}
+  .stats{page-break-inside:avoid;}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;}
+  html{scroll-behavior:auto!important;}
+  .section{opacity:1!important;transform:none!important;}
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--dk:#0D1F15;--f:#1A3A2A;--s:#2D6A4F;--m:#52A87A;--lt:#74C69D;--p:#D8F3DC;--g:#C8901A;--gl:#F5C842;--w:#fff;--wt:rgba(255,255,255,.82);--wl:rgba(255,255,255,.62);}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--dk);color:var(--w);min-height:100vh;overflow-x:hidden;}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:64px 24px 48px;background:radial-gradient(ellipse at 18% 50%,rgba(45,106,79,.45) 0%,transparent 55%),radial-gradient(ellipse at 82% 22%,rgba(200,144,26,.18) 0%,transparent 48%),linear-gradient(160deg,#0D1F15 0%,#152A1E 55%,#0A180F 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(116,198,157,.07) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;}
+.hc{position:relative;max-width:640px;}
+.sba-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(200,144,26,.12);border:1px solid rgba(200,144,26,.32);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;color:var(--g);margin-bottom:26px;letter-spacing:.3px;}
+.av{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--s),var(--m));display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:var(--w);margin:0 auto 18px;border:3px solid var(--g);box-shadow:0 0 0 7px rgba(200,144,26,.12);}
+.hn{font-size:clamp(34px,8vw,54px);font-weight:900;letter-spacing:-1.5px;line-height:1.02;margin-bottom:8px;background:linear-gradient(135deg,var(--w) 55%,var(--lt) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hk{font-size:16px;color:var(--lt);font-weight:600;margin-bottom:10px;}
+.hb{font-size:16px;color:var(--wt);line-height:1.62;max-width:480px;margin:0 auto 24px;}
+.cta{display:inline-block;background:var(--s);color:var(--w);padding:12px 26px;border-radius:9px;font-size:14px;font-weight:800;text-decoration:none;transition:background .2s;}
+.cta:hover{background:var(--m);}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--wl);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;animation:bob 2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
+/* STATS */
+.stats{display:flex;background:rgba(255,255,255,.035);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);}
+.stat{flex:1;padding:22px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.06);}
+.stat:last-child{border-right:none;}
+.sn{font-size:28px;font-weight:900;color:var(--g);line-height:1;}
+.sl{font-size:11px;color:var(--wl);margin-top:4px;}
+/* SECTIONS */
+.section{padding:52px 24px;border-bottom:1px solid rgba(255,255,255,.055);max-width:720px;margin:0 auto;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.section.visible{opacity:1;transform:translateY(0);}
+.sec-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--m);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sec-tag::after{content:'';flex:1;height:1px;background:rgba(116,198,157,.18);}
+.sec-title{font-size:clamp(22px,5vw,30px);font-weight:900;line-height:1.14;margin-bottom:16px;}
+.sec-body{font-size:15px;color:var(--wt);line-height:1.75;}
+/* CASE CARDS */
+.cgrid{display:grid;gap:12px;margin-top:18px;}
+.cc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;border-left:3px solid;}
+.cc.prob{border-left-color:#E57373;}
+.cc.ins{border-left-color:var(--g);}
+.cc.sol{border-left-color:var(--lt);}
+.cc-lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.cc.prob .cc-lbl{color:#E57373;}
+.cc.ins .cc-lbl{color:var(--g);}
+.cc.sol .cc-lbl{color:var(--lt);}
+.cc-txt{font-size:14px;color:var(--wt);line-height:1.65;}
+/* IMAGE */
+.proj-img{width:100%;border-radius:10px;display:block;max-height:420px;object-fit:cover;border:1px solid rgba(255,255,255,.1);}
+.img-caption{padding:9px 0 0;font-size:12px;color:var(--wl);}
+/* PROTO LINK */
+.proto-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(74,124,95,.2);border:1px solid rgba(116,198,157,.28);border-radius:8px;padding:10px 18px;font-size:14px;font-weight:700;color:var(--lt);text-decoration:none;margin-top:14px;transition:background .2s;}
+.proto-btn:hover{background:rgba(74,124,95,.35);}
+/* RESULT BADGE */
+.result-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(200,144,26,.12);border:1px solid rgba(200,144,26,.38);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;color:var(--g);margin-top:14px;}
+/* ROLE */
+.role-box{background:rgba(45,106,79,.18);border:1px solid rgba(116,198,157,.18);border-radius:10px;padding:18px 20px;}
+.role-txt{font-size:15px;color:var(--wt);line-height:1.72;}
+/* UNIQUE */
+.unique-box{background:rgba(200,144,26,.08);border:1px solid rgba(200,144,26,.22);border-radius:10px;padding:20px 22px;margin-top:14px;}
+.unique-q{font-size:34px;color:rgba(200,144,26,.45);line-height:1;font-family:Georgia,serif;margin-bottom:4px;}
+.unique-txt{font-size:15px;color:var(--w);line-height:1.65;font-style:italic;}
+/* IMPACT */
+.impact-bar{display:flex;align-items:flex-start;gap:14px;background:rgba(200,144,26,.08);border:1px solid rgba(200,144,26,.2);border-radius:10px;padding:18px 20px;margin:0 auto;max-width:720px;}
+.impact-icon{font-size:22px;flex-shrink:0;}
+.impact-lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--g);margin-bottom:5px;}
+.impact-txt{font-size:15px;color:var(--wt);line-height:1.5;}
+/* TEAM */
+.partner-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(74,124,95,.2);border:1px solid rgba(116,198,157,.25);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--lt);margin-bottom:14px;}
+/* PROCESS */
+.proc{display:flex;flex-direction:column;gap:0;}
+.ps{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.ps:last-child{border-bottom:none;}
+.pn{width:32px;height:32px;border-radius:50%;background:var(--s);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--w);flex-shrink:0;}
+.pt{font-size:14px;font-weight:700;color:var(--lt);margin-bottom:2px;}
+.pd{font-size:13px;color:var(--wl);}
+/* MINDSET */
+.ms-list{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+.ms-it{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;border-left:3px solid var(--m);}
+.ms-q{font-size:30px;color:rgba(116,198,157,.4);line-height:1;font-family:Georgia,serif;flex-shrink:0;margin-top:-3px;}
+.ms-p{font-size:15px;color:var(--wt);line-height:1.65;font-style:italic;}
+/* FEEDBACK */
+.fb-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:20px 22px;border-left:3px solid #A0B8F0;}
+.fb-txt{font-size:15px;color:var(--wt);line-height:1.72;}
+/* SKILLS */
+.sk-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.sk{padding:7px 14px;border-radius:20px;font-size:12.5px;font-weight:600;border:1px solid;}
+.sk-m{background:rgba(45,106,79,.15);border-color:rgba(116,198,157,.28);color:var(--lt);}
+.sk-p{background:rgba(200,144,26,.1);border-color:rgba(200,144,26,.28);color:var(--gl);}
+.sk-c{background:rgba(30,45,82,.3);border-color:rgba(100,130,200,.22);color:#A0B8F0;}
+.sk-s{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:var(--wt);}
+.sk-sp{background:rgba(82,168,122,.15);border-color:rgba(82,168,122,.36);color:#82E8AA;}
+/* CTA SECTION */
+.cta-section{padding:44px 24px;text-align:center;max-width:720px;margin:0 auto;}
+.cta-section h3{font-size:20px;font-weight:800;margin-bottom:8px;}
+.cta-section p{font-size:14px;color:var(--wt);margin-bottom:20px;}
+.cta-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.cta-btn{padding:12px 22px;border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:inherit;}
+.cta-btn.print{background:var(--s);color:var(--w);}
+.cta-btn.li{background:#0A66C2;color:var(--w);}
+/* FOOTER LOGOS */
+.footer-logos{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:20px;flex-wrap:wrap;}
+.footer-logo-img{height:36px;width:auto;opacity:.85;filter:brightness(0) invert(1);transition:opacity .2s;}
+.footer-logo-img:hover{opacity:1;}
+.footer-logo-txt{font-size:14px;font-weight:700;color:var(--m);}
+.footer-logo-sep{width:1px;height:32px;background:rgba(255,255,255,.15);margin:0 24px;}
+/* FOOTER */
+.footer{padding:36px 24px;text-align:center;background:rgba(0,0,0,.25);border-top:1px solid rgba(255,255,255,.06);}
+.footer-logo{font-size:14px;font-weight:800;color:var(--m);margin-bottom:6px;}
+.footer-sub{font-size:12px;color:var(--wl);line-height:1.65;}
+@media(min-width:600px){
+  .cgrid{grid-template-columns:1fr 1fr;}
+  .cc.sol{grid-column:1/-1;}
+  .section{padding:60px 40px;}
+  .cta-section{padding:52px 40px;}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link" style="position:absolute;left:-9999px;top:0;padding:10px 16px;background:var(--g);color:#000;font-weight:800;z-index:999;text-decoration:none;" onfocus="this.style.left='8px';this.style.top='8px';" onblur="this.style.left='-9999px';">Przejdź do treści</a>
+
+<header class="hero">
+  <div class="hc">
+    <div class="sba-pill">🌍 Spin Business Accelerator 2026 · Green Planet Edition</div>
+    <div class="av" role="img" aria-label="Awatar: ${esc(nm)}">${esc(ini)}</div>
+    <h1 class="hn">${esc(nm)}</h1>
+    <div class="hk">${esc(kier)}</div>
+    ${bio?`<p class="hb">${esc(bio)}</p>`:''}
+    ${linkSafe?`<a class="cta" href="${esc(linkSafe)}" target="_blank" rel="noopener noreferrer">${lnk.includes('@')?'✉ Napisz do mnie':'→ LinkedIn'}</a>`:''}
+  </div>
+  <div class="scroll-hint" aria-hidden="true">↓<br>case study</div>
+</header>
+
+<main id="main">
+
+<div class="stats">
+  <div class="stat"><div class="sn" data-count="48">0</div><div class="sl">godzin projektu</div></div>
+  <div class="stat"><div class="sn" data-count="5">0</div><div class="sl">etapów DT</div></div>
+  <div class="stat"><div class="sn" data-count="1">0</div><div class="sl">prototyp MVP</div></div>
+  ${wynik?`<div class="stat"><div class="sn" style="font-size:15px;padding-top:6px">${esc(wynik.split('·')[0].trim())}</div><div class="sl">Demo Day</div></div>`:`<div class="stat"><div class="sn">✓</div><div class="sl">Demo Day</div></div>`}
+</div>
+
+<section class="section" aria-labelledby="sec-proj">
+  <div class="sec-tag">Projekt</div>
+  <h2 class="sec-title" id="sec-proj">${esc(proj)}</h2>
+  ${part?`<div class="partner-tag">📍 ${esc(part)}</div>`:''}
+  <div class="cgrid">
+    <div class="cc prob"><div class="cc-lbl">Problem</div><div class="cc-txt">${esc(prob)}</div></div>
+    ${ins?`<div class="cc ins"><div class="cc-lbl">Kluczowy insight</div><div class="cc-txt">${esc(ins)}</div></div>`:''}
+    <div class="cc sol"><div class="cc-lbl">Rozwiązanie</div><div class="cc-txt">${esc(sol||'Prototyp rozwiązania zaprojektowany podczas bootcampu.')}</div></div>
+  </div>
+  ${wynik?`<div class="result-badge">🏆 ${esc(wynik)}</div>`:''}
+  ${protoSafe?`<a class="proto-btn no-print" href="${esc(protoSafe)}" target="_blank" rel="noopener noreferrer">🔗 Zobacz prototyp →</a>`:''}
+</section>
+
+${imgSafe?`<section class="section" style="padding-top:0;padding-bottom:0;opacity:1;transform:none;" aria-label="Zdjęcie prototypu">
+  <img class="proj-img" src="${esc(imgSafe)}" alt="Prototyp projektu ${esc(proj)}" loading="lazy" onerror="this.closest('.section').style.display='none'">
+  <div class="img-caption">📸 Prototyp: ${esc(proj)}</div>
+</section>`:''}
+
+<section class="section" aria-labelledby="sec-wklad">
+  <div class="sec-tag">Mój wkład</div>
+  <h2 class="sec-title" id="sec-wklad">Co robiłem/am w tym projekcie</h2>
+  <div class="role-box"><div class="role-txt">${esc(rola||'Uczestniczyłem/am w pełnym procesie — od identyfikacji problemu, przez Design Thinking, Business Model Canvas, aż po prototypowanie i pitch przed jury.')}</div></div>
+  ${unique?`<div class="unique-box"><div class="unique-q">"</div><div class="unique-txt">${esc(unique)}</div></div>`:''}
+</section>
+
+${impact?`<section class="section impact-bar" style="max-width:720px;margin:0 auto;" aria-label="Szacowany wpływ">
+  <div class="impact-icon" aria-hidden="true">📊</div>
+  <div><div class="impact-lbl">Szacowany wpływ</div><div class="impact-txt">${esc(impact)}</div></div>
+</section>`:''}
+
+${teamKier?`<section class="section" aria-labelledby="sec-team">
+  <div class="sec-tag">Zespół</div>
+  <h2 class="sec-title" id="sec-team">Interdyscyplinarny skład</h2>
+  <p class="sec-body">Pracowałem/am w 5-osobowym zespole z osób studiujących: <strong style="color:var(--lt)">${esc(teamKier)}</strong>. Różnorodność kierunków była największą siłą projektu.</p>
+</section>`:''}
+
+<section class="section" aria-labelledby="sec-method">
+  <div class="sec-tag">Metodologia</div>
+  <h2 class="sec-title" id="sec-method">Jak pracowaliśmy</h2>
+  <div class="proc">
+    <div class="ps"><div class="pn">1</div><div><div class="pt">Empatia i diagnoza</div><div class="pd">Analiza wyzwania partnera, badanie persony, mapowanie pain points</div></div></div>
+    <div class="ps"><div class="pn">2</div><div><div class="pt">Definiowanie problemu</div><div class="pd">Problem Statement, weryfikacja ekologiczna założeń</div></div></div>
+    <div class="ps"><div class="pn">3</div><div><div class="pt">Propozycja wartości i model biznesowy</div><div class="pd">Value Proposition Canvas, Business Model Canvas, analiza przychodów</div></div></div>
+    <div class="ps"><div class="pn">4</div><div><div class="pt">Prototypowanie</div><div class="pd">${esc(sol||'Budowa MVP gotowego do testowania')}</div></div></div>
+    <div class="ps"><div class="pn">5</div><div><div class="pt">Pitch i Demo Day</div><div class="pd">5-minutowa prezentacja przed komisją ekspertów, feedback i ocena</div></div></div>
+  </div>
+</section>
+
+${ms.length?`<section class="section" aria-labelledby="sec-mind">
+  <div class="sec-tag">Zmiana myślenia</div>
+  <h2 class="sec-title" id="sec-mind">Co zmieniło się przez te 48 godzin</h2>
+  <div class="ms-list">${ms.map(m=>`<div class="ms-it"><div class="ms-q" aria-hidden="true">"</div><p class="ms-p">${esc(m)}</p></div>`).join('')}</div>
+</section>`:''}
+
+${feedback?`<section class="section" aria-labelledby="sec-fb">
+  <div class="sec-tag">Refleksja</div>
+  <h2 class="sec-title" id="sec-fb">Feedback jury i co bym zmienił/a</h2>
+  <div class="fb-box"><div class="fb-txt">${esc(feedback)}</div></div>
+</section>`:''}
+
+<section class="section" aria-labelledby="sec-skills">
+  <div class="sec-tag">Umiejętności</div>
+  <h2 class="sec-title" id="sec-skills">Co zdobyłem/am podczas bootcampu</h2>
+  <div class="sk-wrap">${skills.map(([s,c])=>`<span class="sk sk-${c}">${esc(s)}</span>`).join('')}</div>
+</section>
+
+<section class="cta-section no-print" aria-label="Kontakt">
+  <h3>Zainteresowany/a współpracą?</h3>
+  <p>Napisz do mnie lub wydrukuj tę stronę jako PDF.</p>
+  <div class="cta-btns">
+    ${linkSafe?`<a class="cta-btn li" href="${esc(linkSafe)}" target="_blank" rel="noopener noreferrer">Skontaktuj się</a>`:''}
+    <button class="cta-btn print" onclick="window.print()">🖨 Drukuj / Zapisz PDF</button>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-logos">
+    <a href="https://spinplace.us.edu.pl" target="_blank" rel="noopener" title="spinPLACE UŚ">
+      <img src="https://spinplace.us.edu.pl/sites/spinplace.us.edu.pl/files/spinplace_logo_white.png"
+           alt="spinPLACE" class="footer-logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span class="footer-logo-txt" style="display:none">spinPLACE</span>
+    </a>
+    <div class="footer-logo-sep"></div>
+    <a href="https://us.edu.pl" target="_blank" rel="noopener" title="Uniwersytet Śląski">
+      <img src="https://us.edu.pl/sites/www.us.edu.pl/files/pliki/logotyp-us-biale.png"
+           alt="Uniwersytet Śląski w Katowicach" class="footer-logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span class="footer-logo-txt" style="display:none">Uniwersytet Śląski</span>
+    </a>
+  </div>
+  <div class="footer-logo">🌍 Spin Business Accelerator 2026 · Green Planet Edition</div>
+  <div class="footer-sub"><a href="https://spinplace.us.edu.pl" target="_blank" rel="noopener" style="color:var(--m);text-decoration:none;">spinPLACE · Centrum Kreatywności i Coworkingu · Uniwersytet Śląski w Katowicach</a><br>21–22 kwietnia 2026</div>
+</footer>
+
+<script>
+const _prm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Count-up animation on stats (skip if reduced-motion)
+if(_prm) {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count) || 0;
+    if(target > 0) el.textContent = target;
+  });
+  document.querySelectorAll('.section').forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target;
+      const target=parseInt(el.dataset.count)||0;
+      if(target===0) return;
+      let start=0;
+      const dur=800, step=16;
+      const inc=target/(dur/step);
+      const timer=setInterval(()=>{
+        start=Math.min(start+inc,target);
+        el.textContent=Math.round(start);
+        if(start>=target) clearInterval(timer);
+      },step);
+      observer.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>observer.observe(el));
+
+  const secObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:.08});
+  document.querySelectorAll('.section').forEach(el=>secObs.observe(el));
+}
+<\/script>
+</body>
+</html>`;
+
+  if(_blobUrl) URL.revokeObjectURL(_blobUrl);
+  _blobUrl = URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));
+  document.getElementById('frame').src = _blobUrl;
+}
+
+/* ─── LINKEDIN POST ─────────────────────────────── */
+function buildLinkedIn() {
+  const nm=v('f_name'),kier=v('f_kier'),proj=v('f_proj'),prob=v('f_prob');
+  const rola=v('f_rola'),unique=v('f_unique'),wynik=v('f_wynik');
+  const ms=[...document.querySelectorAll('.ms-cb:checked')].map(cb=>cb.value);
+  const first=nm.split(' ')[0]||nm||'';
+  const msLines=ms.slice(0,3).map((m,i)=>'\n'+(i+1)+'. '+(m.split('.')[0]||m.slice(0,100))).join('');
+  const probShort = prob ? (prob.split('.')[0]||prob).slice(0,140) : '';
+  return `🚀 Właśnie ukończyłem/am Spin Business Accelerator 2026 – Green Planet Edition organizowany przez spinPLACE Uniwersytet Śląski w Katowicach.
+
+W ciągu 48 godzin pracowałem/am nad projektem ${proj||'[nazwa projektu]'}${probShort?' – '+probShort:''}.
+
+${rola?'Mój wkład: '+rola.slice(0,150)+'\n\n':''}${unique?'Czym się wyróżniłem/am: '+unique.slice(0,150)+'\n\n':''}${wynik?'Wynik: '+wynik+'\n\n':''}${ms.length?'Co zabieram:'+msLines+'\n\n':''}Dziękuję spinPLACE i mentorom za te dwa intensywne dni!
+
+#SpinBusinessAccelerator #GreenPlanet #spinPLACE #UniwersytetSlaski #startup #designthinking #sustainability`;
+}
+
+function openLi() {
+  document.getElementById('liText').value = buildLinkedIn();
+  const m = document.getElementById('liModal');
+  m.classList.add('on');
+  m.setAttribute('aria-hidden','false');
+  // Focus textarea for immediate editing/copy
+  setTimeout(() => document.getElementById('liText').focus(), 50);
+  document.addEventListener('keydown', _handleModalKey);
+}
+function closeLi() {
+  const m = document.getElementById('liModal');
+  m.classList.remove('on');
+  m.setAttribute('aria-hidden','true');
+  document.removeEventListener('keydown', _handleModalKey);
+  // Return focus to trigger button if still present
+  const trigger = document.querySelector('[onclick*="openLi"]');
+  if(trigger) trigger.focus();
+}
+function _handleModalKey(e) {
+  if(e.key === 'Escape') { closeLi(); return; }
+  // Simple focus trap: Tab cycles within modal
+  if(e.key === 'Tab') {
+    const modal = document.getElementById('liModal');
+    const focusable = modal.querySelectorAll('textarea, button');
+    if(!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length-1];
+    if(e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+    else if(!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+  }
+}
+function copyLi() {
+  const txt = document.getElementById('liText').value;
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(()=>{
+      showToast('✓ Post skopiowany — wklej na LinkedIn!');
+      closeLi();
+    }).catch(() => {
+      // Fallback: select text so user can Ctrl+C manually
+      document.getElementById('liText').select();
+      showToast('⚠ Skopiuj ręcznie (Ctrl+C)');
+    });
+  } else {
+    document.getElementById('liText').select();
+    showToast('⚠ Skopiuj ręcznie (Ctrl+C)');
+  }
+}
+document.getElementById('liModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLi();});
+
+/* ─── DOWNLOAD ──────────────────────────────────── */
+function dl() {
+  if(!html) return;
+  const name = slugifyPL(v('f_name'));
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='portfolio-'+name+'-sba2026.html'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('⬇ Pobieranie...');
+}
+
+function cpCode() {
+  if(!html) return;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(html)
+      .then(()=>showToast('✓ Kod skopiowany!'))
+      .catch(()=>showToast('⚠ Nie udało się — pobierz plik HTML zamiast'));
+  } else {
+    showToast('⚠ Nie udało się — pobierz plik HTML zamiast');
+  }
+}
+
+/* ─── TOAST ─────────────────────────────────────── */
+function showToast(msg, dur=2000) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), dur);
+}
+
+/* ─── INIT ───────────────────────────────────────── */
+loadData();
+renderSteps();
+updateNav();
+</script>
+</body>
+</html>
