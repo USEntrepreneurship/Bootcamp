@@ -989,8 +989,8 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--dk);
 <main id="main">
 
 <div class="stats">
-  <div class="stat"><div class="sn" data-count="48">0</div><div class="sl">godzin projektu</div></div>
-  <div class="stat"><div class="sn" data-count="5">0</div><div class="sl">etapów DT</div></div>
+  <div class="stat"><div class="sn" data-count="15">0</div><div class="sl">godzin dydaktycznych</div></div>
+  <div class="stat"><div class="sn" style="font-size:16px;padding-top:6px;line-height:1.2">DT + Lean<br>Startup</div><div class="sl">metody pracy</div></div>
   <div class="stat"><div class="sn" data-count="1">0</div><div class="sl">prototyp MVP</div></div>
   ${wynik?`<div class="stat"><div class="sn" style="font-size:15px;padding-top:6px">${esc(wynik.split('·')[0].trim())}</div><div class="sl">Demo Day</div></div>`:`<div class="stat"><div class="sn">✓</div><div class="sl">Demo Day</div></div>`}
 </div>
@@ -1045,7 +1045,7 @@ ${teamKier?`<section class="section" aria-labelledby="sec-team">
 
 ${ms.length?`<section class="section" aria-labelledby="sec-mind">
   <div class="sec-tag">Zmiana myślenia</div>
-  <h2 class="sec-title" id="sec-mind">Co zmieniło się przez te 48 godzin</h2>
+  <h2 class="sec-title" id="sec-mind">Co zmieniło się przez te 2 dni</h2>
   <div class="ms-list">${ms.map(m=>`<div class="ms-it"><div class="ms-q" aria-hidden="true">"</div><p class="ms-p">${esc(m)}</p></div>`).join('')}</div>
 </section>`:''}
 
@@ -1146,7 +1146,7 @@ function buildLinkedIn() {
   const probShort = prob ? (prob.split('.')[0]||prob).slice(0,140) : '';
   return `🚀 Właśnie ukończyłem/am Spin Business Accelerator 2026 – Green Planet Edition organizowany przez spinPLACE Uniwersytet Śląski w Katowicach.
 
-W ciągu 48 godzin pracowałem/am nad projektem ${proj||'[nazwa projektu]'}${probShort?' – '+probShort:''}.
+W ciągu 2 dni bootcampu pracowałem/am nad projektem ${proj||'[nazwa projektu]'}${probShort?' – '+probShort:''}.
 
 ${rola?'Mój wkład: '+rola.slice(0,150)+'\n\n':''}${unique?'Czym się wyróżniłem/am: '+unique.slice(0,150)+'\n\n':''}${wynik?'Wynik: '+wynik+'\n\n':''}${ms.length?'Co zabieram:'+msLines+'\n\n':''}Dziękuję spinPLACE i mentorom za te dwa intensywne dni!
 
