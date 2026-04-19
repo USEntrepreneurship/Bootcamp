@@ -61,6 +61,21 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--pa);
 .img-preview .err b{display:block;margin-bottom:4px;}
 .img-preview .ok{color:var(--s);font-size:11px;text-align:center;margin-top:6px;font-weight:700;}
 .img-preview .fixed{background:var(--p);border-radius:5px;padding:6px 10px;font-size:11px;color:var(--f);margin-bottom:8px;line-height:1.4;}
+.img-preview .meta{font-size:10.5px;color:var(--sl);text-align:center;margin-top:4px;opacity:.75;}
+.img-preview .rm-btn{display:block;width:100%;margin-top:8px;padding:8px;background:#fff;border:1.5px solid var(--sd);border-radius:6px;font-size:12px;color:var(--r);cursor:pointer;font-family:inherit;font-weight:700;}
+.img-preview .rm-btn:hover{background:var(--rb);}
+.img-upload-wrap{margin-bottom:10px;}
+.img-upload-btn{display:flex;align-items:center;gap:14px;background:#fff;border:2px dashed var(--m);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;font-family:inherit;text-align:left;-webkit-tap-highlight-color:transparent;}
+.img-upload-btn:hover,.img-upload-btn:active{border-color:var(--s);background:var(--p);}
+.img-upload-btn:focus-within{outline:3px solid var(--s);outline-offset:1px;}
+.img-upload-icon{font-size:28px;flex-shrink:0;}
+.img-upload-txt{font-size:14px;color:var(--ink);line-height:1.35;}
+.img-upload-txt b{font-weight:800;color:var(--f);}
+.img-upload-sub{font-size:11px;color:var(--sl);font-style:italic;}
+.img-url-details{margin-bottom:10px;}
+.img-url-details summary{font-size:12px;color:var(--s);cursor:pointer;padding:6px 0;font-weight:600;}
+.img-url-details summary:hover{color:var(--f);}
+.img-url-details[open] summary{margin-bottom:4px;}
 .inp,.ta,.sel{width:100%;background:#fff;border:1.5px solid var(--sd);border-radius:8px;padding:11px 13px;font-size:15px;color:var(--ink);font-family:inherit;margin-bottom:14px;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s;}
 .inp:focus,.ta:focus,.sel:focus,.inp:focus-visible,.ta:focus-visible,.sel:focus-visible{outline:none;border-color:var(--s);box-shadow:0 0 0 3px rgba(46,116,83,.22);}
 .inp[aria-invalid="true"],.ta[aria-invalid="true"]{border-color:var(--r);background:var(--rb);}
@@ -153,6 +168,19 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--pa);
 .what-title{font-size:12px;font-weight:700;color:var(--f);margin-bottom:2px;}
 .what-desc{font-size:11px;color:var(--sl);line-height:1.35;}
 
+/* ── PREP LIST (checklist na intro) ── */
+.prep-list{margin:14px 18px 0;padding:14px 16px 12px;background:#fff;border:1px solid var(--sd);border-radius:12px;border-left:3px solid var(--g);}
+.prep-list h3{font-size:13px;font-weight:800;color:var(--f);margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+.prep-sub{font-size:11px;color:var(--sl);font-style:italic;margin-bottom:11px;line-height:1.4;}
+.prep-items{display:flex;flex-direction:column;gap:9px;}
+.prep-item{display:flex;gap:10px;align-items:flex-start;}
+.prep-check{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--p);color:var(--f);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:1px;}
+.prep-body{font-size:12.5px;line-height:1.45;color:var(--ink);flex:1;}
+.prep-body b{font-weight:700;color:var(--f);}
+.prep-tag{display:inline-block;background:var(--g);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:1px;letter-spacing:.3px;text-transform:uppercase;}
+.prep-ex{display:block;color:var(--sl);font-size:11px;margin-top:2px;line-height:1.4;}
+.prep-foot{font-size:11px;color:var(--s);font-style:italic;margin-top:11px;padding-top:10px;border-top:1px dashed var(--sd);line-height:1.4;}
+
 /* ── toast ── */
 .toast{position:fixed;top:72px;left:50%;transform:translateX(-50%);background:var(--s);color:#fff;padding:8px 18px;border-radius:18px;font-size:12px;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;z-index:300;white-space:nowrap;}
 .toast.show{opacity:1;}
@@ -210,6 +238,31 @@ body{padding-bottom:90px;}
     <div class="what-item"><div class="what-icon">🖨️</div><div class="what-title">Wersja do druku</div><div class="what-desc">Ctrl+P → PDF który możesz dołączyć do CV</div></div>
     <div class="what-item"><div class="what-icon">💾</div><div class="what-title">Twój plik HTML</div><div class="what-desc">Wgraj na GitHub Pages — darmowy hosting</div></div>
   </div>
+
+  <div class="prep-list">
+    <h3><span aria-hidden="true">📋</span> Zanim zaczniesz — warto mieć pod ręką</h3>
+    <p class="prep-sub">Wszystko opcjonalne, ale przyspieszy wypełnianie. Skopiuj do notatnika w telefonie, żeby mieć gotowe do wklejenia.</p>
+    <div class="prep-items">
+      <div class="prep-item">
+        <div class="prep-check" aria-hidden="true">1</div>
+        <div class="prep-body"><b>Zdjęcie prototypu</b> <span class="prep-tag">najłatwiej</span><span class="prep-ex">zdjęcie kartki/makiety z telefonu albo screenshot z Figmy — wgrasz bezpośrednio, nie trzeba Imgur</span></div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-check" aria-hidden="true">2</div>
+        <div class="prep-body"><b>Link do prototypu</b><span class="prep-ex">Figma, Canva, Google Slides, landing page, GitHub — URL skopiowany do notatnika</span></div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-check" aria-hidden="true">3</div>
+        <div class="prep-body"><b>LinkedIn lub e-mail</b><span class="prep-ex">żeby rekruter mógł się odezwać po obejrzeniu portfolio</span></div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-check" aria-hidden="true">4</div>
+        <div class="prep-body"><b>Notatki z Demo Day</b><span class="prep-ex">Twój wynik (miejsce, punkty) i główny feedback jury — jeśli pamiętasz</span></div>
+      </div>
+    </div>
+    <p class="prep-foot">Nie masz czegoś? Nie szkodzi — kontynuuj, pola można dopełnić później. Autosave zadba o Twoje dane.</p>
+  </div>
+
   <div class="info-strip">
     <span class="info-strip-icon" aria-hidden="true">🔒</span>
     <span>Twoje dane zapisują się <b>tylko w pamięci tej przeglądarki</b>. Nikt inny ich nie widzi — ani organizatorzy, ani uczelnia. <button class="clear-link" onclick="clearAllData()" type="button">Wyczyść dane</button></span>
@@ -253,8 +306,24 @@ body{padding-bottom:90px;}
   <span class="hint-soft">💡 Jeśli nie wiesz co napisać, wróć tu po rozmowie z zespołem. Puste pole jest lepsze niż wymyślone — rekruterzy rozpoznają sztuczność.</span></div>
   <div class="field"><label class="lbl" for="f_impact">Szacowany wpływ — jakaś liczba<span class="opt">opcjonalne</span></label><span class="sub">Przybliżona liczba z uzasadnieniem — lepsza niż brak</span><input class="inp" id="f_impact" maxlength="200" placeholder="np. 1000 użytkowników mogłoby zredukować o 30% odpadów plastikowych w Katowicach"></div>
   <div class="field"><label class="lbl" for="f_proto">Link do prototypu<span class="opt">opcjonalne</span></label><input class="inp" id="f_proto" type="text" maxlength="300" placeholder="np. https://figma.com/file/..."></div>
-  <div class="field"><label class="lbl" for="f_img">Zdjęcie — link do obrazka<span class="opt">opcjonalne</span></label><span class="sub">Wgraj na Imgur.com → prawym klikiem "Copy image address" → wklej poniżej (zaczyna się od <b>https://i.imgur.com/</b>)</span><input class="inp" id="f_img" type="text" maxlength="300" placeholder="np. https://i.imgur.com/abc123.png" oninput="previewImg()">
-  <div id="imgPrev" class="img-preview" style="display:none;"></div>
+  <div class="field">
+    <label class="lbl">Zdjęcie prototypu<span class="opt">opcjonalne</span></label>
+    <span class="sub">Zdjęcie prototypu, mockup z Figmy lub kartka ze szkicu</span>
+
+    <div class="img-upload-wrap">
+      <label class="img-upload-btn" for="f_imgFile">
+        <span class="img-upload-icon" aria-hidden="true">📸</span>
+        <span class="img-upload-txt"><b>Wybierz z telefonu</b><br><span class="img-upload-sub">galeria, kamera lub pliki</span></span>
+      </label>
+      <input type="file" id="f_imgFile" accept="image/*" style="display:none;" onchange="handleImgFile(event)">
+    </div>
+
+    <details class="img-url-details">
+      <summary>Albo wklej link z Imgur →</summary>
+      <input class="inp" id="f_img" type="text" maxlength="300" placeholder="https://i.imgur.com/abc123.png" oninput="previewImg()" style="margin-top:8px;">
+    </details>
+
+    <div id="imgPrev" class="img-preview" style="display:none;"></div>
   </div>
 </div>
 
@@ -347,15 +416,98 @@ function slugifyPL(str) {
     .slice(0,60) || 'portfolio';
 }
 
-/* ─── IMAGE LIVE PREVIEW ────────────────────────── */
+/* ─── IMAGE HANDLING (file upload + URL) ────────── */
+let _imgData = '';       // data URL z uploadu z telefonu (ma priorytet nad URL)
 let _imgPrevTimer = null;
-function previewImg() {
-  clearTimeout(_imgPrevTimer);
-  _imgPrevTimer = setTimeout(_doPreviewImg, 400);
-}
-function _doPreviewImg() {
-  const raw = v('f_img');
+
+// Wywoływane gdy user wybierze plik
+async function handleImgFile(ev) {
+  const file = ev.target.files && ev.target.files[0];
+  if(!file) return;
+  if(!file.type.startsWith('image/')) {
+    showToast('⚠ Wybierz plik obrazka (JPG/PNG/WebP)');
+    ev.target.value = '';
+    return;
+  }
+  if(file.size > 15 * 1024 * 1024) {
+    showToast('⚠ Plik za duży (max 15 MB przed kompresją)');
+    ev.target.value = '';
+    return;
+  }
   const box = document.getElementById('imgPrev');
+  box.style.display = 'block';
+  box.innerHTML = '<div class="loading">⏳ Przetwarzam zdjęcie (resize + kompresja)...</div>';
+  try {
+    const dataUrl = await resizeAndCompress(file, 1400, 0.78);
+    _imgData = dataUrl;
+    document.getElementById('f_img').value = '';  // wyczyść URL - file ma priorytet
+    scheduleSave();
+    renderImgPreview();
+  } catch(e) {
+    console.error('image processing failed:', e);
+    box.innerHTML = '<div class="err"><b>✗ Nie udało się przetworzyć zdjęcia</b>Spróbuj innym plikiem lub wklej URL z Imgur.</div>';
+    ev.target.value = '';
+  }
+}
+
+// Resize + re-encode do JPEG. Zwraca data URL.
+function resizeAndCompress(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    // createImageBitmap automatycznie respektuje EXIF orientation (iPhone)
+    const loadBitmap = ('createImageBitmap' in window)
+      ? createImageBitmap(file, { imageOrientation: 'from-image' }).catch(() => _fallbackLoadImg(file))
+      : _fallbackLoadImg(file);
+    loadBitmap.then(bm => {
+      const w0 = bm.width, h0 = bm.height;
+      const scale = Math.min(maxDim / w0, maxDim / h0, 1);
+      const w = Math.round(w0 * scale);
+      const h = Math.round(h0 * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';  // białe tło pod przezroczyste PNG
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(bm, 0, 0, w, h);
+      if(bm.close) bm.close();
+      const dataUrl = canvas.toDataURL('image/jpeg', quality);
+      resolve(dataUrl);
+    }).catch(reject);
+  });
+}
+
+// Fallback dla starszych browserów bez createImageBitmap
+function _fallbackLoadImg(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('load failed')); };
+    img.src = url;
+  });
+}
+
+// Usuwa zdjęcie (plik LUB URL)
+function clearImg() {
+  _imgData = '';
+  document.getElementById('f_img').value = '';
+  document.getElementById('f_imgFile').value = '';
+  scheduleSave();
+  renderImgPreview();
+}
+
+// Renderuje preview na podstawie aktualnego stanu
+function renderImgPreview() {
+  const box = document.getElementById('imgPrev');
+  if(!box) return;
+  // 1. Priorytet: plik z telefonu (data URL)
+  if(_imgData) {
+    const sizeKB = Math.round(_imgData.length * 0.75 / 1024);  // base64 → bytes approx
+    box.style.display = 'block';
+    box.innerHTML = '<img src="' + _imgData + '" alt="Podgląd zdjęcia"><div class="ok">✓ Zdjęcie wgrane z Twojego telefonu</div><div class="meta">~' + sizeKB + ' KB · wbudowane w plik HTML</div><button type="button" class="rm-btn" onclick="clearImg()">✕ Usuń zdjęcie</button>';
+    return;
+  }
+  // 2. URL z Imgur
+  const raw = v('f_img');
   if(!raw) { box.style.display = 'none'; box.innerHTML = ''; return; }
   const normalized = normalizeImgUrl(raw);
   if(!/^https?:\/\//i.test(normalized)) {
@@ -365,19 +517,23 @@ function _doPreviewImg() {
   }
   const wasFixed = normalized !== raw;
   box.style.display = 'block';
-  let fixedMsg = '';
-  if(wasFixed) {
-    fixedMsg = '<div class="fixed">✨ <b>Naprawiłem URL dla Ciebie:</b><br>' + escHtml(normalized) + '</div>';
-  }
+  let fixedMsg = wasFixed
+    ? '<div class="fixed">✨ <b>Naprawiłem URL dla Ciebie:</b><br>' + escHtml(normalized) + '</div>'
+    : '';
   box.innerHTML = fixedMsg + '<div class="loading">⏳ Ładuję podgląd...</div>';
   const testImg = new Image();
   testImg.onload = () => {
-    box.innerHTML = fixedMsg + '<img src="' + escHtml(normalized) + '" alt="Podgląd"><div class="ok">✓ Obrazek się ładuje — będzie widoczny w portfolio</div>';
+    box.innerHTML = fixedMsg + '<img src="' + escHtml(normalized) + '" alt="Podgląd"><div class="ok">✓ Obrazek się ładuje — będzie widoczny w portfolio</div><button type="button" class="rm-btn" onclick="clearImg()">✕ Usuń zdjęcie</button>';
   };
   testImg.onerror = () => {
-    box.innerHTML = fixedMsg + '<div class="err"><b>✗ Obrazek się nie załadował</b>Możliwe przyczyny:<br>• wkleiłeś link do <b>strony</b> a nie do <b>obrazka</b> — na Imgur kliknij prawym na obrazek → <b>Copy image address</b><br>• obrazek jest prywatny/wygasł<br>• URL ma literówkę</div>';
+    box.innerHTML = fixedMsg + '<div class="err"><b>✗ Obrazek się nie załadował</b>Możliwe przyczyny:<br>• wkleiłeś link do <b>strony</b> a nie do <b>obrazka</b> — na Imgur kliknij prawym → <b>Copy image address</b><br>• obrazek jest prywatny/wygasł<br>• URL ma literówkę<br><br>Najprostsze rozwiązanie: użyj przycisku <b>"Wybierz z telefonu"</b> powyżej.</div>';
   };
   testImg.src = normalized;
+}
+
+function previewImg() {
+  clearTimeout(_imgPrevTimer);
+  _imgPrevTimer = setTimeout(renderImgPreview, 400);
 }
 
 /* ─── IMAGE URL NORMALIZATION ───────────────────── */
@@ -526,6 +682,7 @@ function saveData(silent) {
   const data = {};
   FIELDS.forEach(k => { const e=document.getElementById(k); if(e) data[k]=e.value; });
   data._ms = [...document.querySelectorAll('.ms-cb:checked')].map(cb=>cb.value);
+  if(_imgData) data._imgData = _imgData;
   const badge = document.getElementById('saveBadge');
   try {
     localStorage.setItem('sba26_port', JSON.stringify(data));
@@ -537,7 +694,14 @@ function saveData(silent) {
     }
   } catch(e) {
     console.error('localStorage save failed:', e);
-    if(!silent) {
+    // Specjalna obsługa gdy quota przekroczona z powodu zdjęcia
+    if(e.name === 'QuotaExceededError' && _imgData) {
+      if(!silent) {
+        badge.textContent = '⚠ zdjęcie za duże dla pamięci — zapisz plik HTML teraz';
+        badge.classList.add('err','show');
+        setTimeout(() => badge.classList.remove('show'), 5000);
+      }
+    } else if(!silent) {
       badge.textContent = '⚠ błąd zapisu — nie zamykaj karty';
       badge.classList.add('err','show');
       setTimeout(() => badge.classList.remove('show'), 3500);
@@ -556,6 +720,13 @@ function loadData() {
         if(d._ms.includes(cb.value)) cb.checked = true;
       });
     }
+    if(d._imgData) {
+      _imgData = d._imgData;
+      // preview po załadowaniu DOM
+      setTimeout(renderImgPreview, 50);
+    } else if(d.f_img) {
+      setTimeout(renderImgPreview, 50);
+    }
   } catch(e){ console.error('localStorage load failed:', e); }
 }
 
@@ -565,6 +736,10 @@ function clearAllData() {
   try { localStorage.removeItem('sba26_port'); } catch(e){}
   FIELDS.forEach(k => { const e=document.getElementById(k); if(e) e.value=''; });
   document.querySelectorAll('.ms-cb').forEach(cb => cb.checked = false);
+  _imgData = '';
+  const fi = document.getElementById('f_imgFile');
+  if(fi) fi.value = '';
+  renderImgPreview();
   html = '';
   showToast('✓ Dane wyczyszczone');
   go(0);
@@ -585,7 +760,8 @@ function buildReview() {
     ]},
     { label:'Wkład', step:3, rows:[
       ['Rola',v('f_rola')],['Unikalny wkład',v('f_unique')],
-      ['Wpływ',v('f_impact')],['Link prototypu',v('f_proto')],['Zdjęcie',v('f_img')],
+      ['Wpływ',v('f_impact')],['Link prototypu',v('f_proto')],
+      ['Zdjęcie', _imgData ? '📸 wgrane z telefonu' : v('f_img')],
     ]},
     { label:'Refleksja', step:4, rows:[
       ['Feedback jury',v('f_feedback')],
@@ -649,8 +825,14 @@ function buildAndPreview() {
   // URL safety
   const linkSafe = lnk ? (lnk.includes('@') ? 'mailto:'+lnk : safeUrl(lnk)) : '';
   const protoSafe = safeUrl(proto);
-  const imgNormalized = normalizeImgUrl(imgUrl);
-  const imgSafe = imgNormalized && /^https?:\/\//i.test(imgNormalized) ? imgNormalized : '';
+  // Zdjęcie: priorytet ma data URL z uploadu telefonu; fallback - URL z Imgur
+  let imgSafe = '';
+  if(_imgData && /^data:image\//.test(_imgData)) {
+    imgSafe = _imgData;
+  } else {
+    const imgNormalized = normalizeImgUrl(imgUrl);
+    if(/^https?:\/\//i.test(imgNormalized)) imgSafe = imgNormalized;
+  }
 
   const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
