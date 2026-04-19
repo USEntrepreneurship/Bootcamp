@@ -54,6 +54,13 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--pa);
 .hint-soft{display:block;font-size:11px;color:var(--sl);margin-top:-8px;margin-bottom:12px;line-height:1.4;padding:6px 10px;background:rgba(200,144,26,.08);border-left:2px solid var(--g);border-radius:0 6px 6px 0;}
 .char-count{display:block;text-align:right;font-size:10px;color:var(--sl);margin-top:-10px;margin-bottom:12px;opacity:.7;}
 .char-count.warn{color:var(--r);opacity:1;}
+.img-preview{margin:-10px 0 14px;padding:10px;background:#fff;border:1.5px solid var(--sd);border-radius:8px;font-size:12px;}
+.img-preview img{max-width:100%;max-height:180px;display:block;border-radius:5px;margin:0 auto;}
+.img-preview .loading{color:var(--sl);font-style:italic;text-align:center;padding:20px 0;}
+.img-preview .err{color:var(--r);font-size:12.5px;line-height:1.5;padding:8px 4px;}
+.img-preview .err b{display:block;margin-bottom:4px;}
+.img-preview .ok{color:var(--s);font-size:11px;text-align:center;margin-top:6px;font-weight:700;}
+.img-preview .fixed{background:var(--p);border-radius:5px;padding:6px 10px;font-size:11px;color:var(--f);margin-bottom:8px;line-height:1.4;}
 .inp,.ta,.sel{width:100%;background:#fff;border:1.5px solid var(--sd);border-radius:8px;padding:11px 13px;font-size:15px;color:var(--ink);font-family:inherit;margin-bottom:14px;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s;}
 .inp:focus,.ta:focus,.sel:focus,.inp:focus-visible,.ta:focus-visible,.sel:focus-visible{outline:none;border-color:var(--s);box-shadow:0 0 0 3px rgba(46,116,83,.22);}
 .inp[aria-invalid="true"],.ta[aria-invalid="true"]{border-color:var(--r);background:var(--rb);}
@@ -246,7 +253,9 @@ body{padding-bottom:90px;}
   <span class="hint-soft">💡 Jeśli nie wiesz co napisać, wróć tu po rozmowie z zespołem. Puste pole jest lepsze niż wymyślone — rekruterzy rozpoznają sztuczność.</span></div>
   <div class="field"><label class="lbl" for="f_impact">Szacowany wpływ — jakaś liczba<span class="opt">opcjonalne</span></label><span class="sub">Przybliżona liczba z uzasadnieniem — lepsza niż brak</span><input class="inp" id="f_impact" maxlength="200" placeholder="np. 1000 użytkowników mogłoby zredukować o 30% odpadów plastikowych w Katowicach"></div>
   <div class="field"><label class="lbl" for="f_proto">Link do prototypu<span class="opt">opcjonalne</span></label><input class="inp" id="f_proto" type="text" maxlength="300" placeholder="np. https://figma.com/file/..."></div>
-  <div class="field"><label class="lbl" for="f_img">Zdjęcie — link do obrazka<span class="opt">opcjonalne</span></label><span class="sub">Wgraj na Imgur.com → prawym klikiem "Copy image address" → wklej poniżej (zaczyna się od <b>https://i.imgur.com/</b>)</span><input class="inp" id="f_img" type="text" maxlength="300" placeholder="np. https://i.imgur.com/abc123.png"></div>
+  <div class="field"><label class="lbl" for="f_img">Zdjęcie — link do obrazka<span class="opt">opcjonalne</span></label><span class="sub">Wgraj na Imgur.com → prawym klikiem "Copy image address" → wklej poniżej (zaczyna się od <b>https://i.imgur.com/</b>)</span><input class="inp" id="f_img" type="text" maxlength="300" placeholder="np. https://i.imgur.com/abc123.png" oninput="previewImg()">
+  <div id="imgPrev" class="img-preview" style="display:none;"></div>
+  </div>
 </div>
 
 <!-- ══ SCREEN 4: REFLEKSJA ══════════════════════════════════ -->
@@ -336,6 +345,75 @@ function slugifyPL(str) {
     .replace(/-+/g,'-')
     .replace(/^-|-$/g,'')
     .slice(0,60) || 'portfolio';
+}
+
+/* ─── IMAGE LIVE PREVIEW ────────────────────────── */
+let _imgPrevTimer = null;
+function previewImg() {
+  clearTimeout(_imgPrevTimer);
+  _imgPrevTimer = setTimeout(_doPreviewImg, 400);
+}
+function _doPreviewImg() {
+  const raw = v('f_img');
+  const box = document.getElementById('imgPrev');
+  if(!raw) { box.style.display = 'none'; box.innerHTML = ''; return; }
+  const normalized = normalizeImgUrl(raw);
+  if(!/^https?:\/\//i.test(normalized)) {
+    box.style.display = 'block';
+    box.innerHTML = '<div class="err"><b>⚠ Zły format URL</b>Wklej pełny link zaczynający się od <b>https://</b> — najlepiej bezpośredni link do pliku .jpg/.png.</div>';
+    return;
+  }
+  const wasFixed = normalized !== raw;
+  box.style.display = 'block';
+  let fixedMsg = '';
+  if(wasFixed) {
+    fixedMsg = '<div class="fixed">✨ <b>Naprawiłem URL dla Ciebie:</b><br>' + escHtml(normalized) + '</div>';
+  }
+  box.innerHTML = fixedMsg + '<div class="loading">⏳ Ładuję podgląd...</div>';
+  const testImg = new Image();
+  testImg.onload = () => {
+    box.innerHTML = fixedMsg + '<img src="' + escHtml(normalized) + '" alt="Podgląd"><div class="ok">✓ Obrazek się ładuje — będzie widoczny w portfolio</div>';
+  };
+  testImg.onerror = () => {
+    box.innerHTML = fixedMsg + '<div class="err"><b>✗ Obrazek się nie załadował</b>Możliwe przyczyny:<br>• wkleiłeś link do <b>strony</b> a nie do <b>obrazka</b> — na Imgur kliknij prawym na obrazek → <b>Copy image address</b><br>• obrazek jest prywatny/wygasł<br>• URL ma literówkę</div>';
+  };
+  testImg.src = normalized;
+}
+
+/* ─── IMAGE URL NORMALIZATION ───────────────────── */
+// Naprawia typowe błędy wklejonego URL obrazka
+function normalizeImgUrl(raw) {
+  if(!raw) return '';
+  let u = raw.trim();
+  // wyciągnij URL z tekstu jeśli user wkleił "Zobacz: https://..." 
+  const m = u.match(/https?:\/\/\S+/);
+  if(m) u = m[0];
+  // strip trailing punctuation that sometimes gets copied
+  u = u.replace(/[.,;:!?)]+$/,'');
+  // Imgur: strona → bezpośredni obrazek
+  // https://imgur.com/abc123 → https://i.imgur.com/abc123.jpg
+  // https://imgur.com/gallery/abc123 → https://i.imgur.com/abc123.jpg
+  // https://imgur.com/a/abc123 (album) → nie da się prosto, zostaw
+  const imgurMatch = u.match(/^https?:\/\/(?:www\.)?imgur\.com\/(?:gallery\/)?([a-zA-Z0-9]{5,10})(?:\/?|\.\w+)?$/);
+  if(imgurMatch) {
+    return 'https://i.imgur.com/' + imgurMatch[1] + '.jpg';
+  }
+  // i.imgur.com bez rozszerzenia → dodaj .jpg
+  const iImgurMatch = u.match(/^https?:\/\/i\.imgur\.com\/([a-zA-Z0-9]{5,10})$/);
+  if(iImgurMatch) {
+    return 'https://i.imgur.com/' + iImgurMatch[1] + '.jpg';
+  }
+  // Dropbox: ?dl=0 → ?raw=1
+  if(/^https?:\/\/(www\.)?dropbox\.com\//.test(u)) {
+    return u.replace(/[?&]dl=0/,'').replace(/$/,(u.includes('?')?'&':'?')+'raw=1');
+  }
+  // Google Drive share → direct link
+  // https://drive.google.com/file/d/FILEID/view → https://drive.google.com/uc?id=FILEID
+  const gdriveMatch = u.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if(gdriveMatch) {
+    return 'https://drive.google.com/uc?id=' + gdriveMatch[1];
+  }
+  return u;
 }
 
 /* ─── ROUTING ───────────────────────────────────── */
@@ -571,7 +649,8 @@ function buildAndPreview() {
   // URL safety
   const linkSafe = lnk ? (lnk.includes('@') ? 'mailto:'+lnk : safeUrl(lnk)) : '';
   const protoSafe = safeUrl(proto);
-  const imgSafe = imgUrl && /^https?:\/\//i.test(imgUrl) ? imgUrl : '';
+  const imgNormalized = normalizeImgUrl(imgUrl);
+  const imgSafe = imgNormalized && /^https?:\/\//i.test(imgNormalized) ? imgNormalized : '';
 
   const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
@@ -748,7 +827,7 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--dk);
 </section>
 
 ${imgSafe?`<section class="section" style="padding-top:0;padding-bottom:0;opacity:1;transform:none;" aria-label="Zdjęcie prototypu">
-  <img class="proj-img" src="${esc(imgSafe)}" alt="Prototyp projektu ${esc(proj)}" loading="lazy" onerror="this.closest('.section').style.display='none'">
+  <img class="proj-img" src="${esc(imgSafe)}" alt="Prototyp projektu ${esc(proj)}" loading="lazy" onerror="this.outerHTML='<div style=&quot;padding:24px;text-align:center;background:rgba(200,144,26,.08);border:1px dashed rgba(200,144,26,.4);border-radius:10px;color:var(--wl);font-size:13px;line-height:1.5;&quot;>📷 Obrazek nie załadował się.<br><span style=&quot;font-size:11px;opacity:.75&quot;>Sprawdź URL &mdash; musi być bezpośredni link do pliku (kończy się na .jpg/.png)</span></div>'">
   <div class="img-caption">📸 Prototyp: ${esc(proj)}</div>
 </section>`:''}
 
