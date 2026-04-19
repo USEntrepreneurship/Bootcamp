@@ -274,7 +274,11 @@ body{padding-bottom:90px;}
   <div class="tip">Dane widoczne w sekcji hero Twojej strony. <b>Imię i kierunek</b> są obowiązkowe, reszta — opcjonalna.</div>
   <div class="val-msg" id="v1" role="alert">Podaj imię i kierunek studiów.</div>
   <div class="field"><label class="lbl" for="f_name">Imię i nazwisko<span class="req" aria-hidden="true">*</span></label><input class="inp" id="f_name" maxlength="80" aria-required="true" placeholder="np. Anna Kowalska"></div>
-  <div class="field"><label class="lbl" for="f_kier">Kierunek i rok studiów<span class="req" aria-hidden="true">*</span></label><input class="inp" id="f_kier" maxlength="120" aria-required="true" placeholder="np. Biologia, rok 1, Uniwersytet Śląski"></div>
+  <div class="field"><label class="lbl" for="f_kier">Kierunek studiów<span class="req" aria-hidden="true">*</span></label><input class="inp" id="f_kier" maxlength="80" aria-required="true" placeholder="np. Biologia"></div>
+  <div class="field" style="display:flex;gap:10px;">
+    <div style="flex:1;"><label class="lbl" for="f_rok">Rok studiów<span class="opt">opcjonalne</span></label><input class="inp" id="f_rok" maxlength="20" placeholder="np. 1"></div>
+    <div style="flex:2;"><label class="lbl" for="f_uczelnia">Uczelnia<span class="opt">opcjonalne</span></label><input class="inp" id="f_uczelnia" maxlength="100" placeholder="Uniwersytet Śląski" value="Uniwersytet Śląski"></div>
+  </div>
   <div class="field"><label class="lbl" for="f_bio">Jedno zdanie o sobie<span class="opt">opcjonalne</span></label><span class="sub">Co Cię napędza? Jak chcesz żeby Cię zapamiętano?</span><input class="inp" id="f_bio" maxlength="220" placeholder="np. Interesuję się ekologią miejską i projektowaniem rozwiązań dla ludzi i środowiska."></div>
   <div class="field"><label class="lbl" for="f_team">Skład zespołu — kierunki studiów<span class="opt">opcjonalne</span></label><span class="sub">Kierunki pozostałych osób (bez imion)</span><input class="inp" id="f_team" maxlength="180" placeholder="np. informatyka, prawo, ekonomia, projektowanie"></div>
   <div class="field"><label class="lbl" for="f_link">LinkedIn lub e-mail<span class="opt">opcjonalne</span></label><input class="inp" id="f_link" maxlength="200" placeholder="np. linkedin.com/in/anna-kowalska" type="text"></div>
@@ -386,7 +390,7 @@ let _saveTimer = null;
 let _blobUrl = null;
 
 /* ─── FIELDS ─────────────────────────────────────── */
-const FIELDS = ['f_name','f_kier','f_bio','f_team','f_link',
+const FIELDS = ['f_name','f_kier','f_rok','f_uczelnia','f_bio','f_team','f_link',
   'f_proj','f_prob','f_insight','f_sol','f_part','f_wynik',
   'f_rola','f_unique','f_impact','f_proto','f_img','f_feedback'];
 
@@ -751,6 +755,7 @@ function buildReview() {
   const sections = [
     { label:'O Tobie', step:1, rows:[
       ['Imię',v('f_name')],['Kierunek',v('f_kier')],
+      ['Rok',v('f_rok')],['Uczelnia',v('f_uczelnia')],
       ['O sobie',v('f_bio')],['Skład zespołu',v('f_team')],['Kontakt',v('f_link')],
     ]},
     { label:'Projekt', step:2, rows:[
@@ -813,7 +818,22 @@ function getSkills() {
 
 /* ─── BUILD HTML ────────────────────────────────── */
 function buildAndPreview() {
-  const nm=v('f_name'),kier=v('f_kier'),bio=v('f_bio'),lnk=v('f_link'),teamKier=v('f_team');
+  const nm=v('f_name'),bio=v('f_bio'),lnk=v('f_link'),teamKier=v('f_team');
+  // Kierunek / rok / uczelnia - komponowane inteligentnie
+  const rawKier = v('f_kier'), rawRok = v('f_rok'), rawUcz = v('f_uczelnia');
+  // Backward compat: jeśli stary f_kier ma przecinki a f_rok/f_uczelnia puste,
+  // prawdopodobnie jest to dane z poprzedniej wersji - wyświetl jak było
+  let kier;
+  if(rawKier.includes(',') && !rawRok && !rawUcz) {
+    kier = rawKier;  // legacy — pokaż całość jak user wpisał
+  } else {
+    const parts = [
+      rawKier,
+      rawRok ? 'rok ' + rawRok : '',
+      rawUcz
+    ].filter(x => x && x.trim());
+    kier = parts.join(' · ');
+  }
   const proj=v('f_proj'),prob=v('f_prob'),ins=v('f_insight'),sol=v('f_sol');
   const part=v('f_part'),wynik=v('f_wynik');
   const rola=v('f_rola'),unique=v('f_unique'),impact=v('f_impact');
@@ -992,7 +1012,7 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--dk);
   <div class="stat"><div class="sn" data-count="15">0</div><div class="sl">godzin dydaktycznych</div></div>
   <div class="stat"><div class="sn" style="font-size:16px;padding-top:6px;line-height:1.2">DT + Lean<br>Startup</div><div class="sl">metody pracy</div></div>
   <div class="stat"><div class="sn" data-count="1">0</div><div class="sl">prototyp MVP</div></div>
-  ${wynik?`<div class="stat"><div class="sn" style="font-size:15px;padding-top:6px">${esc(wynik.split('·')[0].trim())}</div><div class="sl">Demo Day</div></div>`:`<div class="stat"><div class="sn">✓</div><div class="sl">Demo Day</div></div>`}
+  ${wynik?`<div class="stat"><div class="sn" style="font-size:15px;padding-top:6px">${esc(wynik.split('·')[0].trim())}</div><div class="sl">Elevator pitch</div></div>`:`<div class="stat"><div class="sn">✓</div><div class="sl">Elevator pitch</div></div>`}
 </div>
 
 <section class="section" aria-labelledby="sec-proj">
